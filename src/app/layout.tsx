@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { inter, merriweather } from "@/fonts";
 
 import "./globals.css";
+import React from "react";
 
 const ogDescription = "Покращення добробуту в Україні через петиції";
 const ogImage = "/public/assets/images/newLogologo.png";
