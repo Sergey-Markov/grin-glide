@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
 import "./globals.css";
+import Footer from "@/components/Footer/Footer";
 
 const ogDescription = "Покращення добробуту в Україні через петиції";
 const ogImage = "/public/assets/images/newLogologo.png";
@@ -56,6 +57,7 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
