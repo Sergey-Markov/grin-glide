@@ -49,7 +49,10 @@ export default async function RootLayout({
   const locale = await getLocale();
   const messages = await getMessages();
   return (
-    <html lang={locale}>
+    <html
+      data-theme="cupcake"
+      lang={locale}
+    >
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
