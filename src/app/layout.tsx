@@ -1,8 +1,10 @@
+import React from "react";
 import type { Metadata } from "next";
 import { inter, merriweather } from "@/fonts";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 import "./globals.css";
-import React from "react";
 
 const ogDescription = "Покращення добробуту в Україні через петиції";
 const ogImage = "/public/assets/images/newLogologo.png";
@@ -39,15 +41,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${inter.variable} ${merriweather.variable}`}>
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
