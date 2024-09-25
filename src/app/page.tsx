@@ -4,7 +4,7 @@
 export default function Home() {
   // const t = useTranslations("HomePage");
   return (
-    <div className="font-sans text-white min-h-screen bg-gradient-to-b from-teal-900 to-emerald-700">
+    <div className="font-sans text-white min-h-screen ">
       <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <header className="flex justify-between items-center mb-8">

@@ -3,7 +3,7 @@ interface ITasksProps {
 }
 
 const Tasks = ({ options }: ITasksProps) => (
-  <main>
+  <main className="min-h-screen">
     <p>Tasks</p>
   </main>
 );

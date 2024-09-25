@@ -3,7 +3,7 @@ interface ILiderboardProps {
 }
 
 const Liderboard = ({ options }: ILiderboardProps) => (
-  <main>
+  <main className="min-h-screen">
     <p>liderboard</p>
   </main>
 );

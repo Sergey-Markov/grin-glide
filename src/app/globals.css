@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply max-w-screen-md overflow-hidden mx-auto my-0 font-sans font-light text-primary text-base;
+  @apply max-w-screen-md overflow-hidden mx-auto my-0 font-sans font-light text-primary text-base bg-gradient-to-b from-teal-900 to-emerald-700;
 }

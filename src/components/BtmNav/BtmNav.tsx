@@ -8,6 +8,7 @@ import { GoTasklist } from "react-icons/go";
 import { GiThreeFriends } from "react-icons/gi";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { memo } from "react";
 
 const btmNavigationArr = [
   {
@@ -36,7 +37,7 @@ const btmNavigationArr = [
   },
 ];
 
-const BtmNav = () => {
+const BtmNav = memo(() => {
   const pathName = usePathname();
 
   // const t = useTranslations("HomePage");
@@ -61,6 +62,6 @@ const BtmNav = () => {
       ))}
     </nav>
   );
-};
+});
 
 export default BtmNav;

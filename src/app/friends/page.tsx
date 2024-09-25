@@ -3,7 +3,7 @@ interface IFriendsProps {
 }
 
 const Friends = ({ options }: IFriendsProps) => (
-  <main>
+  <main className="min-h-screen">
     <p>Friends</p>
   </main>
 );
