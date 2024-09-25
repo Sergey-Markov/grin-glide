@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { inter, merriweather } from "@/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import BtmNav from "@/components/BtmNav/BtmNav";
 
 import "./globals.css";
-import Footer from "@/components/Footer/Footer";
 
 const ogDescription = "Покращення добробуту в Україні через петиції";
 const ogImage = "/public/assets/images/newLogologo.png";
@@ -57,7 +57,8 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
-          <Footer />
+
+          <BtmNav />
         </NextIntlClientProvider>
       </body>
     </html>

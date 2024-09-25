@@ -13,20 +13,11 @@ const config: Config = {
         xs: "320px",
         sm: "380px",
         md: "768px",
-        lg: "976px",
-        xl: "1440px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-      colors: {
-        primary: "#ffffff", // Основний колір
-        secondary: "#2d3748", // Додатковий колір
-        accent: "#38b2ac", // Акцентний
-        tetriary: "#f5f9ff", // background
-        tetriaryLight: "#078b83",
       },
       fontFamily: {
         sans: ["var(--font-inter)"], // Основний шрифт
