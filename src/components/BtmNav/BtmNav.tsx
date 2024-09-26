@@ -42,7 +42,7 @@ const BtmNav = memo(() => {
 
   // const t = useTranslations("HomePage");
   return (
-    <nav className="btm-nav text-primary overflow-hidden mx-auto my-0 bg-emerald-900 backdrop-blur-md rounded-full xs:btm-nav-xs sm:btm-nav-sm md:btm-nav-md w-11/12 bottom-4">
+    <nav className="btm-nav text-primary overflow-hidden mx-auto my-0 bg-emerald-900 backdrop-blur-md rounded-full xs:btm-nav-xs sm:btm-nav-sm md:btm-nav-md bottom-4 max-w-screen-md">
       {btmNavigationArr.map(({ id, label, icon: Icon, href }) => (
         <button
           key={id}
