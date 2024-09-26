@@ -1,19 +1,30 @@
 // import { useTranslations } from "next-intl";
 import Image from "next/image";
 import babyImg from "@images/gring-baby_svg.svg";
+import VoteForm from "@/components/VoteForm/VoteForm";
+import { formFirstVoteOptions } from "@/constants";
 
 export default function Home() {
   // const t = useTranslations("HomePage");
   return (
     <div className="font-sans text-white min-h-screen pb-12">
-      <div className="container mx-auto px-4 py-6">
-        {/* Header */}
-        <header className="flex justify-between items-center mb-8">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-full bg-gray-300" />
+      <div className="mx-auto px-3 py-6">
+        <header className="flex justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <div className="avatar">
+              <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
+                <Image
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  alt="Gringlide child"
+                  width={512}
+                  height={512}
+                  loading="lazy"
+                />
+              </div>
+            </div>
             <div>
-              <h1 className="text-2xl font-bold">Gring</h1>
-              <p className="text-sm opacity-75">5/o sinic +</p>
+              <h1 className="text-2xl font-bold">Raduga</h1>
+              <p className="text-sm opacity-75">wallet</p>
             </div>
           </div>
           <button
@@ -36,8 +47,12 @@ export default function Home() {
             </svg>
           </button>
         </header>
+
         <main className="p-4">
-          <div className="flex justify-center items-center mb-8">
+          <section
+            id="hero-home"
+            className="flex justify-center items-center mb-8"
+          >
             <div className="relative ring-primary ring-offset-base-100 w-80 h-80 rounded-full ring ring-offset-2">
               <Image
                 className="absolute z-10"
@@ -54,39 +69,8 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="text-center font-serif text-xl">
-            <p className="mb-4">Choose who GrinG will become:</p>
-            <form className="flex gap-4 flex-col items-center">
-              <div className="flex gap-1 justify-center">
-                <input
-                  type="radio"
-                  name="futureGrinG"
-                  aria-label="leprechaun"
-                  className="btn"
-                />
-                <input
-                  type="radio"
-                  name="futureGrinG"
-                  aria-label="investor"
-                  className="btn"
-                />
-                <input
-                  type="radio"
-                  name="futureGrinG"
-                  aria-label="pirate"
-                  className="btn"
-                  defaultChecked
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn  btn-success"
-              >
-                SEND
-              </button>
-            </form>
-          </div>
+          </section>
+          <VoteForm options={formFirstVoteOptions} />
         </main>
       </div>
     </div>
