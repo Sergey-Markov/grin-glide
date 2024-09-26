@@ -62,12 +62,6 @@ export default function Home() {
                 <input
                   type="radio"
                   name="futureGrinG"
-                  aria-label="pirate"
-                  className="btn"
-                />
-                <input
-                  type="radio"
-                  name="futureGrinG"
                   aria-label="leprechaun"
                   className="btn"
                 />
@@ -76,6 +70,13 @@ export default function Home() {
                   name="futureGrinG"
                   aria-label="investor"
                   className="btn"
+                />
+                <input
+                  type="radio"
+                  name="futureGrinG"
+                  aria-label="pirate"
+                  className="btn"
+                  defaultChecked
                 />
               </div>
               <button
