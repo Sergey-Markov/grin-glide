@@ -5,7 +5,7 @@ import babyImg from "@images/gring-baby_svg.svg";
 export default function Home() {
   // const t = useTranslations("HomePage");
   return (
-    <div className="font-sans text-white overflow-scroll   pb-44">
+    <div className="font-sans text-white min-h-screen pb-12">
       <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <header className="flex justify-between items-center mb-8">
@@ -37,7 +37,7 @@ export default function Home() {
           </button>
         </header>
         <main className="p-4">
-          <div className="flex justify-center items-center mb-4">
+          <div className="flex justify-center items-center mb-8">
             <div className="relative ring-primary ring-offset-base-100 w-80 h-80 rounded-full ring ring-offset-2">
               <Image
                 className="absolute z-10"
