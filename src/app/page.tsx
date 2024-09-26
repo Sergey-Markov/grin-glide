@@ -1,14 +1,26 @@
+"use client";
+
 // import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { GrClose } from "react-icons/gr";
 import babyImg from "@images/gring-baby_svg.svg";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
+import { useState } from "react";
+import classNames from "classnames";
+import Menu from "@/components/Menu/Menu";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openMenuHandler = () => {
+    setIsOpen(!isOpen);
+  };
   // const t = useTranslations("HomePage");
   return (
     <div className="font-sans text-white min-h-screen pb-12">
-      <div className="mx-auto px-3 py-6">
+      <div className="relative mx-auto px-3 py-6 overflow-hidden">
         <header className="flex justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="avatar">
@@ -27,27 +39,32 @@ export default function Home() {
               <p className="text-sm opacity-75">wallet</p>
             </div>
           </div>
-          <button
-            type="button"
-            className="btn btn-circle btn-ghost"
-            aria-label="st"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-6 h-6 stroke-current"
+          <div className="relative">
+            <button
+              type="button"
+              className="btn btn-circle btn-ghost swap swap-rotate z-50"
+              aria-label="st"
+              onClick={openMenuHandler}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-              />
-            </svg>
-          </button>
+              {!isOpen ? (
+                <HiDotsHorizontal
+                  className={classNames([
+                    "w-6 h-6",
+                    isOpen ? "swap-on" : "swap-off",
+                  ])}
+                />
+              ) : (
+                <GrClose
+                  className={classNames([
+                    "w-6 h-6",
+                    !isOpen ? "swap-on" : "swap-off",
+                  ])}
+                />
+              )}
+            </button>
+          </div>
         </header>
-
+        <Menu open={isOpen} />
         <main className="p-4">
           <section
             id="hero-home"
