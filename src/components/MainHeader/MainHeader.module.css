@@ -1,0 +1,21 @@
+.mainHeader {
+  @apply flex justify-between mb-8;
+}
+.user {
+  @apply flex items-center gap-3;
+}
+.userAvatar {
+  @apply avatar;
+}
+.userAvatarBox {
+  @apply ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2;
+}
+.userName {
+  @apply text-2xl font-bold;
+}
+.userPoints {
+  @apply text-sm opacity-75;
+}
+.burgerBtnView {
+  @apply relative;
+}
