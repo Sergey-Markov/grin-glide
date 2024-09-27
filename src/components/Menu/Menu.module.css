@@ -1,13 +1,13 @@
 .menuBox {
-  @apply absolute menu bg-base-200 rounded-s-full w-60 top-0 right-0 z-30 py-16 pl-3;
+  @apply absolute menu bg-base-200 rounded-s-full w-60 top-0 right-0 z-30 py-16 pl-9 gap-3 ring-primary ring-offset-base-100 ring ring-offset-2;
 }
 .menuOpen {
-  animation: slideLeft 1s ease-in;
+  animation: slideLeft 0.5s ease-in;
 }
 .menuClose {
   display: none;
   transform: translateX(100%);
-  animation: slideRight 1s ease-in;
+  animation: slideRight 0.5s ease-in;
 }
 
 @keyframes slideRight {
@@ -25,6 +25,7 @@
   0% {
     transform: translateX(100%);
     display: none;
+    opacity: 0;
   }
   100% {
     transform: translateX(0%);
