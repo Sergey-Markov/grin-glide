@@ -8,13 +8,13 @@
   @apply absolute text-yellow-400 animate-bounce top-8 left-2;
 }
 .icon {
-  @apply absolute text-yellow-400 w-16 h-16 animate-bounce top-8 left-2;
+  @apply absolute text-blue-300 w-16 h-16 animate-bounce top-8 left-2;
 }
 .content {
   @apply absolute inset-0 flex flex-col items-center justify-center;
 }
 .rocketBox {
-  @apply relative w-24 h-24 mb-8;
+  @apply relative w-28 h-28 mb-8 z-30;
 }
 .bgRocket {
   @apply absolute inset-0 bg-white rounded-full animate-pulse;
