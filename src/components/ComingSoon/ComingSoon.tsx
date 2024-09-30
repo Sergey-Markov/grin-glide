@@ -30,8 +30,11 @@ export default function ComingSoon() {
       <div className={s.innerView}>
         {isDay ? (
           <>
-            <LuSun className={s.icon} />
-            {[...Array(6)].map((_, i) => (
+            <LuSun
+              className={s.iconSun}
+              size={100}
+            />
+            {[...Array(13)].map((_, i) => (
               <Clouds
                 key={uuid()}
                 delay={i * 3}

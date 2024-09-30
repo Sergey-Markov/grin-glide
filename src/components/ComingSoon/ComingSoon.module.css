@@ -4,6 +4,9 @@
 .innerView {
   @apply relative w-full max-w-screen-md aspect-[9/16] bg-emerald-700 rounded-3xl overflow-hidden shadow-xl;
 }
+.iconSun {
+  @apply absolute text-yellow-400 animate-bounce top-8 left-2;
+}
 .icon {
   @apply absolute text-yellow-400 w-16 h-16 animate-bounce top-8 left-2;
 }
