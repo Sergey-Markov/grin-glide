@@ -1,0 +1,14 @@
+.icon {
+  @apply absolute ease-linear text-white  opacity-50;
+  animation-name: move;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move {
+  from {
+    margin-left: 0px;
+  }
+  to {
+    margin-left: 400px;
+  }
+}

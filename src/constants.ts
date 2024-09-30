@@ -1,8 +1,15 @@
 import { v4 as uuid } from "uuid";
-import { IoLanguage, IoWallet } from "react-icons/io5";
-import { BsFillInfoCircleFill } from "react-icons/bs";
+import {
+  IoGameController,
+  IoHomeOutline,
+  IoLanguage,
+  IoWallet,
+} from "react-icons/io5";
+import { BsFillBarChartLineFill, BsFillInfoCircleFill } from "react-icons/bs";
 import { LuCalendarHeart } from "react-icons/lu";
 import { FaHandsHelping } from "react-icons/fa";
+import { GoTasklist } from "react-icons/go";
+import { GiThreeFriends } from "react-icons/gi";
 
 export const formFirstVoteOptions = [
   {
@@ -57,3 +64,38 @@ export const MENU_ITEMS = [
     icon: FaHandsHelping,
   },
 ];
+
+export const BOTTOM_NAVIGATION = [
+  {
+    id: uuid(),
+    label: "Home",
+    icon: IoHomeOutline,
+    href: "/",
+  },
+  {
+    id: uuid(),
+    label: "Tasks",
+    icon: GoTasklist,
+    href: "/tasks",
+  },
+  {
+    id: uuid(),
+    label: "Game",
+    icon: IoGameController,
+    href: "/game",
+  },
+  {
+    id: uuid(),
+    label: "Friends",
+    icon: GiThreeFriends,
+    href: "/friends",
+  },
+  {
+    id: uuid(),
+    label: "Leaders",
+    icon: BsFillBarChartLineFill,
+    href: "/liderboard",
+  },
+];
+
+export const COMING_SOON = "This feature will be available soon!";
