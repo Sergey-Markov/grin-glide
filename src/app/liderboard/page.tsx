@@ -1,10 +1,8 @@
-interface ILiderboardProps {
-  options?: string;
-}
+import ComingSoon from "@/components/ComingSoon/ComingSoon";
 
-const Liderboard = ({ options }: ILiderboardProps) => (
+const Liderboard = () => (
   <main className="min-h-screen">
-    <p>liderboard</p>
+    <ComingSoon />
   </main>
 );
 
