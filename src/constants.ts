@@ -98,4 +98,8 @@ export const BOTTOM_NAVIGATION = [
   },
 ];
 
+export const investorStatus = "investor";
+export const inviteBtnLabel = "Invite Friend";
+export const friendsPageTitle = "Friends:";
+
 export const COMING_SOON = "This feature will be available soon!";
