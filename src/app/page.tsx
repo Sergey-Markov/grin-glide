@@ -1,40 +1,37 @@
+"use client";
+
 // import { useTranslations } from "next-intl";
-// import Image from "next/image";
+import { useState } from "react";
+import VoteForm from "@/components/VoteForm/VoteForm";
+import { formFirstVoteOptions } from "@/constants";
+import Menu from "@/components/Menu/Menu";
+import MainHeader from "@/components/MainHeader/MainHeader";
+import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openMenuHandler = () => {
+    setIsOpen(!isOpen);
+  };
   // const t = useTranslations("HomePage");
   return (
-    <div className="font-sans text-white min-h-screen ">
-      <div className="container mx-auto px-4 py-6">
-        {/* Header */}
-        <header className="flex justify-between items-center mb-8">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-full bg-gray-300" />
-            <div>
-              <h1 className="text-2xl font-bold">Gring</h1>
-              <p className="text-sm opacity-75">5/o sinic +</p>
-            </div>
-          </div>
-          <button
-            type="button"
-            className="btn btn-circle btn-ghost"
-            aria-label="st"
+    <div className="font-sans text-white min-h-screen pb-12">
+      <div className="relative mx-auto px-3 py-6 overflow-hidden">
+        <MainHeader
+          open={isOpen}
+          openToggler={openMenuHandler}
+        />
+        <Menu open={isOpen} />
+        <main className="p-4">
+          <section
+            id="hero-home"
+            className="flex justify-center items-center mb-8"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-6 h-6 stroke-current"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-              />
-            </svg>
-          </button>
-        </header>
+            <HeroStartTask />
+          </section>
+          <VoteForm options={formFirstVoteOptions} />
+        </main>
       </div>
     </div>
   );

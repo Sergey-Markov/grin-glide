@@ -57,6 +57,7 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
+
           <BtmNav />
         </NextIntlClientProvider>
       </body>

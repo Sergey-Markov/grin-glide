@@ -29,6 +29,8 @@
     "object-curly-newline": "off",
     "prefer-arrow-callback": "error",
     "import/no-named-as-default-member": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
     "react/function-component-definition": [
       1,
       {

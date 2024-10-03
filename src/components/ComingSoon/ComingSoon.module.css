@@ -1,0 +1,36 @@
+.container {
+  @apply bg-emerald-800 h-screen w-full flex flex-col items-center justify-center p-4;
+}
+.innerView {
+  @apply relative w-full max-w-screen-md aspect-[9/16] bg-emerald-700 rounded-3xl overflow-hidden shadow-xl;
+}
+.iconSun {
+  @apply absolute text-yellow-400 animate-bounce top-8 left-2;
+}
+.icon {
+  @apply absolute text-blue-300 w-16 h-16 animate-bounce top-8 left-2;
+}
+.content {
+  @apply absolute inset-0 flex flex-col items-center justify-center;
+}
+.rocketBox {
+  @apply relative w-28 h-28 mb-8 z-30;
+}
+.bgRocket {
+  @apply absolute inset-0 bg-white rounded-full animate-pulse;
+}
+.rocketIcon {
+  @apply relative z-10 w-full h-full text-orange-500;
+}
+.textBox {
+  @apply w-full max-w-[80%] bg-emerald-600 rounded-full ring-primary ring-offset-base-100 ring ring-offset-2 p-4 text-center shadow-lg z-20;
+}
+.text {
+  @apply text-primary text-2xl font-mono font-bold drop-shadow-[1px_1px_var(--tw-shadow-color)] shadow-secondary-content;
+}
+.staticCloudBox {
+  @apply absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-emerald-600 to-transparent z-0;
+}
+.cloud {
+  @apply absolute text-emerald-600 rounded-full opacity-50;
+}
