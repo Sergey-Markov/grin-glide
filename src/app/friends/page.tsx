@@ -30,7 +30,7 @@ const friendsCount = friends.length;
 
 export default function FriendsList() {
   return (
-    <div className="bg-emerald-800 min-h-screen p-4 md:p-8 text-white pb-24">
+    <main className=" min-h-screen p-4 md:p-8 text-white pb-24">
       <div className="max-w-md mx-auto">
         <h2 className="text-primary text-4xl font-bold mb-6">
           {friendsPageTitle}
@@ -48,6 +48,6 @@ export default function FriendsList() {
           ))}
         </ul>
       </div>
-    </div>
+    </main>
   );
 }
