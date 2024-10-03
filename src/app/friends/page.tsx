@@ -32,7 +32,7 @@ export default function FriendsList() {
   return (
     <main className=" min-h-screen p-4 md:p-8 text-white pb-24">
       <div className="max-w-md mx-auto">
-        <h2 className="text-primary text-4xl font-bold mb-6">
+        <h2 className="text-primary text-4xl font-bold font-mono mb-6">
           {friendsPageTitle}
           <span className="ml-3 text-secondary ">{friendsCount}</span>
         </h2>
