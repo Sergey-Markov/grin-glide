@@ -41,6 +41,12 @@ export const MENU_ITEMS = [
   },
   {
     id: uuid(),
+    label: "investments",
+    href: "/investments",
+    icon: IoWallet,
+  },
+  {
+    id: uuid(),
     label: "language",
     href: "/",
     icon: IoLanguage,
