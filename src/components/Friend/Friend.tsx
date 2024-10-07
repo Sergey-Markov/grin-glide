@@ -1,7 +1,7 @@
 import Image from "next/image";
-import pointImg from "@images/coin_png_sqooshed.webp";
 import { investorStatus } from "@/constants";
 import { getFirstAndLastLetter } from "@/utils";
+import PointGringImg from "../PointGringImg/PointGringImg";
 
 export type TFriend = {
   id: string;
@@ -40,11 +40,7 @@ const Friend = ({ options }: IFriend) => (
       <h2 className="font-semibold">{options.name}</h2>
       <div className="flex items-center text-sm text-emerald-300">
         <span className="text-lg mr-1">{options.points}</span>
-        <Image
-          src={pointImg}
-          alt="point"
-          className="w-5 h-5 "
-        />
+        <PointGringImg variant="small" />
       </div>
     </div>
     {options.investor && <p className="text-yellow-500 ">{investorStatus}</p>}

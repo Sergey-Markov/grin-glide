@@ -1,4 +1,6 @@
+/* eslint-disable import/no-cycle */
 import Image from "next/image";
+import PointGringImg from "../PointGringImg/PointGringImg";
 import BurgerBtn from "../BurgerBtn/BurgerBtn";
 
 import s from "./MainHeader.module.css";
@@ -24,7 +26,10 @@ const MainHeader = ({ open, openToggler }: IMainHeaderProps) => (
       </div>
       <div>
         <h1 className={s.userName}>Raduga</h1>
-        <p className="">10000$</p>
+        <div className="flex items-center gap-1">
+          <p className="">10000</p>
+          <PointGringImg variant="small" />
+        </div>
       </div>
     </div>
     <div className={s.burgerBtnView}>

@@ -1,3 +1,7 @@
+"use client";
+
+import QuickBuyTokens from "@/components/QuickBuyTokens/QuickBuyTokens";
+
 const Investments = () => (
   <main className=" min-h-screen p-4 md:p-8 text-white pb-24">
     <h2 className="text-primary text-4xl font-bold font-mono mb-6">
@@ -16,6 +20,7 @@ const Investments = () => (
       допомогою вказаних нижче кнопок швидкого використання, також можливе
       обговорення спеціальних пропозицій для серйозної довгострокової співпраці.`}
     </p>
+    <QuickBuyTokens />
   </main>
 );
 
