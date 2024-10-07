@@ -66,7 +66,7 @@ export const MENU_ITEMS = [
   {
     id: uuid(),
     label: "support",
-    href: "/",
+    href: "/support",
     icon: FaHandsHelping,
   },
 ];
