@@ -1,6 +1,6 @@
 "use client";
 
-// import { useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
@@ -14,7 +14,7 @@ export default function Home() {
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
-  // const t = useTranslations("HomePage");
+  const t = useTranslations("HomePage");
   return (
     <div className="font-sans text-white min-h-screen pb-12">
       <div className="relative mx-auto px-3 py-6 overflow-hidden">
@@ -31,6 +31,7 @@ export default function Home() {
             <HeroStartTask />
           </section>
           <VoteForm options={formFirstVoteOptions} />
+          <p>{t("title")}</p>
         </main>
       </div>
     </div>

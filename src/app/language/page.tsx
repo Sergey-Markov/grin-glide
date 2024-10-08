@@ -1,6 +1,27 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Locale } from "@/i18n/config";
 import { setUserLocale } from "@/services/locale";
-import { useEffect, useState } from "react";
+import classNames from "classnames";
+
+const localesBtns = [
+  {
+    id: 1,
+    label: "English",
+    value: "en",
+  },
+  {
+    id: 2,
+    label: "Українська",
+    value: "uk",
+  },
+  {
+    id: 1,
+    label: "Русский",
+    value: "ru",
+  },
+];
 
 const Language = () => {
   const [userLg, setUserLg] = useState<Locale>("uk");
@@ -15,15 +36,23 @@ const Language = () => {
   return (
     <main>
       <ul className="flex ">
-        <li>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => onClick("en")}
-          >
-            English
-          </button>
-        </li>
+        {localesBtns.map((btn) => {
+          const isChecked = btn.value === userLg;
+          return (
+            <li>
+              <button
+                type="button"
+                className={classNames([
+                  "btn btn-secondary",
+                  isChecked && "btn-accent",
+                ])}
+                onClick={() => onClick(btn.value as Locale)}
+              >
+                {btn.label}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </main>
   );

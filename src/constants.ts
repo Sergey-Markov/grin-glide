@@ -48,7 +48,7 @@ export const MENU_ITEMS = [
   {
     id: uuid(),
     label: "language",
-    href: "/",
+    href: "/language",
     icon: IoLanguage,
   },
   {
