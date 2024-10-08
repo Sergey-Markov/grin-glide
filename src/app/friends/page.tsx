@@ -1,6 +1,6 @@
 import React from "react";
 import Friend, { TFriend } from "@/components/Friend/Friend";
-import { friendsPageTitle, inviteBtnLabel } from "@/constants";
+import { useTranslations } from "next-intl";
 
 const friends: TFriend[] = [
   {
@@ -28,19 +28,21 @@ const friends: TFriend[] = [
 
 const friendsCount = friends.length;
 
-export default function FriendsList() {
+const FriendsList = () => {
+  const t = useTranslations("FriendsList");
+
   return (
     <main className=" min-h-screen p-4 md:p-8 text-white pb-24">
       <div className="max-w-md mx-auto">
         <h2 className="text-primary text-4xl font-bold font-mono mb-6">
-          {friendsPageTitle}
+          {t("title")}
           <span className="ml-3 text-secondary ">{friendsCount}</span>
         </h2>
         <button
           type="button"
           className="w-full btn btn-success font-bold py-3 px-4 rounded-full my-6"
         >
-          {inviteBtnLabel}
+          {t("inviteBtnLabel")}
         </button>
         <ul className="space-y-4">
           {friends.map((friend) => (
@@ -50,4 +52,6 @@ export default function FriendsList() {
       </div>
     </main>
   );
-}
+};
+
+export default FriendsList;

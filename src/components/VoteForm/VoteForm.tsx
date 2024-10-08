@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 interface VoteFormProps {
@@ -13,6 +14,7 @@ type TVote = {
 const VoteForm = ({ options }: VoteFormProps) => {
   // eslint-disable-next-line no-unused-vars
   const [voteResult, setVoteResult] = useState<TVote | null>(null);
+  const t = useTranslations("VoteForm");
 
   const onChangeHandler = (e: { target: { value: string } }) => {
     setVoteResult({
@@ -25,7 +27,7 @@ const VoteForm = ({ options }: VoteFormProps) => {
       id="vote-home"
       className="text-center font-serif text-xl"
     >
-      <p className="mb-4">Choose who GrinG will become:</p>
+      <p className="mb-4">{t("1quest")}</p>
       <form className="flex gap-4 flex-col items-center">
         <div className="flex gap-1 justify-center">
           {options.map(({ id, name, valueField, checked }) => (
@@ -34,7 +36,7 @@ const VoteForm = ({ options }: VoteFormProps) => {
               type="radio"
               name={name}
               value={valueField}
-              aria-label={valueField}
+              aria-label={t(valueField)}
               className="btn"
               onChange={onChangeHandler}
               defaultChecked={checked}
@@ -45,7 +47,7 @@ const VoteForm = ({ options }: VoteFormProps) => {
           type="submit"
           className="btn  btn-success"
         >
-          SEND
+          {t("confirmBtn")}
         </button>
       </form>
     </section>

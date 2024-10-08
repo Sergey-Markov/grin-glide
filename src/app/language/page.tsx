@@ -4,27 +4,12 @@ import { useEffect, useState } from "react";
 import { Locale } from "@/i18n/config";
 import { setUserLocale } from "@/services/locale";
 import classNames from "classnames";
-
-const localesBtns = [
-  {
-    id: 1,
-    label: "English",
-    value: "en",
-  },
-  {
-    id: 2,
-    label: "Українська",
-    value: "uk",
-  },
-  {
-    id: 1,
-    label: "Русский",
-    value: "ru",
-  },
-];
+import { localesBtns } from "@/constants";
+import { useTranslations } from "next-intl";
 
 const Language = () => {
   const [userLg, setUserLg] = useState<Locale>("uk");
+  const t = useTranslations("LanguagePage");
 
   useEffect(() => {
     setUserLocale(userLg);
@@ -34,8 +19,11 @@ const Language = () => {
     setUserLg(lg);
   };
   return (
-    <main>
-      <ul className="flex ">
+    <main className=" min-h-screen p-4 md:p-8 text-white pb-24">
+      <h2 className="text-primary text-4xl font-bold font-mono mb-6">
+        {t("title")}
+      </h2>
+      <ul className="grid grid-cols-2 grid-rows-2 gap-1 sm:grid-cols-3 sm:grid-rows-3 sm:gap-2  md:grid-cols-5 md:grid-rows-5 md:gap-3">
         {localesBtns.map((btn) => {
           const isChecked = btn.value === userLg;
           return (
@@ -43,8 +31,8 @@ const Language = () => {
               <button
                 type="button"
                 className={classNames([
-                  "btn btn-secondary",
-                  isChecked && "btn-accent",
+                  "btn w-full",
+                  isChecked && "btn-primary",
                 ])}
                 onClick={() => onClick(btn.value as Locale)}
               >

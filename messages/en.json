@@ -1,5 +1,97 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "BtmNav": {
+    "Home": "Home",
+    "Tasks": "Tasks",
+    "Game": "Game",
+    "Friends": "Friends",
+    "Leaders": "Leaders"
+  },
+  "Menu": {
+    "wallet": "wallet",
+    "investments": "investments",
+    "language": "language",
+    "roadMap": "road map",
+    "about": "about",
+    "support": "support"
+  },
+  "VoteForm": {
+    "1quest": "Виберіть, ким стане GrinG:",
+    "confirmBtn": "Відправити",
+    "leprechaun": "leprechaun",
+    "investor": "investor",
+    "pirate": "pirate"
+  },
+  "LanguagePage": {
+    "title": "Select application language"
+  },
+  "ComingSoon": {
+    "title": "This feature will be available soon!"
+  },
+  "Wallet": {
+    "title": "Wallet"
+  },
+  "Tasks": {
+    "title": "Tasks",
+    "connectToBlumTG": "Connect to BLUM TG chanel",
+    "sendAStars": "Send a Stars",
+    "investInProject": "Invest in project up 10$"
+  },
+  "FriendsList": {
+    "title": "Friends:",
+    "inviteBtnLabel": "Invite Friend"
+  },
+  "Investments": {
+    "title": "For investors",
+    "lookingInvestors": "We are seeking strategic partners and investors to help us expand the app and raise capital for listing the GrinG token on an exchange. Our goal is to position GrinG as a key tool for decentralized community governance and a platform for earning real profits through investments by leveraging both current and future technologies. GrinG aims to scale not just within the digital economy but also into the real sector to diversify assets. More detailed information can be found in the relevant section of the main menu. You can make an investment using the quick access buttons below, and we are also open to discussing special offers for serious, long-term partnerships.",
+    "quickBuy": "Quick Buy GrinG Tokens",
+    "selectAmount": "Select Amount",
+    "completeBtn": "Complete",
+    "transactionProcessTitle": "How It Works",
+    "processList1Item": "Select the amount of USDT or TON you want to spend",
+    "processList2Item": "Click on the corresponding button",
+    "processList3Item": "Confirm the transaction in your wallet",
+    "processList4Item": "Receive your GrinG tokens instantly",
+    "note": "Note: The actual amount of GrinG tokens received may vary based on current exchange rates. Always verify the transaction details before confirming."
+  },
+  "About": {
+    "title": "Про нас",
+    "titleGrinG": "GrinG",
+    "mainText": "це інноваційний міні застосунок у Telegram, що дозволяє створити ком'юніті, яке самостійно вирішує шляхом голосування, як буде розвиватися платформа. GrinG використовує власний токен на блокчейні TON, який служить засобом для голосування, винагород і монетизації.",
+    "keyFeatures": "Ключові особливості проекту",
+    "voteTitle": "Голосування за розвиток:",
+    "voteText": "Користувачі використовують токени GrinG для голосування, визначаючи напрямки розвитку застосунку.",
+    "rewardsTitle": "Винагороди:",
+    "rewardsText": "Учасники отримують токени за активність у ком'юніті (голосування, створення контенту, участь у конкурсах та інше)",
+    "monetizationTitle": "Монетизація:",
+    "monetizationText": "Доходи будуть отримуватися від реклами в застосунку, зокрема реклами соцмереж, профілів та інших додатків",
+    "reinvestmentTitle": "Реінвестування:",
+    "reinvestmentText": "Частина прибутку з реклами буде реінвестована в токен GrinG, що сприятиме стабільності його вартості.",
+    "miningMechanismTitle": "Механізм майнінгу:",
+    "miningMechanism1Text": "Токени можна отримати через виконання завдань у застосунку.",
+    "miningMechanism2Text": "Буде встановлено ліміти майнінгу для контролю інфляції та залучення нових користувачів.",
+    "roadMapTitle": "Дорожня карта:",
+    "roadMapText": "викладена у одному з основних пунктів меню, з нею можливо ознайомитись окремо",
+    "earningProfitTitle": "Шляхи отримання прибутку:",
+    "advertisingTitle": "Реклама:",
+    "advertisingText": "Відображення реклами інших застосунків, профілів соцмереж, блогів та інших продуктів.",
+    "premiumFeaturesTitle": "Преміум-функції:",
+    "premiumFeaturesText": "Додаткові опції в застосунку для користувачів та їх груп",
+    "saleTokensTitle": "Продаж токенів:",
+    "saleTokensText": "Після лістингу на біржах користувачі зможуть торгувати токенами.",
+    "collaborationsTitle": "Бізнес-колоборації:",
+    "collaborationsText": "Спеціальні пропозиції від реального бізнесу для учасників проекту та інвестиції у розвиток",
+    "investmentAttractivenessTitle": "Інвестиційна привабливість:",
+    "uniqueModelTitle": "Унікальна модель:",
+    "uniqueModelText": "Система голосування за розвиток надає користувачам контроль і збільшує їхню залученість.",
+    "possibilitiesTitle": "Широкі можливості для монетизації:",
+    "possibilitiesText": "Різноманітні рекламні та преміум-сервіси.",
+    "marketExpansionTitle": "Розширення ринку:",
+    "marketExpansionText": "Лістинг на нових біржах та інтеграція з TON надають можливість для глобального розширення.",
+    "interestForCommunitiesTitle": "Зростаючий інтерес до спільнот:",
+    "interestForCommunitiesText": "Популярність застосунків з ком'юніті-управлінням стрімко зростає. Ми у цьому сегменті перші",
+    "lookingPartnersText": "Ми шукаємо стратегічних партнерів та інвесторів, які допоможуть нам розширити застосунок і залучити капітал для лістингу токена GrinG на біржі. Наша мета – зробити GrinG ключовим інструментом для децентралізованого управління нашого ком'юніті і платформою для інвестиційного заробітку реальних коштів використовуючи можливості сучасних та майбутніх технології. GrinG має на меті масштабування не лише в межах цифрової економіки, але й розширення в реальний сектор для диверсифікації активів."
   }
 }

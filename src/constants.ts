@@ -59,7 +59,7 @@ export const MENU_ITEMS = [
   },
   {
     id: uuid(),
-    label: "road map",
+    label: "roadMap",
     href: "/roadmap",
     icon: LuCalendarHeart,
   },
@@ -107,133 +107,194 @@ export const BOTTOM_NAVIGATION = [
 export const aboutContent = [
   {
     id: uuid(),
-    title: "GrinG",
-    text: "це інноваційний міні застосунок у Telegram, що дозволяє створити ком'юніті, яке самостійно вирішує шляхом голосування, як буде розвиватися платформа. GrinG використовує власний токен на блокчейні TON, який служить засобом для голосування, винагород і монетизації.",
+    title: "titleGrinG",
+    text: "mainText",
   },
   {
     id: uuid(),
-    title: "Ключові особливості проекту",
+    title: "keyFeatures",
     text: "",
     description: [
       {
         id: uuid(),
-        subTitle: "Голосування за розвиток:",
-        subText:
-          "Користувачі використовують токени GrinG для голосування, визначаючи напрямки розвитку застосунку.",
+        subTitle: "voteTitle",
+        subText: "voteText",
       },
       {
         id: uuid(),
-        subTitle: "Винагороди:",
-        subText:
-          "Учасники отримують токени за активність у ком'юніті (голосування, створення контенту, участь у конкурсах та інше)",
+        subTitle: "rewardsTitle",
+        subText: "rewardsText",
       },
       {
         id: uuid(),
-        subTitle: "Монетизація:",
-        subText:
-          "Доходи будуть отримуватися від реклами в застосунку, зокрема реклами соцмереж, профілів та інших додатків",
+        subTitle: "monetizationTitle",
+        subText: "monetizationText",
       },
       {
         id: uuid(),
-        subTitle: "Реінвестування:",
-        subText:
-          "Частина прибутку з реклами буде реінвестована в токен GrinG, що сприятиме стабільності його вартості.",
+        subTitle: "reinvestmentTitle",
+        subText: "reinvestmentText",
       },
     ],
   },
   {
     id: uuid(),
-    title: "Механізм майнінгу:",
+    title: "miningMechanismTitle",
     text: "",
     description: [
       {
         id: uuid(),
         subTitle: "",
-        subText: "Токени можна отримати через виконання завдань у застосунку.",
+        subText: "miningMechanism1Text",
       },
       {
         id: uuid(),
         subTitle: "",
-        subText:
-          "Буде встановлено ліміти майнінгу для контролю інфляції та залучення нових користувачів.",
+        subText: "miningMechanism2Text",
       },
     ],
   },
   {
     id: uuid(),
-    title: "Дорожня карта:",
-    text: "викладена у одному з основних пунктів меню, з нею можливо ознайомитись окремо",
+    title: "roadMapTitle",
+    text: "roadMapText",
   },
   {
     id: uuid(),
-    title: "Шляхи отримання прибутку:",
+    title: "earningProfitTitle",
     text: "",
     description: [
       {
         id: uuid(),
-        subTitle: "Реклама:",
-        subText:
-          "Відображення реклами інших застосунків, профілів соцмереж, блогів та інших продуктів.",
+        subTitle: "advertisingTitle",
+        subText: "advertisingText",
       },
       {
         id: uuid(),
-        subTitle: "Преміум-функції:",
-        subText: "Додаткові опції в застосунку для користувачів та їх груп",
+        subTitle: "premiumFeaturesTitle",
+        subText: "premiumFeaturesText",
       },
       {
         id: uuid(),
-        subTitle: "Продаж токенів:",
-        subText:
-          "Після лістингу на біржах користувачі зможуть торгувати токенами.",
+        subTitle: "saleTokensTitle",
+        subText: "saleTokensText",
       },
       {
         id: uuid(),
-        subTitle: "Бізнес-колоборації:",
-        subText:
-          "Спеціальні пропозиції від реального бізнесу для учасників проекту та інвестиції у розвиток",
+        subTitle: "collaborationsTitle",
+        subText: "collaborationsText",
       },
     ],
   },
   {
     id: uuid(),
-    title: "Інвестиційна привабливість:",
+    title: "investmentAttractivenessTitle",
     text: "",
     description: [
       {
         id: uuid(),
-        subTitle: "Унікальна модель:",
-        subText:
-          "Система голосування за розвиток надає користувачам контроль і збільшує їхню залученість.",
+        subTitle: "uniqueModelTitle",
+        subText: "uniqueModelText",
       },
       {
         id: uuid(),
-        subTitle: "Широкі можливості для монетизації:",
-        subText: "Різноманітні рекламні та преміум-сервіси.",
+        subTitle: "possibilitiesTitle",
+        subText: "possibilitiesText",
       },
       {
         id: uuid(),
-        subTitle: "Розширення ринку:",
-        subText:
-          "Лістинг на нових біржах та інтеграція з TON надають можливість для глобального розширення.",
+        subTitle: "marketExpansionTitle",
+        subText: "marketExpansionText",
       },
       {
         id: uuid(),
-        subTitle: "Зростаючий інтерес до спільнот:",
-        subText:
-          "Популярність застосунків з ком'юніті-управлінням стрімко зростає. Ми у цьому сегменті перші",
+        subTitle: "interestForCommunitiesTitle",
+        subText: "interestForCommunitiesText",
       },
     ],
   },
   {
     id: uuid(),
-    text: "Ми шукаємо стратегічних партнерів та інвесторів, які допоможуть нам розширити застосунок і залучити капітал для лістингу токена GrinG на біржі. Наша мета – зробити GrinG ключовим інструментом для децентралізованого управління нашого ком'юніті і платформою для інвестиційного заробітку реальних коштів використовуючи можливості сучасних та майбутніх технології. GrinG має на меті масштабування не лише в межах цифрової економіки, але й розширення в реальний сектор для диверсифікації активів.",
+    text: "lookingPartnersText",
     title: "",
   },
 ];
 
-export const investorStatus = "investor";
-export const inviteBtnLabel = "Invite Friend";
-export const friendsPageTitle = "Friends:";
-export const walletsPageTitle = "Wallets";
+export const localesBtns = [
+  {
+    id: 1,
+    label: "English",
+    value: "en",
+  },
+  {
+    id: 2,
+    label: "Українська",
+    value: "uk",
+  },
+  {
+    id: 3,
+    label: "Русский",
+    value: "ru",
+  },
+];
+export type TTask = {
+  id: string;
+  taskTitle: string;
+  points: number;
+  completed: boolean;
+  icon?: string;
+};
+export const tasks: TTask[] = [
+  {
+    id: "1",
+    taskTitle: "connectToBlumTG",
+    points: 100,
+    completed: true,
+    icon: "https://i.pinimg.com/1200x/56/79/39/567939f537288a8ac91acdea1e0a355c.jpg",
+  },
+  {
+    id: "2",
+    taskTitle: "sendAStars",
+    points: 100,
+    completed: false,
+    icon: "",
+  },
+  {
+    id: "2",
+    taskTitle: "investInProject",
+    points: 1000000,
+    completed: false,
+    icon: "",
+  },
+];
+export type TWallet = {
+  id: string;
+  name: string;
+  avatarSrc: string;
+  linkToWallet?: string;
+  isConnect: boolean;
+};
+export const walletsList: TWallet[] = [
+  {
+    id: "1",
+    name: "Tonkeeper",
+    avatarSrc: "https://avatars.githubusercontent.com/u/88587596?s=200&v=4",
+    isConnect: true,
+  },
+  {
+    id: "2",
+    name: "Binance",
+    avatarSrc:
+      "https://www.logo.wine/a/logo/Binance/Binance-BNB-Icon-Logo.wine.svg",
+    isConnect: false,
+  },
+  {
+    id: "3",
+    name: "Bybit",
+    avatarSrc:
+      "https://seeklogo.com/images/B/bybit-logo-4C31FD6A08-seeklogo.com.png",
+    isConnect: false,
+  },
+];
 
-export const COMING_SOON = "This feature will be available soon!";
+export const investorStatus = "investor";

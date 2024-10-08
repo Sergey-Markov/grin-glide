@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { LuRocket, LuSun, LuMoonStar } from "react-icons/lu";
 import { FaCloud } from "react-icons/fa";
-import { COMING_SOON } from "@/constants";
+import { useTranslations } from "next-intl";
 import Stars from "./Stars";
 import Clouds from "./Clouds/Clouds";
 
@@ -12,6 +12,7 @@ import s from "./ComingSoon.module.css";
 
 export default function ComingSoon() {
   const [isDay, setIsDay] = useState(true);
+  const t = useTranslations("ComingSoon");
 
   useEffect(() => {
     const checkTime = () => {
@@ -58,7 +59,7 @@ export default function ComingSoon() {
             <LuRocket className={s.rocketIcon} />
           </div>
           <div className={s.textBox}>
-            <p className={s.text}>{COMING_SOON}</p>
+            <p className={s.text}>{t("title")}</p>
           </div>
         </div>
         <div className={s.staticCloudBox} />
