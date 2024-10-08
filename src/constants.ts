@@ -60,7 +60,7 @@ export const MENU_ITEMS = [
   {
     id: uuid(),
     label: "road map",
-    href: "/",
+    href: "/roadmap",
     icon: LuCalendarHeart,
   },
   {
