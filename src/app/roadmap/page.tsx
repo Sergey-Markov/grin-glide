@@ -11,7 +11,7 @@ const RoadMap = () => {
     <main
       className="hero min-h-screen text-white font-sans font-light items-start "
       style={{
-        backgroundImage: "url(/assets/images/bgRoadMap.png)",
+        backgroundImage: "url(/assets/images/bgRoadMap.jpg)",
       }}
     >
       <div className="hero-overlay bg-opacity-60" />
