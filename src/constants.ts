@@ -296,5 +296,37 @@ export const walletsList: TWallet[] = [
     isConnect: false,
   },
 ];
+export const SUPPORT_CONTENT = [
+  {
+    id: 1,
+    title: "whatIsGringTitle",
+    text: "whatIsGringText",
+  },
+  {
+    id: 2,
+    title: "miningMechanismTitle",
+    text: "whatIsGringText",
+  },
+  {
+    id: 3,
+    title: "voteTitle",
+    text: "voteText",
+  },
+  {
+    id: 4,
+    title: "gringTokenChangeTitle",
+    text: "gringTokenChangeText",
+  },
+  {
+    id: 5,
+    title: "advertisingTitle",
+    text: "advertisingText",
+  },
+  {
+    id: 6,
+    title: "supportTitle",
+    text: "supportText",
+  },
+];
 
 export const investorStatus = "investor";

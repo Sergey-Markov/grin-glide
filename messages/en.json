@@ -93,5 +93,26 @@
     "interestForCommunitiesTitle": "Growing Interest in Communities:",
     "interestForCommunitiesText": "Community-driven apps are gaining popularity fast. We are pioneers in this space.",
     "lookingPartnersText": "We are seeking strategic partners and investors to help scale the app and raise capital for listing the GrinG token on exchanges. Our goal is to make GrinG a key tool for decentralized community management and a platform for earning real income through the potential of current and future technologies. GrinG aims to scale not only within the digital economy but also expand into the real sector to diversify assets."
+  },
+  "Support": {
+    "title": "Support",
+    "mainPageText": "Welcome to the GrinG Support page! We're here to help you get the most out of our app. Below you'll find answers to common questions and a way to reach our support team.",
+    "whatIsGringTitle": "What is GrinG?",
+    "whatIsGringText": "GrinG is a decentralized platform that allows users to participate in the app's development through voting, mining GrinG tokens, earning rewards for watching ads, and interacting with others.",
+    "miningMechanismTitle": "How do I start mining GrinG tokens?",
+    "miningMechanismText": "Once you sign up, you can start mining tokens. Track your progress and earn tokens based on your activity in the app.",
+    "voteTitle": "How does the voting system work?",
+    "voteText": "GrinG lets you shape the platform's development through its voting system. You can view active votes on the main screen and cast your vote. Every vote influences the app's future!",
+    "gringTokenChangeTitle": "How can I exchange GrinG tokens?",
+    "gringTokenChangeText": "Once listed on crypto exchanges, you'll be able to trade GrinG tokens for other cryptocurrencies using integrated wallet tools.",
+    "advertisingTitle": "Can I earn tokens by watching ads?",
+    "advertisingText": "Yes! You can earn extra GrinG tokens by watching ads and completing special tasks within the app.",
+    "supportTitle": "How do I contact support?",
+    "supportText": "If you have questions, technical issues, or suggestions, please reach out to our support team. We aim to resolve your requests as quickly as possible. All contact information is provided below."
+  },
+  "Contacts": {
+    "title": "Contact Information",
+    "email": "Email",
+    "support": "Support"
   }
 }

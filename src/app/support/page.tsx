@@ -1,71 +1,41 @@
 import Contacts from "@/components/Contacts/Contacts";
+import { SUPPORT_CONTENT } from "@/constants";
+import { useTranslations } from "next-intl";
 
-const SUPPORT_CONTENT = [
-  {
-    id: 1,
-    title: "Що таке GrinG?",
-    text: "GrinG — це децентралізована платформа, що дозволяє користувачам брати участь у розвитку застосунку через голосування, майнінг токенів GrinG, заробляти винагороди за перегляд реклами та взаємодію з іншими користувачами.",
-  },
-  {
-    id: 2,
-    title: "Як я можу почати майнінг токенів GrinG?",
-    text: "Після реєстрації ви можете розпочати майнінг токенів. Слідкуйте за прогресом і отримуйте токени за активність у застосунку.",
-  },
-  {
-    id: 3,
-    title: "Як працює система голосування?",
-    text: "GrinG дозволяє вам впливати на розвиток платформи через систему голосувань. Ви можете переглянути актуальні голосування на головному екрані та зробити свій вибір. Кожен голос впливає на майбутнє застосунку!",
-  },
-  {
-    id: 4,
-    title: "Як я можу обміняти токени GrinG?",
-    text: "Після лістингу на криптовалютних біржах, ви зможете обмінювати токени GrinG на інші криптовалюти, використовуючи інтегровані інструменти гаманця.",
-  },
-  {
-    id: 5,
-    title: "Чи можу я заробляти токени за перегляд реклами?",
-    text: "Так! Ви можете отримати додаткові токени GrinG за перегляд рекламних оголошень та виконання спеціальних завдань у застосунку.",
-  },
-  {
-    id: 6,
-    title: "Як звернутися до служби підтримки?",
-    text: "Якщо у вас виникли питання, технічні проблеми або пропозиції, будь ласка, зверніться до нашої служби підтримки. Ми прагнемо вирішити ваші запити якомога швидше.Нижче вказана вся контактна інформація",
-  },
-];
-const Support = () => (
-  <main className=" min-h-screen p-4 md:p-8 text-white pb-24 font-extralight space-y-4 z-0">
-    <h2 className="text-primary text-4xl font-bold font-mono ">Support</h2>
-    <p className="pl-1 ">
-      Ласкаво просимо на сторінку підтримки GrinG! Ми завжди готові допомогти
-      вам отримати максимальну користь від нашого застосунку. Нижче ви знайдете
-      відповіді на найпоширеніші запитання та можливість звернутися до нашої
-      служби підтримки.
-    </p>
-    <ul className="space-y-4">
-      {SUPPORT_CONTENT.map(({ id, title, text }) => {
-        const isFirstEl = id === 1;
-        return (
-          <li
-            key={id}
-            className="collapse collapse-arrow bg-teal-900 rounded-lg"
-          >
-            <input
-              type="radio"
-              name="info"
-              defaultChecked={isFirstEl || undefined}
-            />
-            <h3 className="collapse-title text-lg font-mono font-semibold ">
-              {title}
-            </h3>
-            <div className="collapse-content">
-              <p>{text}</p>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
-    <Contacts />
-  </main>
-);
+const Support = () => {
+  const t = useTranslations("Support");
+  return (
+    <main className=" min-h-screen p-4 md:p-8 text-white pb-24 font-extralight space-y-4 z-0">
+      <h2 className="text-primary text-4xl font-bold font-mono ">
+        {t("title")}
+      </h2>
+      <p className="pl-1 ">{t("mainPageText")}</p>
+      <ul className="space-y-4">
+        {SUPPORT_CONTENT.map(({ id, title, text }) => {
+          const isFirstEl = id === 1;
+          return (
+            <li
+              key={id}
+              className="collapse collapse-arrow bg-teal-900 rounded-lg"
+            >
+              <input
+                type="radio"
+                name="info"
+                defaultChecked={isFirstEl || undefined}
+              />
+              <h3 className="collapse-title text-lg font-mono font-semibold ">
+                {t(title)}
+              </h3>
+              <div className="collapse-content">
+                <p>{t(text)}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+      <Contacts />
+    </main>
+  );
+};
 
 export default Support;
