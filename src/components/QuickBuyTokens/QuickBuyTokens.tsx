@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import PointGringImg from "../PointGringImg/PointGringImg";
 
 type TTokenAmount = {
@@ -8,12 +9,31 @@ type TTokenAmount = {
 
 const tokenAmounts = [2, 4, 6, 8, 10, 20, 30, 40, 50, 100, 1000];
 const tokenCurrency = ["USDT", "TON"];
+const transactionProcessList = [
+  {
+    id: 1,
+    label: "processList1Item",
+  },
+  {
+    id: 2,
+    label: "processList2Item",
+  },
+  {
+    id: 3,
+    label: "processList3Item",
+  },
+  {
+    id: 4,
+    label: "processList4Item",
+  },
+];
 
 const QuickBuyTokens = () => {
   const [tokenAmount, setTokenAmount] = useState<TTokenAmount>({
-    amount: 2, // Встановлюємо перше значення за замовчуванням
+    amount: 2,
     currency: "USDT",
   });
+  const t = useTranslations("Investments");
 
   const onCurrencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTokenAmount((prev) => ({
@@ -38,13 +58,13 @@ const QuickBuyTokens = () => {
   return (
     <div className="max-w-4xl mx-auto">
       <h2 className="text-primary text-lg font-mono font-semibold mb-6 text-center">
-        Quick Buy GrinG Tokens
+        {t("quickBuy")}
       </h2>
 
       <div className="bg-emerald-700 rounded-lg p-6 mb-6">
         <h2 className="text-lg font-semibold mb-4 flex items-center gap-1">
           <PointGringImg variant="middle" />
-          Select Amount
+          {t("selectAmount")}
         </h2>
 
         <div className="flex gap-1 mb-3">
@@ -84,27 +104,22 @@ const QuickBuyTokens = () => {
           className="btn btn-success w-full"
           onClick={() => handleBuy(tokenAmount.amount, tokenAmount.currency)}
         >
-          Complete
+          {t("completeBtn")}
         </button>
       </div>
 
       <div className="bg-emerald-700 rounded-lg p-6">
         <h2 className="text-primary text-lg font-mono font-semibold mb-6 text-center">
-          How It Works
+          {t("transactionProcessTitle")}
         </h2>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Select the amount of USDT or TON you want to spend</li>
-          <li>Click on the corresponding button</li>
-          <li>Confirm the transaction in your wallet</li>
-          <li>Receive your GrinG tokens instantly</li>
+          {transactionProcessList.map(({ id, label }) => (
+            <li key={id}>{t(label)}</li>
+          ))}
         </ol>
       </div>
 
-      <p className="text-center text-sm text-success mt-6">
-        Note: The actual amount of GrinG tokens received may vary based on
-        current exchange rates. Always verify the transaction details before
-        confirming.
-      </p>
+      <p className="text-center text-sm text-success mt-6">{t("note")}</p>
     </div>
   );
 };

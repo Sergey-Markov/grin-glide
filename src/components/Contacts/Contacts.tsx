@@ -8,6 +8,7 @@ import {
   BiLogoTelegram,
 } from "react-icons/bi";
 import { BsTwitterX } from "react-icons/bs";
+import { useTranslations } from "next-intl";
 
 const CONTACTS_SOCIAL_INFO = [
   {
@@ -38,13 +39,13 @@ const CONTACTS_SOCIAL_INFO = [
 const CONTACTS_GENERAL_INFO = [
   {
     id: uuid(),
-    name: "Email",
+    name: "email",
     text: "investors@company.com",
     icon: BiMailSend,
   },
   {
     id: uuid(),
-    name: "Support",
+    name: "support",
     text: "investors@company.com",
     icon: BiLogoTelegram,
   },
@@ -56,41 +57,44 @@ const CONTACTS_GENERAL_INFO = [
   // },
 ];
 
-const Contacts = () => (
-  <div className="bg-emerald-700 rounded-lg p-6 mb-6">
-    <h2 className="text-primary text-lg font-semibold font-mono mb-3">
-      Contact Information
-    </h2>
-    <div className="space-y-4">
-      {CONTACTS_GENERAL_INFO.map(({ id, name, text, icon: Icon }) => (
-        <a
-          key={id}
-          className="flex items-center"
-          href={text}
-        >
-          <Icon className="w-6 h-6 mr-3 text-success" />
-          <div>
-            <p className="font-medium">{name}</p>
-            <p className="text-success">{text}</p>
-          </div>
-        </a>
-      ))}
-      <div className="flex items-center justify-end gap-2">
-        {CONTACTS_SOCIAL_INFO.map(({ id, href, icon: Icon }) => (
+const Contacts = () => {
+  const t = useTranslations("Contacts");
+  return (
+    <div className="bg-emerald-700 rounded-lg p-6 mb-6">
+      <h2 className="text-primary text-lg font-semibold font-mono mb-3">
+        {t("title")}
+      </h2>
+      <div className="space-y-4">
+        {CONTACTS_GENERAL_INFO.map(({ id, name, text, icon: Icon }) => (
           <a
             key={id}
-            className="flex items-center justify-center bg-primary p-2 rounded-full"
-            href={href}
-            target="_blank"
-            aria-label={href}
-            rel="noreferrer"
+            className="flex items-center"
+            href={text}
           >
-            <Icon className="w-6 h-6" />
+            <Icon className="w-6 h-6 mr-3 text-success" />
+            <div>
+              <p className="font-medium">{t(name)}</p>
+              <p className="text-success">{text}</p>
+            </div>
           </a>
         ))}
+        <div className="flex items-center justify-end gap-2">
+          {CONTACTS_SOCIAL_INFO.map(({ id, href, icon: Icon }) => (
+            <a
+              key={id}
+              className="flex items-center justify-center bg-primary p-2 rounded-full"
+              href={href}
+              target="_blank"
+              aria-label={href}
+              rel="noreferrer"
+            >
+              <Icon className="w-6 h-6" />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Contacts;

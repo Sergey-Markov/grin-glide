@@ -1,5 +1,140 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "BtmNav": {
+    "Home": "Home",
+    "Tasks": "Tasks",
+    "Game": "Game",
+    "Friends": "Friends",
+    "Leaders": "Leaders"
+  },
+  "Menu": {
+    "wallet": "wallet",
+    "investments": "investments",
+    "language": "language",
+    "roadMap": "roadmap",
+    "about": "about",
+    "support": "support"
+  },
+  "VoteForm": {
+    "1quest": "Виберіть, ким стане GrinG:",
+    "confirmBtn": "Відправити",
+    "leprechaun": "leprechaun",
+    "investor": "investor",
+    "pirate": "pirate"
+  },
+  "LanguagePage": {
+    "title": "Select application language"
+  },
+  "ComingSoon": {
+    "title": "This feature will be available soon!"
+  },
+  "Wallet": {
+    "title": "Wallet"
+  },
+  "Tasks": {
+    "title": "Tasks",
+    "connectToBlumTG": "Connect to BLUM TG chanel",
+    "sendAStars": "Send a Stars",
+    "investInProject": "Invest in project up 10$"
+  },
+  "FriendsList": {
+    "title": "Friends:",
+    "inviteBtnLabel": "Invite Friend"
+  },
+  "Investments": {
+    "title": "For investors",
+    "lookingInvestors": "We are seeking strategic partners and investors to help us expand the app and raise capital for listing the GrinG token on an exchange. Our goal is to position GrinG as a key tool for decentralized community governance and a platform for earning real profits through investments by leveraging both current and future technologies. GrinG aims to scale not just within the digital economy but also into the real sector to diversify assets. More detailed information can be found in the relevant section of the main menu. You can make an investment using the quick access buttons below, and we are also open to discussing special offers for serious, long-term partnerships.",
+    "quickBuy": "Quick Buy GrinG Tokens",
+    "selectAmount": "Select Amount",
+    "completeBtn": "Complete",
+    "transactionProcessTitle": "How It Works",
+    "processList1Item": "Select the amount of USDT or TON you want to spend",
+    "processList2Item": "Click on the corresponding button",
+    "processList3Item": "Confirm the transaction in your wallet",
+    "processList4Item": "Receive your GrinG tokens instantly",
+    "note": "Note: The actual amount of GrinG tokens received may vary based on current exchange rates. Always verify the transaction details before confirming."
+  },
+  "About": {
+    "title": "About Us",
+    "titleGrinG": "GrinG",
+    "mainText": "is an innovative mini app on Telegram that allows users to build a community where decisions on platform development are made through voting. GrinG uses its own token on the TON blockchain, which serves as a tool for voting, rewards, and monetization.",
+    "keyFeatures": "Key Project Features",
+    "voteTitle": "Development Voting:",
+    "voteText": "Users vote with GrinG tokens to decide how the app will evolve.",
+    "rewardsTitle": "Rewards:",
+    "rewardsText": "Community members earn tokens for being active (voting, creating content, participating in contests, and more).",
+    "monetizationTitle": "Monetization:",
+    "monetizationText": "Revenue will come from ads in the app, including social media profiles, other apps, and promotions.",
+    "reinvestmentTitle": "Reinvestment:",
+    "reinvestmentText": "A portion of ad revenue will be reinvested into GrinG tokens to help maintain their value.",
+    "miningMechanismTitle": "Mining Mechanism:",
+    "miningMechanism1Text": "Tokens can be earned by completing tasks in the app.",
+    "miningMechanism2Text": "Mining limits will be set to control inflation and attract new users.",
+    "roadMapTitle": "Roadmap:",
+    "roadMapText": "Available in a dedicated section of the main menu.",
+    "earningProfitTitle": "Ways to Earn Profits:",
+    "advertisingTitle": "Advertising:",
+    "advertisingText": "Promoting other apps, social media profiles, blogs, and other products.",
+    "premiumFeaturesTitle": "Premium Features:",
+    "premiumFeaturesText": "Additional options in the app for users and their groups.",
+    "saleTokensTitle": "Token Sales:",
+    "saleTokensText": "After being listed on exchanges, users will be able to trade tokens.",
+    "collaborationsTitle": "Business Collaborations:",
+    "collaborationsText": "Special offers from real businesses for project participants and investments in development.",
+    "investmentAttractivenessTitle": "Investment Appeal:",
+    "uniqueModelTitle": "Unique Model:",
+    "uniqueModelText": "A development voting system gives users control and boosts their engagement.",
+    "possibilitiesTitle": "Broad Monetization Opportunities:",
+    "possibilitiesText": "A variety of advertising and premium services.",
+    "marketExpansionTitle": "Market Expansion:",
+    "marketExpansionText": "Listings on new exchanges and integration with TON provide opportunities for global growth.",
+    "interestForCommunitiesTitle": "Growing Interest in Communities:",
+    "interestForCommunitiesText": "Community-driven apps are gaining popularity fast. We are pioneers in this space.",
+    "lookingPartnersText": "We are seeking strategic partners and investors to help scale the app and raise capital for listing the GrinG token on exchanges. Our goal is to make GrinG a key tool for decentralized community management and a platform for earning real income through the potential of current and future technologies. GrinG aims to scale not only within the digital economy but also expand into the real sector to diversify assets."
+  },
+  "Support": {
+    "title": "Support",
+    "mainPageText": "Welcome to the GrinG Support page! We're here to help you get the most out of our app. Below you'll find answers to common questions and a way to reach our support team.",
+    "whatIsGringTitle": "What is GrinG?",
+    "whatIsGringText": "GrinG is a decentralized platform that allows users to participate in the app's development through voting, mining GrinG tokens, earning rewards for watching ads, and interacting with others.",
+    "miningMechanismTitle": "How do I start mining GrinG tokens?",
+    "miningMechanismText": "Once you sign up, you can start mining tokens. Track your progress and earn tokens based on your activity in the app.",
+    "voteTitle": "How does the voting system work?",
+    "voteText": "GrinG lets you shape the platform's development through its voting system. You can view active votes on the main screen and cast your vote. Every vote influences the app's future!",
+    "gringTokenChangeTitle": "How can I exchange GrinG tokens?",
+    "gringTokenChangeText": "Once listed on crypto exchanges, you'll be able to trade GrinG tokens for other cryptocurrencies using integrated wallet tools.",
+    "advertisingTitle": "Can I earn tokens by watching ads?",
+    "advertisingText": "Yes! You can earn extra GrinG tokens by watching ads and completing special tasks within the app.",
+    "supportTitle": "How do I contact support?",
+    "supportText": "If you have questions, technical issues, or suggestions, please reach out to our support team. We aim to resolve your requests as quickly as possible. All contact information is provided below."
+  },
+  "Contacts": {
+    "title": "Contact Information",
+    "email": "Email",
+    "support": "Support"
+  },
+  "RoadMap": {
+    "title": "Roadmap",
+    "projStart": "Project launch.",
+    "projStartTest": "Testing core features.",
+    "gamification": "Integrating gamification and extra mining features.",
+    "100Users": "Reaching 100k users.",
+    "200Users": "Reaching 200k users.",
+    "500Users": "Reaching 500k users.",
+    "1mUsers": "Reaching 1 million users.",
+    "investment": "Securing investments.",
+    "tokenomics": "Creating tokenomics.",
+    "1auction": "First investor auction.",
+    "2auction": "Second investor auction.",
+    "summing": "Wrapping things up.",
+    "DEX": "Launching GrinG on DEX.",
+    "3auction": "Third auction.",
+    "CEX": "Launching GrinG on CEX.",
+    "diversification": "Diversifying assets.",
+    "realSector": "Investing in the real economy sector.",
+    "reinvesting": "Reinvesting into GrinG.",
+    "retrospective": "Further platform development."
   }
 }
