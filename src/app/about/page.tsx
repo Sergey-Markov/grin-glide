@@ -5,7 +5,7 @@ const About = () => {
   const t = useTranslations("About");
 
   return (
-    <main className=" min-h-screen p-4 md:p-8 text-white pb-24">
+    <main className=" min-h-screen p-4 pb-24 md:p-8 text-white md:pb-24">
       <h2 className="text-primary text-4xl font-mono font-bold mb-7">
         {t("title")}
       </h2>

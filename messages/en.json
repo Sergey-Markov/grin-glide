@@ -13,7 +13,7 @@
     "wallet": "wallet",
     "investments": "investments",
     "language": "language",
-    "roadMap": "road map",
+    "roadMap": "roadmap",
     "about": "about",
     "support": "support"
   },
@@ -114,5 +114,27 @@
     "title": "Contact Information",
     "email": "Email",
     "support": "Support"
+  },
+  "RoadMap": {
+    "title": "Roadmap",
+    "projStart": "Project launch.",
+    "projStartTest": "Testing core features.",
+    "gamification": "Integrating gamification and extra mining features.",
+    "100Users": "Reaching 100k users.",
+    "200Users": "Reaching 200k users.",
+    "500Users": "Reaching 500k users.",
+    "1mUsers": "Reaching 1 million users.",
+    "investment": "Securing investments.",
+    "tokenomics": "Creating tokenomics.",
+    "1auction": "First investor auction.",
+    "2auction": "Second investor auction.",
+    "summing": "Wrapping things up.",
+    "DEX": "Launching GrinG on DEX.",
+    "3auction": "Third auction.",
+    "CEX": "Launching GrinG on CEX.",
+    "diversification": "Diversifying assets.",
+    "realSector": "Investing in the real economy sector.",
+    "reinvesting": "Reinvesting into GrinG.",
+    "retrospective": "Further platform development."
   }
 }

@@ -32,7 +32,7 @@ const FriendsList = () => {
   const t = useTranslations("FriendsList");
 
   return (
-    <main className=" min-h-screen p-4 md:p-8 text-white pb-24">
+    <main className=" min-h-screen p-4 md:p-8 text-white md:pb-24">
       <div className="max-w-md mx-auto">
         <h2 className="text-primary text-4xl font-bold font-mono mb-6">
           {t("title")}

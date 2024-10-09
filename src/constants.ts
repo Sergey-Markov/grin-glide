@@ -329,4 +329,102 @@ export const SUPPORT_CONTENT = [
   },
 ];
 
+export const roadStages = [
+  {
+    id: 1,
+    title: "projStart",
+    isComplete: true,
+  },
+  {
+    id: 2,
+    title: "projStartTest",
+    isComplete: true,
+  },
+  {
+    id: 3,
+    title: "gamification",
+    isComplete: false,
+  },
+  {
+    id: 4,
+    title: "100Users",
+    isComplete: false,
+  },
+  {
+    id: 5,
+    title: "200Users",
+    isComplete: false,
+  },
+  {
+    id: 6,
+    title: "500Users",
+    isComplete: false,
+  },
+  {
+    id: 7,
+    title: "1mUsers",
+    isComplete: false,
+  },
+  {
+    id: 8,
+    title: "investment",
+    isComplete: false,
+  },
+  {
+    id: 9,
+    title: "tokenomics",
+    isComplete: false,
+  },
+  {
+    id: 10,
+    title: "1auction",
+    isComplete: false,
+  },
+  {
+    id: 11,
+    title: "2auction",
+    isComplete: false,
+  },
+  {
+    id: 12,
+    title: "summing",
+    isComplete: false,
+  },
+  {
+    id: 13,
+    title: "DEX",
+    isComplete: false,
+  },
+  {
+    id: 14,
+    title: "3auction",
+    isComplete: false,
+  },
+  {
+    id: 15,
+    title: "CEX",
+    isComplete: false,
+  },
+  {
+    id: 16,
+    title: "diversification",
+    isComplete: false,
+  },
+  {
+    id: 17,
+    title: "realSector",
+    isComplete: false,
+  },
+  {
+    id: 18,
+    title: "reinvesting",
+    isComplete: false,
+  },
+  {
+    id: 18,
+    title: "retrospective",
+    isComplete: false,
+  },
+];
+
 export const investorStatus = "investor";

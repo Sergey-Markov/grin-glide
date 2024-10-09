@@ -12,7 +12,7 @@ const BtmNav = memo(() => {
   const t = useTranslations("BtmNav");
 
   return (
-    <nav className="btm-nav text-primary overflow-hidden mx-auto my-0 bg-emerald-900 backdrop-blur-md rounded-full xs:btm-nav-xs sm:btm-nav-sm md:btm-nav-md bottom-4 max-w-screen-md">
+    <nav className="btm-nav text-primary overflow-hidden mx-auto my-0 bg-emerald-900 backdrop-blur-md rounded-full xs:btm-nav-xs sm:btm-nav-sm md:btm-nav-md bottom-4 max-w-screen-md z-50">
       {BOTTOM_NAVIGATION.map(({ id, label, icon: Icon, href }) => (
         <button
           key={id}
