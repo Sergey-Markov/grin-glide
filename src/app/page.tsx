@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
+
 "use client";
 
 import { useState } from "react";

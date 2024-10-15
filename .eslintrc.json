@@ -16,6 +16,16 @@
         "tsx": "never"
       }
     ],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "only-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
     "import/no-unresolved": "off", // TypeScript takes care of this
     "import/no-extraneous-dependencies": "off",
     "react/react-in-jsx-scope": "off", // Not needed in Next.js
