@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
+"use client";
+
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-/* eslint-disable no-shadow */
-
-"use client";
 
 import { useEffect, useState } from "react";
 import { BiCheckCircle, BiLogoTelegram } from "react-icons/bi";
@@ -14,7 +12,7 @@ const MembershipChecker = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [telegramId, setTelegramId] = useState<string | null>(null);
   const [channelUserName, setChannelUserName] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [isError, setIsError] = useState<string | null>(null);
 
   useEffect(() => {
     if (WebApp) {
@@ -64,11 +62,11 @@ const MembershipChecker = () => {
 
       const data = await response.json();
       setIsChannelMember(data.isMember);
-      setError(null);
+      setIsError(null);
     } catch (error) {
       console.error("Error checking channel membership:", error);
       setIsChannelMember(false);
-      setError(
+      setIsError(
         error instanceof Error ? error.message : "An unknown error occurred"
       );
     } finally {
@@ -110,7 +108,7 @@ const MembershipChecker = () => {
           {isLoading ? "Loading..." : <BiCheckCircle size={40} />}
         </button>
       </div>
-      {error && <p>{error}</p>}
+      {isError && <p>{isError}</p>}
       {isChannelMember !== null && !isLoading && (
         <p>{isChannelMember ? "it`s a member" : "It`s not a member"}</p>
       )}
