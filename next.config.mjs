@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  // Видалено output: "export", щоб дозволити серверні функції
   images: {
     remotePatterns: [
       {
