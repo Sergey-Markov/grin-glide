@@ -14,7 +14,7 @@ const siteTitle = "Gring";
 export const metadata: Metadata = {
   title: siteTitle,
   description: ogDescription,
-  keywords: "Україна, петиції, добробут, державні органи, активізм",
+  keywords: "GrinG, GrinGlide, mini App, token",
   authors: [{ name: "Serhii Markov" }],
   creator: "Serhii Markov",
 
