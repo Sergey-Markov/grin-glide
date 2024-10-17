@@ -1,11 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Injecting property 'output' with value 'export'
+  output: "export",
   images: {
     remotePatterns: [
       {
