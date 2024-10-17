@@ -7,14 +7,7 @@
 
 import { useEffect, useState } from "react";
 import { BiCheckCircle, BiLogoTelegram } from "react-icons/bi";
-
-declare global {
-  interface Window {
-    Telegram?: {
-      WebApp?: any;
-    };
-  }
-}
+import WebApp from "@twa-dev/sdk";
 
 const MembershipChecker = () => {
   const [isChannelMember, setIsChannelMember] = useState<boolean | null>(null);
@@ -24,8 +17,8 @@ const MembershipChecker = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (window.Telegram?.WebApp) {
-      const initDataString = window.Telegram.WebApp.initData;
+    if (WebApp) {
+      const initDataString = WebApp.initData;
       if (initDataString) {
         const urlParams = new URLSearchParams(initDataString);
         try {
