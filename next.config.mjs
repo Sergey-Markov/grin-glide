@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Видалено output: "export", щоб дозволити серверні функції
+  output: "standalone",
   images: {
     remotePatterns: [
       {
