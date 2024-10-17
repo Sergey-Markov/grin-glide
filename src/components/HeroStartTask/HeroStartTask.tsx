@@ -23,7 +23,6 @@ const HeroStartTask = memo(() => (
       >
         IS
       </p>
-      <h2>PIDARs</h2>
     </div>
   </div>
 ));
