@@ -9,7 +9,7 @@ import "./globals.css";
 
 const ogDescription = "Покращення добробуту в Україні через петиції";
 const ogImage = "/public/assets/images/newLogologo.png";
-const siteTitle = "The Petition";
+const siteTitle = "Gring";
 
 export const metadata: Metadata = {
   title: siteTitle,
@@ -57,7 +57,6 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
-
           <BtmNav />
         </NextIntlClientProvider>
       </body>
