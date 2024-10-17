@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: ogDescription,
   keywords: "GrinG, GrinGlide, mini App, token",
   authors: [{ name: "Serhii Markov" }],
-  creator: "Serhii Markov",
+  creator: "GrinG",
 
   icons: {
     icon: ogImage,
