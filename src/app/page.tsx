@@ -10,19 +10,21 @@ import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
+import { TelegramUser, useTelegramUser } from "@/hooks/useTelegramUser";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const [tgData, setTgData] = useState<string | null>(null);
+  const [tgUserData, setTgUserData] = useState<TelegramUser | null>(null);
+  const user = useTelegramUser();
 
   useEffect(() => {
-    if (WebApp) {
+    if (WebApp && user) {
       WebApp.showAlert("Hello bro");
-      setTgData(WebApp.initData);
+      setTgUserData(user);
     }
   }, []);
-  if (tgData) {
-    console.log(tgData);
+  if (tgUserData) {
+    console.log("user:", tgUserData);
   }
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
