@@ -23,9 +23,9 @@ export default function Home() {
       setTgUserData(user);
     }
   }, []);
-  if (tgUserData) {
-    console.log("user:", tgUserData);
-  }
+
+  console.log("user:", tgUserData);
+
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
