@@ -3,15 +3,22 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
+import WebApp from "@twa-dev/sdk";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (WebApp) {
+      WebApp.showAlert("Hello bro");
+    }
+  }, []);
 
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
