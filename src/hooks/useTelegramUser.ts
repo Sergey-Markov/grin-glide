@@ -1,3 +1,4 @@
+import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
 
 export interface TelegramUser {
@@ -11,12 +12,8 @@ export const useTelegramUser = () => {
   const [user, setUser] = useState<TelegramUser | null>(null);
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      window.Telegram?.WebApp?.initDataUnsafe?.user
-    ) {
-      const telegramUser = window.Telegram.WebApp.initDataUnsafe
-        .user as TelegramUser;
+    if (typeof window !== "undefined" && WebApp.initDataUnsafe?.user) {
+      const telegramUser = WebApp.initDataUnsafe.user as TelegramUser;
       setUser(telegramUser);
     }
   }, []);
