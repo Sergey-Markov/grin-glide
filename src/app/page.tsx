@@ -13,13 +13,17 @@ import WebApp from "@twa-dev/sdk";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [tgData, setTgData] = useState<string | null>(null);
 
   useEffect(() => {
     if (WebApp) {
       WebApp.showAlert("Hello bro");
+      setTgData(WebApp.initData);
     }
   }, []);
-
+  if (tgData) {
+    console.log(tgData);
+  }
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
