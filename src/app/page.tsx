@@ -22,7 +22,7 @@ export default function Home() {
       WebApp.showAlert("Hello bro");
       setTgUserData(user);
     }
-  }, []);
+  }, [user]);
 
   console.log("user:", tgUserData);
 
