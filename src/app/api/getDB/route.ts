@@ -13,6 +13,6 @@ export const GET = async (req: Request) => {
     return NextResponse.json({ collections });
   } catch (error) {
     console.error("An error occurred while fetching data from MongoDB:", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
+    return new NextResponse(`${error}`, { status: 500 });
   }
 };
