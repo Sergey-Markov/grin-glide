@@ -14,7 +14,7 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,
   },
-  serverSelectionTimeoutMS: 5000,
+  serverSelectionTimeoutMS: 30000,
 });
 
 export async function connectToDatabase() {
