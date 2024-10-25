@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-console */
 import { MongoClient, ServerApiVersion } from "mongodb";
 
@@ -8,17 +7,16 @@ if (!uri) {
   throw new Error("Please add your Mongo URI to .env.local");
 }
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   ssl: true, // Явно вказуємо використання SSL
-  tlsAllowInvalidCertificates: true, // Дозволити недійсні сертифікати, якщо використовуєте самопідписані сертифікати (тільки для розробки)
+  tlsAllowInvalidCertificates: true,
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
   },
+  serverSelectionTimeoutMS: 5000,
 });
-
 export async function connectToDatabase() {
   try {
     await client.connect();
