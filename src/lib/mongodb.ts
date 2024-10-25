@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 import { MongoClient, ServerApiVersion } from "mongodb";
 
@@ -9,12 +10,13 @@ if (!uri) {
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
+  ssl: true, // Явно вказуємо використання SSL
+  tlsAllowInvalidCertificates: true, // Дозволити недійсні сертифікати, якщо використовуєте самопідписані сертифікати (тільки для розробки)
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
   },
-  serverSelectionTimeoutMS: 5000,
 });
 
 export async function connectToDatabase() {
