@@ -8,7 +8,7 @@ export const GET = async (req: Request) => {
   try {
     const client = await connectToDatabase();
     const db = client.db("sample_mflix");
-    const data = db.databaseName;
+    // const data = db.databaseName;
     // const collections = await db.listCollections().toArray();
     return NextResponse.json("data");
   } catch (error) {
