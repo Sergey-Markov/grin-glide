@@ -11,7 +11,6 @@ import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
 import { TelegramUser, useTelegramUser } from "@/hooks/useTelegramUser";
-import handler from "./api/getDB/route";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
