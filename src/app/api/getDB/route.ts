@@ -9,7 +9,7 @@ export const GET = async (req: Request) => {
     const client = await connectToDatabase();
     const db = client.db("sample_mflix");
 
-    const collections = await db.listCollections().toArray();
+    const collections = await db.collection("users").find().toArray();
     return NextResponse.json({ collections });
   } catch (error) {
     console.error("An error occurred while fetching data from MongoDB:", error);
