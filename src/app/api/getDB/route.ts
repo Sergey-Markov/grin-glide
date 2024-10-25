@@ -8,7 +8,7 @@ export default async function handler(
 ) {
   try {
     const client = await connectToDatabase();
-    const db = client.db("telegram-miniapp");
+    const db = client.db("sample_mflix");
 
     const collections = await db.listCollections().toArray();
     res.status(200).json({ collections });
