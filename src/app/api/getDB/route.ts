@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "@/lib/mongodb";
 
 export const GET = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     try {
+      console.log("start");
+
       const client = await connectToDatabase();
       const db = client.db("sample_mflix");
 
