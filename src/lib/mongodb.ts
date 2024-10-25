@@ -13,7 +13,7 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,
   },
-  connectTimeoutMS: 5000,
+  serverSelectionTimeoutMS: 5000,
 });
 
 async function run() {
