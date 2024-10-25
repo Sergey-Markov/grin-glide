@@ -16,34 +16,26 @@ const client = new MongoClient(uri, {
   },
 });
 
-async function run() {
+export async function connectToDatabase() {
   try {
-    // Connect the client to the server
-    console.log("Connecting to MongoDB...");
     await client.connect();
     console.log("Successfully connected to MongoDB!");
 
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
+    return client;
   } catch (error) {
     console.error("An error occurred while connecting to MongoDB:", error);
-  } finally {
-    try {
-      // Ensure that the client will close when you finish/error
-      await client.close();
-      console.log("MongoDB client closed.");
-    } catch (closeError) {
-      console.error(
-        "An error occurred while closing the MongoDB client:",
-        closeError
-      );
-    }
+    throw error;
   }
 }
 
-run().catch((error) => {
-  console.error("An unexpected error occurred:", error);
-});
+export async function closeConnection() {
+  try {
+    await client.close();
+    console.log("MongoDB client closed.");
+  } catch (closeError) {
+    console.error(
+      "An error occurred while closing the MongoDB client:",
+      closeError
+    );
+  }
+}
