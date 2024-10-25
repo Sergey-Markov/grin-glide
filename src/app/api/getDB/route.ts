@@ -10,7 +10,7 @@ export default async function handler(
     const client = await connectToDatabase();
     const db = client.db("sample_mflix");
     if (!db) {
-      res.status(333);
+      res.status(200);
     }
 
     const collections = await db.listCollections().toArray();
