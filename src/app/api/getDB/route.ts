@@ -7,7 +7,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 export const GET = async (req: Request) => {
   try {
     const client = await connectToDatabase();
-    const db = client.db("gring-cluster");
+    const db = client.db("sample_mflix");
 
     const collections = await db.listCollections().toArray();
     return NextResponse.json({ collections });
@@ -16,3 +16,5 @@ export const GET = async (req: Request) => {
     return new NextResponse(`${error}`, { status: 500 });
   }
 };
+
+// mongodb+srv://gringlideofficial:KarinaZlata2013@gring-cluster.0weiu.mongodb.net
