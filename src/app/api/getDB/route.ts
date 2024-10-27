@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-// import { NextRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 
@@ -16,5 +15,3 @@ export const GET = async (req: Request) => {
     return new NextResponse(`${error}`, { status: 500 });
   }
 };
-
-// mongodb+srv://gringlideofficial:KarinaZlata2013@gring-cluster.0weiu.mongodb.net
