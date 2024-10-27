@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.DB_URI;
 
 if (!uri) {
   throw new Error("Please add your Mongo URI to .env.local");

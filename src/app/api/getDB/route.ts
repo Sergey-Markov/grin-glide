@@ -7,7 +7,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 export const GET = async (req: Request) => {
   try {
     const client = await connectToDatabase();
-    const db = client.db("admin");
+    const db = client.db("users");
 
     const collections = await db.listCollections().toArray();
     return NextResponse.json({ collections });
