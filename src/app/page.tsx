@@ -12,6 +12,7 @@ import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
 import { TelegramUser, useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
+import BtmNav from "@/components/BtmNav/BtmNav";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,14 +52,7 @@ export default function Home() {
             <HeroStartTask />
           </section>
           <VoteForm options={formFirstVoteOptions} />
-          <button
-            type="button"
-            onClick={async () => {
-              await fetch(`https://grin-glide.vercel.app/api/getDB`);
-            }}
-          >
-            chek
-          </button>
+          <BtmNav />
         </main>
       </div>
     </div>

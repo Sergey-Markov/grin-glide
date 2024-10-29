@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { inter, merriweather } from "@/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import BtmNav from "@/components/BtmNav/BtmNav";
 
 import "./globals.css";
 
@@ -57,7 +56,6 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
-          <BtmNav />
         </NextIntlClientProvider>
       </body>
     </html>
