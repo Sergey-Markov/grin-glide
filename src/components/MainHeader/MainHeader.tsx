@@ -13,6 +13,7 @@ export interface IMainHeaderProps {
   openToggler: () => void;
   user: TelegramUser;
 }
+const loaderProp = ({ src }: { src: string }) => src;
 
 const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
   const { photoUrl, error } = useUserProfilePhoto(user.id);
@@ -35,6 +36,7 @@ const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
                 height={512}
                 loading="lazy"
                 unoptimized
+                loader={loaderProp}
               />
             )}
           </div>
