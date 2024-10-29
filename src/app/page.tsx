@@ -42,6 +42,7 @@ export default function Home() {
         <MainHeader
           open={isOpen}
           openToggler={openMenuHandler}
+          user={tgUserData}
         />
         <Menu open={isOpen} />
         <main className="p-4">

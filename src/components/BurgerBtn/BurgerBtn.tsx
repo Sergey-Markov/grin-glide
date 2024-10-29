@@ -2,9 +2,13 @@
 import classNames from "classnames";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
-import { IMainHeaderProps } from "../MainHeader/MainHeader";
 
-const BurgerBtn = ({ open, openToggler }: IMainHeaderProps) => (
+interface IBurgerBtn {
+  open: boolean;
+  openToggler: () => void;
+}
+
+const BurgerBtn = ({ open, openToggler }: IBurgerBtn) => (
   <button
     type="button"
     className="btn btn-circle btn-ghost swap swap-rotate z-50"

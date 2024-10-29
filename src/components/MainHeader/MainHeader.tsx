@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 import Image from "next/image";
+import { TelegramUser } from "@/hooks/useTelegramUser";
 import PointGringImg from "../PointGringImg/PointGringImg";
 import BurgerBtn from "../BurgerBtn/BurgerBtn";
 
@@ -8,9 +9,10 @@ import s from "./MainHeader.module.css";
 export interface IMainHeaderProps {
   open: boolean;
   openToggler: () => void;
+  user: TelegramUser;
 }
 
-const MainHeader = ({ open, openToggler }: IMainHeaderProps) => (
+const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => (
   <header className={s.mainHeader}>
     <div className={s.user}>
       <div className={s.userAvatar}>
@@ -25,7 +27,7 @@ const MainHeader = ({ open, openToggler }: IMainHeaderProps) => (
         </div>
       </div>
       <div>
-        <h1 className={s.userName}>Raduga</h1>
+        <h1 className={s.userName}>{user.username}</h1>
         <div className="flex items-center gap-1">
           <p className="">10000</p>
           <PointGringImg variant="small" />
