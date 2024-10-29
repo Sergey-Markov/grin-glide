@@ -1,11 +1,15 @@
+/* eslint-disable no-console */
 import React from "react";
 import type { Metadata } from "next";
 import { inter, merriweather } from "@/fonts";
+import useSWR from "swr";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import BtmNav from "@/components/BtmNav/BtmNav";
 
 import "./globals.css";
+import axios from "axios";
+import Preloader from "@/components/Preloader/Preloader";
 
 const ogDescription = "Покращення добробуту в Україні через петиції";
 const ogImage = "/public/assets/images/newLogologo.png";
@@ -42,6 +46,11 @@ export const metadata: Metadata = {
   },
 };
 
+const userFetcher = async () => {
+  const result = await axios.get("https://grin-glide.vercel.app/api/getDB");
+  return result;
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -49,6 +58,10 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
+
+  const { data, error, isLoading } = useSWR("/", userFetcher);
+  console.log(data, "error:", error, "isLoading:", isLoading);
+
   return (
     <html
       data-theme="cupcake"
@@ -56,8 +69,14 @@ export default async function RootLayout({
     >
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
-          {children}
-          <BtmNav />
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <>
+              {children}
+              <BtmNav />
+            </>
+          )}
         </NextIntlClientProvider>
       </body>
     </html>

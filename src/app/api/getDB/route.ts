@@ -8,8 +8,9 @@ export const GET = async (req: Request) => {
     const client = await connectToDatabase();
     const db = client.db("sample_mflix");
 
-    const collections = await db.listCollections().toArray();
-    return NextResponse.json({ collections });
+    // const collections = await db.listCollections().toArray();
+    const usersColection = await db.collection("users").find().toArray();
+    return NextResponse.json({ usersColection });
   } catch (error) {
     console.error("An error occurred while fetching data from MongoDB:", error);
     return new NextResponse(`${error}`, { status: 500 });
