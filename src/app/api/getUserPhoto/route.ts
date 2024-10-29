@@ -1,14 +1,18 @@
 /* eslint-disable consistent-return */
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
 const botToken = process.env.BOT_TOKEN as string;
 
-export const GET = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { userId } = req.query;
+export const GET = async (
+  req: NextRequest,
+  res: NextResponse,
+  { params }: { params: { id: { userId: any } } }
+) => {
+  const { userId } = params.id;
 
   if (!userId) {
-    return res.status(400).json({ error: "User ID is required" });
+    return NextResponse.json({ error: "User ID is required" }, { status: 400 });
   }
 
   try {
@@ -23,11 +27,14 @@ export const GET = async (req: NextApiRequest, res: NextApiResponse) => {
     ) {
       const photo = response.data.result.photos[0][0].file_id;
       const photoUrl = `https://api.telegram.org/file/bot${botToken}/${photo}`;
-      res.status(200).json({ photoUrl });
+      NextResponse.json({ photoUrl }, { status: 200 });
     } else {
-      res.status(404).json({ message: "No photo found" });
+      NextResponse.json({ message: "No photo found" }, { status: 404 });
     }
   } catch (error) {
-    res.status(500).json({ error: "Error fetching user profile photo" });
+    NextResponse.json(
+      { error: "Error fetching user profile photo" },
+      { status: 500 }
+    );
   }
 };
