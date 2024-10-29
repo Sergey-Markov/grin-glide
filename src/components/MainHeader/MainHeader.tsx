@@ -34,6 +34,7 @@ const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
                 width={512}
                 height={512}
                 loading="lazy"
+                unoptimized
               />
             )}
           </div>
