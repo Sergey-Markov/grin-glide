@@ -16,25 +16,25 @@ import BtmNav from "@/components/BtmNav/BtmNav";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const [tgUserData, setTgUserData] = useState<TelegramUser | null>(null);
-  const user = useTelegramUser();
+  // const [tgUserData, setTgUserData] = useState<TelegramUser | null>(null);
+  // const user = useTelegramUser();
 
-  useEffect(() => {
-    if (WebApp && user) {
-      WebApp.showAlert("Hello bro");
-      setTgUserData(user);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (WebApp && user) {
+  //     WebApp.showAlert("Hello bro");
+  //     setTgUserData(user);
+  //   }
+  // }, [user]);
 
-  console.log("user:", tgUserData);
+  // console.log("user:", tgUserData);
 
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
 
-  if (!tgUserData) {
-    return <Preloader />;
-  }
+  // if (!tgUserData) {
+  //   return <Preloader />;
+  // }
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
