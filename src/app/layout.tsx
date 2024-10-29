@@ -4,7 +4,6 @@ import { inter, merriweather } from "@/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import BtmNav from "@/components/BtmNav/BtmNav";
-import { useTelegramUser } from "@/hooks/useTelegramUser";
 
 import "./globals.css";
 
@@ -50,7 +49,6 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
-  const user = useTelegramUser();
   return (
     <html
       data-theme="cupcake"
@@ -59,7 +57,7 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${merriweather.variable}`}>
         <NextIntlClientProvider messages={messages}>
           {children}
-          {user && <BtmNav />}
+          <BtmNav />
         </NextIntlClientProvider>
       </body>
     </html>
