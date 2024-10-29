@@ -11,6 +11,7 @@ import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
 import { TelegramUser, useTelegramUser } from "@/hooks/useTelegramUser";
+import Preloader from "@/components/Preloader/Preloader";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,10 @@ export default function Home() {
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
+
+  if (!tgUserData) {
+    return <Preloader />;
+  }
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
