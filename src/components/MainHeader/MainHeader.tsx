@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
 import Image from "next/image";
 import { TelegramUser } from "@/hooks/useTelegramUser";
+import { useUserProfilePhoto } from "@/hooks/useUserProfilePhoto";
+import { getFirstAndLastLetter } from "@/utils";
 import PointGringImg from "../PointGringImg/PointGringImg";
 import BurgerBtn from "../BurgerBtn/BurgerBtn";
 
@@ -12,35 +14,46 @@ export interface IMainHeaderProps {
   user: TelegramUser;
 }
 
-const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => (
-  <header className={s.mainHeader}>
-    <div className={s.user}>
-      <div className={s.userAvatar}>
-        <div className={s.userAvatarBox}>
-          <Image
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-            alt="Gringlide child"
-            width={512}
-            height={512}
-            loading="lazy"
-          />
+const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
+  const { photoUrl, error } = useUserProfilePhoto(user.id);
+  const imgDescription = `${user.username}'s profile`;
+
+  return (
+    <header className={s.mainHeader}>
+      <div className={s.user}>
+        <div className={s.userAvatar}>
+          <div className={s.userAvatarBox}>
+            {!photoUrl || error ? (
+              <p className="w-12 h-12 rounded-full mr-3 uppercase bg-teal-950 flex items-center justify-center">
+                {getFirstAndLastLetter(user.username as string)}
+              </p>
+            ) : (
+              <Image
+                src={photoUrl}
+                alt={imgDescription}
+                width={512}
+                height={512}
+                loading="lazy"
+              />
+            )}
+          </div>
+        </div>
+        <div>
+          <h1 className={s.userName}>{user.username}</h1>
+          <div className="flex items-center gap-1">
+            <p className="">10000</p>
+            <PointGringImg variant="small" />
+          </div>
         </div>
       </div>
-      <div>
-        <h1 className={s.userName}>{user.username}</h1>
-        <div className="flex items-center gap-1">
-          <p className="">10000</p>
-          <PointGringImg variant="small" />
-        </div>
+      <div className={s.burgerBtnView}>
+        <BurgerBtn
+          open={open}
+          openToggler={openToggler}
+        />
       </div>
-    </div>
-    <div className={s.burgerBtnView}>
-      <BurgerBtn
-        open={open}
-        openToggler={openToggler}
-      />
-    </div>
-  </header>
-);
+    </header>
+  );
+};
 
 export default MainHeader;

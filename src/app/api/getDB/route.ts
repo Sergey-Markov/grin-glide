@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 
-export const GET = async (req: Request) => {
+export const GET = async () => {
   try {
     const client = await connectToDatabase();
     const db = client.db("sample_mflix");

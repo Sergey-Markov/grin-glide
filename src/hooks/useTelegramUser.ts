@@ -14,6 +14,7 @@ export const useTelegramUser = () => {
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp.initDataUnsafe?.user) {
       const telegramUser = WebApp.initDataUnsafe.user as TelegramUser;
+
       setUser(telegramUser);
     }
   }, []);
