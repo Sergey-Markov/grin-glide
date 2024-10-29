@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-cycle */
 import Image from "next/image";
 import { TelegramUser } from "@/hooks/useTelegramUser";
@@ -18,6 +19,7 @@ const loaderProp = ({ src }: { src: string }) => src;
 const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
   const { photoUrl, error } = useUserProfilePhoto(user.id);
   const imgDescription = `${user.username}'s profile`;
+  console.log("photoUrl:", photoUrl);
 
   return (
     <header className={s.mainHeader}>
