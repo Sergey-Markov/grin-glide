@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable consistent-return */
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
@@ -6,10 +7,9 @@ const botToken = process.env.BOT_TOKEN as string;
 
 export const GET = async (
   req: NextRequest,
-  res: NextResponse,
-  { params }: { params: { id: { userId: any } } }
+  { params }: { params: { userId: string } }
 ) => {
-  const { userId } = params.id;
+  const { userId } = params;
 
   if (!userId) {
     return NextResponse.json({ error: "User ID is required" }, { status: 400 });
@@ -27,12 +27,12 @@ export const GET = async (
     ) {
       const photo = response.data.result.photos[0][0].file_id;
       const photoUrl = `https://api.telegram.org/file/bot${botToken}/${photo}`;
-      NextResponse.json({ photoUrl }, { status: 200 });
-    } else {
-      NextResponse.json({ message: "No photo found" }, { status: 404 });
+      return NextResponse.json({ photoUrl }, { status: 200 });
     }
+    return NextResponse.json({ message: "No photo found" }, { status: 404 });
   } catch (error) {
-    NextResponse.json(
+    console.error("Error fetching user profile photo:", error);
+    return NextResponse.json(
       { error: "Error fetching user profile photo" },
       { status: 500 }
     );
