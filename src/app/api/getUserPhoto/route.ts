@@ -5,11 +5,8 @@ import axios from "axios";
 
 const botToken = process.env.BOT_TOKEN as string;
 
-export const GET = async (
-  req: NextRequest,
-  { params }: { params: { userId: string } }
-) => {
-  const { userId } = params;
+export const GET = async (req: NextRequest) => {
+  const userId = req.nextUrl.searchParams.get("userId");
 
   if (!userId) {
     return NextResponse.json({ error: "User ID is required" }, { status: 400 });
