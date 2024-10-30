@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 
