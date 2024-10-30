@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-cycle */
 import Image from "next/image";
-import { TelegramUser } from "@/hooks/useTelegramUser";
+import { IDbUser } from "@/hooks/useTelegramUser";
 import { useUserProfilePhoto } from "@/hooks/useUserProfilePhoto";
 import { getFirstAndLastLetter } from "@/utils";
 import PointGringImg from "../PointGringImg/PointGringImg";
@@ -12,12 +12,12 @@ import s from "./MainHeader.module.css";
 export interface IMainHeaderProps {
   open: boolean;
   openToggler: () => void;
-  user: TelegramUser;
+  user: IDbUser;
 }
 const loaderProp = ({ src }: { src: string }) => src;
 
 const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
-  const { photoUrl, error } = useUserProfilePhoto(user.id);
+  const { photoUrl, error } = useUserProfilePhoto(user.telegram_id);
   const imgDescription = `${user.username}'s profile`;
   console.log("photoUrl:", photoUrl);
 

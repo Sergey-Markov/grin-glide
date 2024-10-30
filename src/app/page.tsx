@@ -10,14 +10,14 @@ import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
-import { TelegramUser, useTelegramUser } from "@/hooks/useTelegramUser";
+import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
 import BtmNav from "@/components/BtmNav/BtmNav";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const [tgUserData, setTgUserData] = useState<TelegramUser | null>(null);
-  const user = useTelegramUser();
+  const [tgUserData, setTgUserData] = useState<IDbUser | null>(null);
+  const { user } = useTelegramUser();
 
   useEffect(() => {
     if (WebApp && user) {

@@ -1,6 +1,6 @@
+import { addUser } from "@/services/addNewUser";
 import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
-// import { useUserProfilePhoto } from "./useUserProfilePhoto";
 
 export interface TelegramUser {
   id: number;
@@ -9,8 +9,8 @@ export interface TelegramUser {
   username?: string;
 }
 
-export interface IDb_User {
-  id: number;
+export interface IDbUser {
+  telegram_id: number;
   first_name?: string;
   last_name?: string;
   username?: string;
@@ -31,15 +31,43 @@ export interface IDb_User {
 }
 
 export const useTelegramUser = () => {
-  const [user, setUser] = useState<TelegramUser | null>(null);
+  const [user, setUser] = useState<IDbUser | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && WebApp.initDataUnsafe?.user) {
-      const telegramUser = WebApp.initDataUnsafe.user as TelegramUser;
+    const fetchAndAddUser = async () => {
+      try {
+        if (typeof window !== "undefined" && WebApp.initDataUnsafe?.user) {
+          const telegramUser = WebApp.initDataUnsafe.user as TelegramUser;
 
-      setUser(telegramUser);
-    }
+          // Map TelegramUser to IDbUser format
+          const dbUser: IDbUser = {
+            telegram_id: telegramUser.id,
+            first_name: telegramUser.first_name,
+            last_name: telegramUser.last_name,
+            username: telegramUser.username,
+            language_code: WebApp.initDataUnsafe?.user?.language_code || "en", // Handle language_code if available
+            selected_language: "en", // default language or set based on some logic
+            friends: [],
+            completeTasks: [],
+            inviter: "",
+            status: "user", // or set dynamically
+            points: 0,
+            wallet: "",
+            wallet_name: "",
+            investment_sum: [],
+          };
+
+          const result = await addUser(dbUser);
+          setUser(result); // Assuming addUser returns the user
+        }
+      } catch (err) {
+        setError("Failed to add user to database.");
+      }
+    };
+
+    fetchAndAddUser();
   }, []);
 
-  return user;
+  return { user, error };
 };
