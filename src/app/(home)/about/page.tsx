@@ -10,6 +10,7 @@ const About = () => {
     <main className=" min-h-screen p-4 pb-24 md:p-8 text-white md:pb-24">
       <h2 className="text-primary text-4xl font-mono font-bold mb-7">
         {t("title")}
+        Who are Gring
       </h2>
       <ul className="space-y-4">
         {aboutContent.map(({ id, title, text, description }) => {
