@@ -1,7 +1,6 @@
-/* eslint-disable import/no-cycle */
 // src/services/api.ts
-import { IDbUser } from "@/hooks/useTelegramUser";
 import axios from "axios";
+import { IDbUser } from "@/hooks/useTelegramUser";
 
 export async function addUser(user: IDbUser) {
   try {
