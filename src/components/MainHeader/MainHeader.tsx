@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable import/no-cycle */
 import Image from "next/image";
 import { IDbUser } from "@/hooks/useTelegramUser";
 import { useUserProfilePhoto } from "@/hooks/useUserProfilePhoto";
