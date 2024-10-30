@@ -53,14 +53,6 @@ export default function Home() {
             <HeroStartTask />
           </section>
           <VoteForm options={formFirstVoteOptions} />
-          <button
-            type="button"
-            onClick={async () => {
-              await fetch(`https://grin-glide.vercel.app/api/getDB`);
-            }}
-          >
-            chek
-          </button>
         </main>
       </div>
       <BtmNav />
