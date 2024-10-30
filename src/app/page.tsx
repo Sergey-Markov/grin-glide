@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 
@@ -20,7 +21,7 @@ export default function Home() {
   const user = useTelegramUser();
 
   useEffect(() => {
-    if (WebApp && user) {
+    if (WebApp && user && !tgUserData) {
       WebApp.showAlert("Hello bro");
       setTgUserData(user);
     }
