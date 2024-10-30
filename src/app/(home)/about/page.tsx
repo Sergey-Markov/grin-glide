@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 import { aboutContent } from "@/constants";
 import { useTranslations } from "next-intl";
 
 const About = () => {
   const t = useTranslations("About");
+  console.log(t("title"));
 
   return (
     <main className=" min-h-screen p-4 pb-24 md:p-8 text-white md:pb-24">
