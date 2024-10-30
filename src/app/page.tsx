@@ -3,7 +3,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
@@ -14,7 +14,7 @@ import { TelegramUser, useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
 import BtmNav from "@/components/BtmNav/BtmNav";
 
-export default function Home() {
+const Home = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const [tgUserData, setTgUserData] = useState<TelegramUser | null>(null);
   const user = useTelegramUser();
@@ -58,4 +58,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+});
+
+export default Home;
