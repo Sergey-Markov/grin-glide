@@ -10,8 +10,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.telegram.org",
-        pathname: "/file/bot**", // або ** щоб дозволити всі шляхи
+        hostname: "**",
+        port: "",
+        pathname: "**",
       },
     ],
   },

@@ -14,17 +14,17 @@ import { TelegramUser, useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
 import BtmNav from "@/components/BtmNav/BtmNav";
 
-const Home = () => {
+export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [tgUserData, setTgUserData] = useState<TelegramUser | null>(null);
   const user = useTelegramUser();
 
   useEffect(() => {
-    if (WebApp && user && !tgUserData) {
+    if (WebApp && user) {
       WebApp.showAlert("Hello bro");
       setTgUserData(user);
     }
-  }, [user, tgUserData]);
+  }, [user]);
 
   console.log("user:", tgUserData);
 
@@ -53,11 +53,17 @@ const Home = () => {
             <HeroStartTask />
           </section>
           <VoteForm options={formFirstVoteOptions} />
-          <BtmNav />
+          <button
+            type="button"
+            onClick={async () => {
+              await fetch(`https://grin-glide.vercel.app/api/getDB`);
+            }}
+          >
+            chek
+          </button>
         </main>
       </div>
+      <BtmNav />
     </div>
   );
-};
-
-export default Home;
+}
