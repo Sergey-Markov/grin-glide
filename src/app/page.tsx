@@ -24,7 +24,7 @@ export default function Home() {
       WebApp.showAlert("Hello bro");
       setTgUserData(user);
     }
-  }, [user]);
+  }, [user, tgUserData]);
 
   console.log("user:", tgUserData);
 
