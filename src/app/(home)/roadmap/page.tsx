@@ -1,11 +1,16 @@
 import { roadStages } from "@/constants";
+import WebApp from "@twa-dev/sdk";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 const completedStages = roadStages.filter(({ isComplete }) => isComplete);
 const unCompletedStages = roadStages.filter(({ isComplete }) => !isComplete);
 
 const RoadMap = () => {
   const t = useTranslations("RoadMap");
+  useEffect(() => {
+    WebApp.showAlert(`${t("title")}`);
+  }, []);
 
   return (
     <main
