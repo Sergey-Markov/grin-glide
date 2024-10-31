@@ -26,7 +26,7 @@ export default function Home() {
         WebApp.showAlert("Hello bro");
       }
     }
-  }, [user]);
+  }, [user?.telegram_id]);
 
   console.log("user:", tgUserData);
 
