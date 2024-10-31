@@ -8,7 +8,7 @@ export const POST = async (request: Request) => {
     const body = await request.json();
 
     const {
-      id,
+      telegram_id,
       first_name,
       last_name,
       username,
@@ -27,7 +27,7 @@ export const POST = async (request: Request) => {
     console.log("body:", body);
 
     // Check for required fields
-    if (!id || !username || !first_name || !language_code) {
+    if (!telegram_id || !username || !first_name || !language_code) {
       return NextResponse.json(
         { message: "Missing required fields" },
         { status: 400 }
@@ -39,7 +39,7 @@ export const POST = async (request: Request) => {
     const usersCollection = db.collection("users");
 
     // Check if the user already exists
-    const existingUser = await usersCollection.findOne({ telegram_id: id });
+    const existingUser = await usersCollection.findOne({ telegram_id });
 
     if (existingUser) {
       return NextResponse.json(
@@ -53,7 +53,7 @@ export const POST = async (request: Request) => {
 
     // Create the new user object
     const newUser = {
-      telegram_id: id,
+      telegram_id,
       first_name,
       last_name,
       username,
