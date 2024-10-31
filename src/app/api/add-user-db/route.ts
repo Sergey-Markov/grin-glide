@@ -70,14 +70,14 @@ export const POST = async (request: Request) => {
     };
 
     // Insert the new user into the database
-    const result = await usersCollection.insertOne(newUser);
-    const userDB_id = result.insertedId;
-    const userFromDB = await usersCollection.findOne({ userDB_id });
+    await usersCollection.insertOne(newUser);
+    // const userDB_id = result.insertedId;
+    // const userFromDB = await usersCollection.findOne({ userDB_id });
 
     return NextResponse.json(
       {
         message: "User added successfully",
-        userDB: userFromDB, // Return the inserted document
+        userDB: newUser, // Return the inserted document
       },
       { status: 201 }
     );
