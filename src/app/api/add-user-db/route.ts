@@ -47,7 +47,7 @@ export const POST = async (request: Request) => {
           message: "User with this telegram_id already exists",
           userDB: existingUser,
         },
-        { status: 409 }
+        { status: 200 }
       );
     }
 
@@ -74,10 +74,13 @@ export const POST = async (request: Request) => {
     const userDB_id = result.insertedId;
     const userFromDB = await usersCollection.findOne({ userDB_id });
 
-    return NextResponse.json({
-      message: "User added successfully",
-      userDB: userFromDB, // Return the inserted document
-    });
+    return NextResponse.json(
+      {
+        message: "User added successfully",
+        userDB: userFromDB, // Return the inserted document
+      },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
       { message: "Internal server error" },
