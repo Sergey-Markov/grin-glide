@@ -71,8 +71,6 @@ export const POST = async (request: Request) => {
 
     // Insert the new user into the database
     await usersCollection.insertOne(newUser);
-    // const userDB_id = result.insertedId;
-    // const userFromDB = await usersCollection.findOne({ userDB_id });
 
     return NextResponse.json(
       {

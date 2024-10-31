@@ -21,10 +21,9 @@ export default function Home() {
 
   useEffect(() => {
     if (WebApp && user) {
-      WebApp.showAlert("Hello bro");
       if (!tgUserData) {
-        WebApp.showAlert("Hello bro");
         setTgUserData(user);
+        WebApp.showAlert("Hello bro");
       }
     }
   }, [user]);
