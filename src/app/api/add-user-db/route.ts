@@ -71,10 +71,12 @@ export const POST = async (request: Request) => {
 
     // Insert the new user into the database
     const result = await usersCollection.insertOne(newUser);
+    const userDB_id = result.insertedId;
+    const userFromDB = await usersCollection.findOne({ userDB_id });
 
     return NextResponse.json({
       message: "User added successfully",
-      data: result, // Return the inserted document
+      userDB: userFromDB, // Return the inserted document
     });
   } catch (error) {
     return NextResponse.json(
