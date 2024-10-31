@@ -59,7 +59,7 @@ export const useTelegramUser = () => {
           };
 
           const result = await addUser(dbUser);
-          setUser(result); // Assuming addUser returns the user
+          setUser(result.userDB); // Assuming addUser returns the user
         }
       } catch (err) {
         setError("Failed to add user to database.");

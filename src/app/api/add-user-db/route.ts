@@ -45,7 +45,7 @@ export const POST = async (request: Request) => {
       return NextResponse.json(
         {
           message: "User with this telegram_id already exists",
-          data: existingUser,
+          userDB: existingUser,
         },
         { status: 409 }
       );
