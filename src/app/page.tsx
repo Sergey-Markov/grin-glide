@@ -20,7 +20,7 @@ export default function Home() {
   const { user } = useTelegramUser();
 
   useEffect(() => {
-    if (WebApp && user && !user.points) {
+    if (WebApp && user && !tgUserData?.points) {
       WebApp.showAlert("Hello bro");
       setTgUserData(user);
     }
