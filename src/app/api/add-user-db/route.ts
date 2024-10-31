@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
@@ -22,6 +23,8 @@ export const POST = async (request: Request) => {
       wallet_name = "",
       investment_sum = [], // Default empty array
     } = body;
+
+    console.log("body:", body);
 
     // Check for required fields
     if (!id || !username || !first_name || !language_code) {
