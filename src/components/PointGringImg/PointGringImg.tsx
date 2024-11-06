@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import pointImg from "@images/coin_png_sqooshed.webp";
 import classNames from "classnames";

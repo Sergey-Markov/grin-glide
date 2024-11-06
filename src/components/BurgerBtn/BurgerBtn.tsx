@@ -1,4 +1,7 @@
 /* eslint-disable import/no-cycle */
+
+"use client";
+
 import classNames from "classnames";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
