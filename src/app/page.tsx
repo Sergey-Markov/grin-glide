@@ -27,7 +27,7 @@ export default function Home() {
     setIsOpen(!isOpen);
   };
 
-  if (user && WebApp.ready()) {
+  if (!user) {
     return <Preloader />;
   }
 
