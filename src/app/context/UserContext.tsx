@@ -41,7 +41,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         WebApp.showAlert("Hello bro");
       }
     }
-  }, [user]);
+  }, [user, userTelegram]);
 
   const value = useMemo(
     () => ({

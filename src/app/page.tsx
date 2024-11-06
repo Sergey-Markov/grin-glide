@@ -16,8 +16,6 @@ import BtmNav from "@/components/BtmNav/BtmNav";
 import { IDbUser } from "@/hooks/useTelegramUser";
 import { useUser } from "./context/UserContext";
 
-WebApp.ready();
-
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
