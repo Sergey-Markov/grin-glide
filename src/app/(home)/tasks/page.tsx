@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { BiCheckDouble, BiCheckbox } from "react-icons/bi";
 import { FaListCheck } from "react-icons/fa6";
