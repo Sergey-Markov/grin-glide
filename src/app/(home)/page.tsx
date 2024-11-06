@@ -12,7 +12,6 @@ import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
 // import { useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
-import BtmNav from "@/components/BtmNav/BtmNav";
 import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
 import { useUser } from "../context/UserContext";
 
@@ -58,7 +57,6 @@ export default function Home() {
           <VoteForm options={formFirstVoteOptions} />
         </main>
       </div>
-      <BtmNav />
     </div>
   );
 }
