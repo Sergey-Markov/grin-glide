@@ -14,13 +14,14 @@ import Preloader from "@/components/Preloader/Preloader";
 import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
 import { useUser } from "@/app/context/UserContext";
 
+const isBrowser = typeof window !== "undefined";
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, setUser } = useUser();
   const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
-    if (window && WebApp && userTelegram) {
+    if (isBrowser && WebApp && userTelegram) {
       if (!user) {
         setUser(userTelegram);
       }
