@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-shadow */
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -25,8 +22,6 @@ export default function Home() {
       }
     }
   }, [setUser, user, userTelegram]);
-
-  console.log("user:", user);
 
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
