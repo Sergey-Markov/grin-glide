@@ -11,7 +11,7 @@ import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
 import Preloader from "@/components/Preloader/Preloader";
-import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
+import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { useUser } from "./context/UserContext";
 
 export default function Home() {
@@ -43,7 +43,6 @@ export default function Home() {
         <MainHeader
           open={isOpen}
           openToggler={openMenuHandler}
-          user={user as IDbUser}
         />
         <Menu open={isOpen} />
         <main className="p-4">
