@@ -18,8 +18,8 @@
     "support": "support"
   },
   "VoteForm": {
-    "1quest": "Виберіть, ким стане GrinG:",
-    "confirmBtn": "Відправити",
+    "1quest": "Choose who GrinG will become:",
+    "confirmBtn": "Confirm",
     "leprechaun": "leprechaun",
     "investor": "investor",
     "pirate": "pirate"

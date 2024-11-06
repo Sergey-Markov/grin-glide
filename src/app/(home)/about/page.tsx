@@ -1,4 +1,7 @@
 /* eslint-disable no-console */
+
+"use client";
+
 import { aboutContent } from "@/constants";
 import { useTranslations } from "next-intl";
 
