@@ -28,7 +28,7 @@ const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => (
       <div>
         <h1 className={s.userName}>{user.username}</h1>
         <div className="flex items-center gap-1">
-          <p className="">10000</p>
+          <p className="">1000</p>
           <PointGringImg variant="small" />
         </div>
       </div>
