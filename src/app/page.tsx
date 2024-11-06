@@ -10,31 +10,32 @@ import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
-import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
+import { useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
 import BtmNav from "@/components/BtmNav/BtmNav";
+import { useUser } from "./context/UserContext";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const [tgUserData, setTgUserData] = useState<IDbUser | null>(null);
-  const { user } = useTelegramUser();
+  const { user, setUser } = useUser();
+  const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
-    if (WebApp && user) {
-      if (!tgUserData) {
-        setTgUserData(user);
+    if (WebApp && userTelegram) {
+      if (!user) {
+        setUser(userTelegram);
         WebApp.showAlert("Hello bro");
       }
     }
-  }, [user?.telegram_id]);
+  }, [user]);
 
-  console.log("user:", tgUserData);
+  console.log("user:", user);
 
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
 
-  if (!tgUserData) {
+  if (!user) {
     return <Preloader />;
   }
 
@@ -44,7 +45,7 @@ export default function Home() {
         <MainHeader
           open={isOpen}
           openToggler={openMenuHandler}
-          user={tgUserData}
+          user={user}
         />
         <Menu open={isOpen} />
         <main className="p-4">

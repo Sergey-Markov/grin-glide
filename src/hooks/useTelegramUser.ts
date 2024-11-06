@@ -31,7 +31,7 @@ export interface IDbUser {
 }
 
 export const useTelegramUser = () => {
-  const [user, setUser] = useState<IDbUser | null>(null);
+  const [userTelegram, setUserTelegram] = useState<IDbUser | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export const useTelegramUser = () => {
           };
 
           const result = await addUser(dbUser);
-          setUser(result.userDB); // Assuming addUser returns the user
+          setUserTelegram(result.userDB); // Assuming addUser returns the user
         }
       } catch (err) {
         setError("Failed to add user to database.");
@@ -69,5 +69,5 @@ export const useTelegramUser = () => {
     fetchAndAddUser();
   }, []);
 
-  return { user, error };
+  return { userTelegram, error };
 };
