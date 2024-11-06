@@ -1,38 +1,61 @@
-// import { useEffect } from "react";
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
+
+"use client";
+
+import { useEffect, useState } from "react";
+import VoteForm from "@/components/VoteForm/VoteForm";
+import { formFirstVoteOptions } from "@/constants";
+import Menu from "@/components/Menu/Menu";
+import MainHeader from "@/components/MainHeader/MainHeader";
+import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
-// import { useTelegramUser } from "@/hooks/useTelegramUser";
-import { redirect } from "next/navigation";
 import Preloader from "@/components/Preloader/Preloader";
-// import { useUser } from "./context/UserContext";
+import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
+import { useUser } from "./context/UserContext";
 
 export default function Home() {
-<<<<<<< HEAD
-  if (WebApp) {
-    redirect(`/main`);
-=======
   const [isOpen, setIsOpen] = useState(false);
-  const [tgUserData, setTgUserData] = useState<IDbUser | null>(null);
-  const { user } = useTelegramUser();
+  const { user, setUser } = useUser();
+  const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
-    if (WebApp && user) {
-      if (!tgUserData) {
-        setTgUserData(user);
-        WebApp.showAlert("Hello bro");
+    if (WebApp && userTelegram) {
+      if (!user) {
+        setUser(userTelegram);
       }
     }
-  }, [user]);
+  }, [setUser, user, userTelegram]);
 
-  console.log("user:", tgUserData);
+  console.log("user:", user);
 
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
 
-  if (!tgUserData) {
+  if (user && WebApp.ready()) {
     return <Preloader />;
->>>>>>> parent of 0eebcf6 (fix start update 5)
   }
 
-  return <Preloader />;
+  return (
+    <div className="font-sans text-white min-h-screen pb-12">
+      <div className="relative mx-auto px-3 py-6 overflow-hidden">
+        <MainHeader
+          open={isOpen}
+          openToggler={openMenuHandler}
+          user={user as IDbUser}
+        />
+        <Menu open={isOpen} />
+        <main className="p-4">
+          <section
+            id="hero-home"
+            className="flex justify-center items-center mb-8"
+          >
+            <HeroStartTask />
+          </section>
+          <VoteForm options={formFirstVoteOptions} />
+        </main>
+      </div>
+    </div>
+  );
 }

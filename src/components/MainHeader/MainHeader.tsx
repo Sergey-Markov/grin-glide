@@ -3,7 +3,7 @@
 "use client";
 
 import { getFirstAndLastLetter } from "@/utils";
-import { useUser } from "@/app/context/UserContext";
+import { IDbUser } from "@/hooks/useTelegramUser";
 import PointGringImg from "../PointGringImg/PointGringImg";
 import BurgerBtn from "../BurgerBtn/BurgerBtn";
 
@@ -12,10 +12,10 @@ import s from "./MainHeader.module.css";
 export interface IMainHeaderProps {
   open: boolean;
   openToggler: () => void;
+  user: IDbUser;
 }
 
-const MainHeader = ({ open, openToggler }: IMainHeaderProps) => {
-  const { user } = useUser();
+const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
   if (!user) {
     return null;
   }
