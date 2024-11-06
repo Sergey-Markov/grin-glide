@@ -1,26 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
-import WebApp from "@twa-dev/sdk";
-import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
+// import WebApp from "@twa-dev/sdk";
+// import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState<IDbUser | null>(null);
-  const { userTelegram } = useTelegramUser();
+  // const [user, setUser] = useState<IDbUser | null>(null);
 
-  useEffect(() => {
-    if (WebApp && userTelegram) {
-      if (!user) {
-        setUser(userTelegram);
-      }
-    }
-  }, [setUser, user, userTelegram]);
+  // useEffect(() => {
+  //   if (userTelegram) {
+  //     if (!user) {
+  //       setUser(userTelegram);
+  //     }
+  //   }
+  // }, [setUser, user, userTelegram]);
 
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
