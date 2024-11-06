@@ -43,7 +43,7 @@ export default function Home() {
         <MainHeader
           open={isOpen}
           openToggler={openMenuHandler}
-          user={user}
+          user={user as IDbUser}
         />
         <Menu open={isOpen} />
         <main className="p-4">
