@@ -1,4 +1,7 @@
 // context/UserContext.tsx
+
+"use client";
+
 import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import { IDbUser } from "@/hooks/useTelegramUser";
 import { UserContextType } from "./types";
