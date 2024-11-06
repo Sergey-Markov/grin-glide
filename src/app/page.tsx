@@ -21,7 +21,7 @@ export default function Home() {
   const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
-    if (WebApp && userTelegram) {
+    if (window && WebApp && userTelegram) {
       if (!user) {
         setUser(userTelegram);
         WebApp.showAlert("fhfhfhf");
