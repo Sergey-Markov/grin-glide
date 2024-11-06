@@ -5,7 +5,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
 import "./globals.css";
-import { UserProvider } from "./context/UserContext";
 
 const ogDescription = "Покращення добробуту в Україні через петиції";
 const ogImage = "/public/assets/images/newLogologo.png";
@@ -49,18 +48,15 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
-
   return (
     <html
       data-theme="cupcake"
       lang={locale}
     >
       <body className={`${inter.variable} ${merriweather.variable}`}>
-        <UserProvider>
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-        </UserProvider>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

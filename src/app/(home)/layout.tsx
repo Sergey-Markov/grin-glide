@@ -4,6 +4,7 @@ import React from "react";
 // import { inter, merriweather } from "@/fonts";
 // import { getLocale, getMessages } from "next-intl/server";
 import BtmNav from "@/components/BtmNav/BtmNav";
+import { UserProvider } from "../context/UserContext";
 
 export default function RootLayout({
   children,
@@ -11,9 +12,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <UserProvider>
       {children}
       <BtmNav />
-    </>
+    </UserProvider>
   );
 }
