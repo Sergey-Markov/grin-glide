@@ -10,10 +10,9 @@ import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
-// import { useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
 import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
-import { useUser } from "../context/UserContext";
+import { useUser } from "@/app/context/UserContext";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
