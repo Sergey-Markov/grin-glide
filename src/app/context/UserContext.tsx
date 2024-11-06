@@ -1,6 +1,14 @@
 // context/UserContext.tsx
-import { createContext, useContext, useState, ReactNode, useMemo } from "react";
-import { IDbUser } from "@/hooks/useTelegramUser";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useMemo,
+  useEffect,
+} from "react";
+import WebApp from "@twa-dev/sdk";
+import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
 import { UserContextType } from "./types";
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -21,6 +29,17 @@ export function useUser() {
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<IDbUser | null>(null);
+  const { userTelegram } = useTelegramUser();
+
+  useEffect(() => {
+    if (WebApp && userTelegram) {
+      if (!user) {
+        setUser(userTelegram);
+        WebApp.showAlert("Hello bro");
+      }
+    }
+  }, [user]);
+
   const value = useMemo(
     () => ({
       user,

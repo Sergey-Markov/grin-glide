@@ -3,31 +3,31 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
-import WebApp from "@twa-dev/sdk";
-import { useTelegramUser } from "@/hooks/useTelegramUser";
+// import WebApp from "@twa-dev/sdk";
+// import { useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
 import BtmNav from "@/components/BtmNav/BtmNav";
 import { useUser } from "./context/UserContext";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, setUser } = useUser();
-  const { userTelegram } = useTelegramUser();
+  const { user } = useUser();
+  // const { userTelegram } = useTelegramUser();
 
-  useEffect(() => {
-    if (WebApp && userTelegram) {
-      if (!user) {
-        setUser(userTelegram);
-        WebApp.showAlert("Hello bro");
-      }
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (WebApp && userTelegram) {
+  //     if (!user) {
+  //       setUser(userTelegram);
+  //       WebApp.showAlert("Hello bro");
+  //     }
+  //   }
+  // }, [user]);
 
   console.log("user:", user);
 
