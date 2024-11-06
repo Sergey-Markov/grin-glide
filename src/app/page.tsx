@@ -27,7 +27,7 @@ export default function Home() {
         WebApp.showAlert("fhfhfhf");
       }
     }
-  }, [user]);
+  }, [setUser, user, userTelegram]);
 
   console.log("user:", user);
 

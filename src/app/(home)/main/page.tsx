@@ -25,7 +25,7 @@ export default function Home() {
         setUser(userTelegram);
       }
     }
-  }, [user]);
+  }, [setUser, user, userTelegram]);
 
   console.log("user:", user);
 
