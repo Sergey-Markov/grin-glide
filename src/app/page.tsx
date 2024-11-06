@@ -11,12 +11,11 @@ import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import WebApp from "@twa-dev/sdk";
 import Preloader from "@/components/Preloader/Preloader";
-import { useTelegramUser } from "@/hooks/useTelegramUser";
-import { useUser } from "./context/UserContext";
+import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, setUser } = useUser();
+  const [user, setUser] = useState<IDbUser | null>(null);
   const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
