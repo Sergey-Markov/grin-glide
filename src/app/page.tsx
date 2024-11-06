@@ -24,6 +24,7 @@ export default function Home() {
     if (WebApp && userTelegram) {
       if (!user) {
         setUser(userTelegram);
+        WebApp.showAlert("fhfhfhf");
       }
     }
   }, [user]);
