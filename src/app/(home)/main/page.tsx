@@ -4,24 +4,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import WebApp from "@twa-dev/sdk";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
-import WebApp from "@twa-dev/sdk";
 import Preloader from "@/components/Preloader/Preloader";
-import { IDbUser, useTelegramUser } from "@/hooks/useTelegramUser";
+import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { useUser } from "@/app/context/UserContext";
 
-const isBrowser = typeof window !== "undefined";
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, setUser } = useUser();
   const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
-    if (isBrowser && WebApp && userTelegram) {
+    if (WebApp && userTelegram) {
       if (!user) {
         setUser(userTelegram);
       }
@@ -34,7 +33,7 @@ export default function Home() {
     setIsOpen(!isOpen);
   };
 
-  if (!user && !WebApp) {
+  if (user === null && WebApp) {
     return <Preloader />;
   }
 
@@ -44,7 +43,6 @@ export default function Home() {
         <MainHeader
           open={isOpen}
           openToggler={openMenuHandler}
-          user={user as IDbUser}
         />
         <Menu open={isOpen} />
         <main className="p-4">
