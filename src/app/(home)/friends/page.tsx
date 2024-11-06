@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Friend, { TFriend } from "@/components/Friend/Friend";
 import { useTranslations } from "next-intl";
