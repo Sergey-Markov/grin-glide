@@ -9,10 +9,11 @@ import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
-// import WebApp from "@twa-dev/sdk";
+import WebApp from "@twa-dev/sdk";
 // import { useTelegramUser } from "@/hooks/useTelegramUser";
 import Preloader from "@/components/Preloader/Preloader";
 import BtmNav from "@/components/BtmNav/BtmNav";
+import { IDbUser } from "@/hooks/useTelegramUser";
 import { useUser } from "./context/UserContext";
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
     setIsOpen(!isOpen);
   };
 
-  if (!user) {
+  if (!user && !WebApp) {
     return <Preloader />;
   }
 
@@ -45,7 +46,7 @@ export default function Home() {
         <MainHeader
           open={isOpen}
           openToggler={openMenuHandler}
-          user={user}
+          user={user as IDbUser}
         />
         <Menu open={isOpen} />
         <main className="p-4">

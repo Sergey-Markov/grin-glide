@@ -49,6 +49,7 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
+
   return (
     <html
       data-theme="cupcake"
