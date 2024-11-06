@@ -15,37 +15,31 @@ export interface IMainHeaderProps {
   user: IDbUser;
 }
 
-const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => {
-  if (!user) {
-    return null;
-  }
-
-  return (
-    <header className={s.mainHeader}>
-      <div className={s.user}>
-        <div className={s.userAvatar}>
-          <div className={s.userAvatarBox}>
-            <p className="w-12 h-12 rounded-full mr-3 uppercase bg-teal-950 flex items-center justify-center">
-              {getFirstAndLastLetter(user.username as string)}
-            </p>
-          </div>
-        </div>
-        <div>
-          <h1 className={s.userName}>{user.username}</h1>
-          <div className="flex items-center gap-1">
-            <p className="">10000</p>
-            <PointGringImg variant="small" />
-          </div>
+const MainHeader = ({ open, openToggler, user }: IMainHeaderProps) => (
+  <header className={s.mainHeader}>
+    <div className={s.user}>
+      <div className={s.userAvatar}>
+        <div className={s.userAvatarBox}>
+          <p className="w-12 h-12 rounded-full mr-3 uppercase bg-teal-950 flex items-center justify-center">
+            {getFirstAndLastLetter(user.username as string)}
+          </p>
         </div>
       </div>
-      <div className={s.burgerBtnView}>
-        <BurgerBtn
-          open={open}
-          openToggler={openToggler}
-        />
+      <div>
+        <h1 className={s.userName}>{user.username}</h1>
+        <div className="flex items-center gap-1">
+          <p className="">10000</p>
+          <PointGringImg variant="small" />
+        </div>
       </div>
-    </header>
-  );
-};
+    </div>
+    <div className={s.burgerBtnView}>
+      <BurgerBtn
+        open={open}
+        openToggler={openToggler}
+      />
+    </div>
+  </header>
+);
 
 export default MainHeader;
