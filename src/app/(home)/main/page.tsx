@@ -10,7 +10,6 @@ import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
-import Preloader from "@/components/Preloader/Preloader";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { useUser } from "@/app/context/UserContext";
 
@@ -33,9 +32,9 @@ export default function Home() {
     setIsOpen(!isOpen);
   };
 
-  if (user === null && WebApp) {
-    return <Preloader />;
-  }
+  // if (user === null && WebApp) {
+  //   return <Preloader />;
+  // }
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
