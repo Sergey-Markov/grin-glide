@@ -1,5 +1,3 @@
-"use client";
-
 const Preloader = () => (
   <main
     className="hero min-h-screen"
