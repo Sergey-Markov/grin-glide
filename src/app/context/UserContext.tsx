@@ -1,4 +1,7 @@
 // context/UserContext.tsx
+
+"use client";
+
 import {
   createContext,
   useContext,
