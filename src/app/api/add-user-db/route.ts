@@ -12,16 +12,7 @@ export const POST = async (request: Request) => {
       first_name,
       last_name,
       username,
-      language_code,
-      selected_language = "en", // Default value if not provided
-      friends = [], // Default empty array
-      completeTasks = [], // Default empty array
-      inviter = "",
-      status = "user", // Default status
-      points = 0,
-      wallet = "",
-      wallet_name = "",
-      investment_sum = [], // Default empty array
+      language_code, // Default empty array
     } = body;
 
     console.log("body:", body);
@@ -58,15 +49,15 @@ export const POST = async (request: Request) => {
       last_name,
       username,
       language_code,
-      selected_language,
-      friends,
-      completeTasks,
-      inviter,
-      status,
-      points,
-      wallet,
-      wallet_name,
-      investment_sum,
+      selected_language: "en", // Default value if not provided
+      friends: [], // Default empty array
+      completeTasks: [], // Default empty array
+      inviter: "",
+      status: "user", // Default status
+      points: 1000,
+      wallet: "",
+      wallet_name: "",
+      investment_sum: [],
     };
 
     // Insert the new user into the database
