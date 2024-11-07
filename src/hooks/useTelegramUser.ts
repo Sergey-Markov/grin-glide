@@ -1,3 +1,4 @@
+import { Locale } from "@/i18n/config";
 import { addUser } from "@/services/addNewUser";
 import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ export interface IDbUser {
   last_name?: string;
   username?: string;
   language_code: string;
-  selected_language?: "en" | "ru" | "uk";
+  selected_language?: Locale;
   friends: number[];
   completeTasks: string[];
   inviter: string;
@@ -69,5 +70,5 @@ export const useTelegramUser = () => {
     fetchAndAddUser();
   }, []);
 
-  return { userTelegram, error };
+  return { userTelegram, error, setUserTelegram };
 };
