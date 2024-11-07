@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { localesBtns } from "@/constants";
 import { useTranslations } from "next-intl";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
+import { updateUserFields } from "@/services/updateUserFields";
 
 const Language = () => {
   const { userTelegram, setUserTelegram } = useTelegramUser();
@@ -19,16 +20,17 @@ const Language = () => {
     }
   }, [userTelegram?.selected_language]);
 
-  const onClick = (lg: Locale) => {
-    setUserTelegram((prev) => {
-      if (prev) {
-        return {
-          ...prev,
-          selected_language: lg,
-        };
+  const onClick = async (lg: Locale) => {
+    const newLang = { selected_language: lg };
+    if (userTelegram?.telegram_id) {
+      const udateUserLangResult = await updateUserFields(
+        userTelegram?.telegram_id,
+        newLang
+      );
+      if (userTelegram) {
+        setUserTelegram(udateUserLangResult);
       }
-      return prev;
-    });
+    }
   };
 
   return (

@@ -15,6 +15,18 @@ export const PATCH = async (request: Request) => {
       );
     }
 
+    // check if Request has unupdating fields
+    const unUpdatingFields = ["telegram_id"];
+    const checkIncomingFieldsForUserUpdate = unUpdatingFields.every(
+      (key) => key in updateFields
+    );
+    if (checkIncomingFieldsForUserUpdate) {
+      return NextResponse.json(
+        { message: "The object contains some specified key" },
+        { status: 404 }
+      );
+    }
+
     const client = await connectToDatabase();
     const db = client.db("test_gring");
     const usersCollection = db.collection("users");
