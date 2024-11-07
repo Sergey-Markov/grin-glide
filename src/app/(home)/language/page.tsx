@@ -29,7 +29,7 @@ const Language = () => {
           userTelegram.telegram_id,
           newLang
         );
-        setUserTelegram(updatedUserLangResult);
+        setUserTelegram(updatedUserLangResult.userDB);
       } catch (error) {
         console.error("Failed to update user language:", error);
       }
