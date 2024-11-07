@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 "use client";
 
 import { useEffect } from "react";
@@ -15,20 +17,21 @@ const Language = () => {
 
   useEffect(() => {
     if (userTelegram?.selected_language) {
-      const selectedLang = userTelegram.selected_language;
-      setUserLocale(selectedLang);
+      setUserLocale(userTelegram.selected_language);
     }
   }, [userTelegram?.selected_language]);
 
   const onClick = async (lg: Locale) => {
-    const newLang = { selected_language: lg };
     if (userTelegram?.telegram_id) {
-      const udateUserLangResult = await updateUserFields(
-        userTelegram?.telegram_id,
-        newLang
-      );
-      if (userTelegram) {
-        setUserTelegram(udateUserLangResult);
+      const newLang = { selected_language: lg };
+      try {
+        const updatedUserLangResult = await updateUserFields(
+          userTelegram.telegram_id,
+          newLang
+        );
+        setUserTelegram(updatedUserLangResult);
+      } catch (error) {
+        console.error("Failed to update user language:", error);
       }
     }
   };
