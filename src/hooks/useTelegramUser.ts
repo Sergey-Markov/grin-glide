@@ -15,7 +15,7 @@ export interface IDbUser {
   last_name?: string;
   username?: string;
   language_code: string;
-  selected_language?: string;
+  selected_language?: "en" | "ru" | "uk";
   friends: number[];
   completeTasks: string[];
   inviter: string;

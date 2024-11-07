@@ -7,15 +7,8 @@ export const POST = async (request: Request) => {
   try {
     const body = await request.json();
 
-    const {
-      telegram_id,
-      first_name,
-      last_name,
-      username,
-      language_code, // Default empty array
-    } = body;
-
-    console.log("body:", body);
+    const { telegram_id, first_name, last_name, username, language_code } =
+      body;
 
     // Check for required fields
     if (!telegram_id || !username || !first_name || !language_code) {
@@ -42,7 +35,6 @@ export const POST = async (request: Request) => {
       );
     }
 
-    // Create the new user object
     const newUser = {
       telegram_id,
       first_name,

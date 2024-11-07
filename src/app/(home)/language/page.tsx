@@ -6,14 +6,21 @@ import { setUserLocale } from "@/services/locale";
 import classNames from "classnames";
 import { localesBtns } from "@/constants";
 import { useTranslations } from "next-intl";
+import { useTelegramUser } from "@/hooks/useTelegramUser";
 
 const Language = () => {
   const [userLg, setUserLg] = useState<Locale>("uk");
+  const { userTelegram } = useTelegramUser();
+
   const t = useTranslations("LanguagePage");
 
   useEffect(() => {
-    setUserLocale(userLg);
-  }, [userLg]);
+    if (userTelegram?.selected_language?.length) {
+      const selectedLang = userTelegram?.selected_language;
+      setUserLocale(selectedLang);
+      setUserLg(selectedLang);
+    }
+  }, [userLg, userTelegram?.selected_language]);
 
   const onClick = (lg: Locale) => {
     setUserLg(lg);
