@@ -4,6 +4,8 @@
 
 import { getFirstAndLastLetter } from "@/utils";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
+import { useEffect } from "react";
+import { setUserLocale } from "@/services/locale";
 import PointGringImg from "../PointGringImg/PointGringImg";
 import BurgerBtn from "../BurgerBtn/BurgerBtn";
 
@@ -16,9 +18,17 @@ export interface IMainHeaderProps {
 
 const MainHeader = ({ open, openToggler }: IMainHeaderProps) => {
   const { userTelegram } = useTelegramUser();
+
+  useEffect(() => {
+    if (userTelegram && userTelegram.selected_language) {
+      setUserLocale(userTelegram.selected_language);
+    }
+  }, [userTelegram, userTelegram?.selected_language]);
+
   if (!userTelegram) {
     return null;
   }
+
   return (
     <header className={s.mainHeader}>
       <div className={s.user}>
