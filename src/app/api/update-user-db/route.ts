@@ -6,7 +6,7 @@ export const PATCH = async (request: Request) => {
   try {
     const body = await request.json();
 
-    const { telegram_id, updateFields } = body;
+    const { id: telegram_id, updateFields } = body;
 
     if (!telegram_id || !updateFields) {
       return NextResponse.json(
