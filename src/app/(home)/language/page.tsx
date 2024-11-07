@@ -30,6 +30,7 @@ const Language = () => {
           newLang
         );
         setUserTelegram(updatedUserLangResult.userDB);
+        await setUserLocale(lg);
       } catch (error) {
         console.error("Failed to update user language:", error);
       }
