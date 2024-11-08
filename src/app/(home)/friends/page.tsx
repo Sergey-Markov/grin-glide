@@ -1,8 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Friend, { TFriend } from "@/components/Friend/Friend";
 import { useTranslations } from "next-intl";
+import { useTelegramUser } from "@/hooks/useTelegramUser";
+import { createReferralLink } from "@/utils";
+import WebApp from "@twa-dev/sdk";
 
 const friends: TFriend[] = [
   {
@@ -31,7 +34,23 @@ const friends: TFriend[] = [
 const friendsCount = friends.length;
 
 const FriendsList = () => {
+  const [referralLink, setReferralLink] = useState<string>("");
+  const { userTelegram } = useTelegramUser();
   const t = useTranslations("FriendsList");
+
+  useEffect(() => {
+    if (userTelegram) {
+      const userId = userTelegram?.telegram_id;
+      const sharedRefferalLink = createReferralLink(userId);
+      setReferralLink(sharedRefferalLink);
+    }
+  }, [userTelegram]);
+
+  const handleShare = () => {
+    if (referralLink) {
+      WebApp.openTelegramLink(referralLink);
+    }
+  };
 
   return (
     <main className=" min-h-screen p-4 md:p-8 text-white md:pb-24">
@@ -43,6 +62,7 @@ const FriendsList = () => {
         <button
           type="button"
           className="w-full btn btn-success font-bold py-3 px-4 rounded-full my-6"
+          onClick={handleShare}
         >
           {t("inviteBtnLabel")}
         </button>
