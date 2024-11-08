@@ -73,7 +73,6 @@ const FriendsList = () => {
         </h2>
         <button
           type="button"
-          // href={referralLink}
           className="w-full btn btn-success font-bold py-3 px-4 rounded-full my-6"
           onClick={handleShare}
         >
