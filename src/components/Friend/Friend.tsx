@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { investorStatus } from "@/constants";
 import { getFirstAndLastLetter } from "@/utils";
