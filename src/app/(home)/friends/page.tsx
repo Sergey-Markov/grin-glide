@@ -1,11 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Friend, { TFriend } from "@/components/Friend/Friend";
+import WebApp from "@twa-dev/sdk";
 import { useTranslations } from "next-intl";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { createReferralLink } from "@/utils";
-import WebApp from "@twa-dev/sdk";
+import dynamic from "next/dynamic";
+import Preloader from "@/components/Preloader/Preloader";
+import { TFriend } from "@/components/Friend/Friend";
+
+const FriendDynamicImport = dynamic(
+  () => import("@/components/Friend/Friend"),
+  {
+    ssr: false,
+    loading: () => <Preloader />,
+  }
+);
 
 const friends: TFriend[] = [
   {
@@ -68,7 +78,7 @@ const FriendsList = () => {
         </button>
         <ul className="space-y-4">
           {friends.map((friend) => (
-            <Friend options={friend} />
+            <FriendDynamicImport options={friend} />
           ))}
         </ul>
       </div>
