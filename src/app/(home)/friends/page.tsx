@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { createReferralLink } from "@/utils";
 import { TFriend } from "@/components/Friend/Friend";
-import Link from "next/link";
 
 const WebApp =
   typeof window !== "undefined" ? require("@twa-dev/sdk").default : null;
