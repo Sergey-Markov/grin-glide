@@ -20,7 +20,7 @@ export interface IDbUser {
   selected_language?: Locale;
   friends: number[];
   completeTasks: string[];
-  inviter: string;
+  inviterId: string;
   status: "investor" | "user";
   points: number;
   wallet: string;
@@ -43,7 +43,7 @@ export const useTelegramUser = () => {
           const initData = WebApp.initDataUnsafe;
           const telegramUser = initData.user as TelegramUser;
           const inviterId = initData.start_param;
-          console.log("inviterId:", initData.query_id, initData.start_param);
+          console.log("inviterId:", initData.start_param);
 
           // Map TelegramUser to IDbUser format
           const dbUser: IDbUser = {
@@ -55,7 +55,7 @@ export const useTelegramUser = () => {
             selected_language: "en",
             friends: [],
             completeTasks: [],
-            inviter: inviterId || "bot_link",
+            inviterId: inviterId || "bot_link",
             status: "user",
             points: 0,
             wallet: "",
