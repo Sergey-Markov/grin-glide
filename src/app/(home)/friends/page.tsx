@@ -9,8 +9,8 @@ import { createReferralLink } from "@/utils";
 import { TFriend } from "@/components/Friend/Friend";
 import Link from "next/link";
 
-// const WebApp =
-//   typeof window !== "undefined" ? require("@twa-dev/sdk").default : null;
+const WebApp =
+  typeof window !== "undefined" ? require("@twa-dev/sdk").default : null;
 
 const FriendDynamicImport = dynamic(
   () => import("@/components/Friend/Friend"),
@@ -59,11 +59,11 @@ const FriendsList = () => {
     }
   }, [userTelegram]);
 
-  // const handleShare = () => {
-  //   if (referralLink) {
-  //     WebApp.openTelegramLink(referralLink);
-  //   }
-  // };
+  const handleShare = () => {
+    if (referralLink) {
+      WebApp.openTelegramLink(referralLink);
+    }
+  };
 
   return (
     <main className=" min-h-screen p-4 md:p-8 text-white md:pb-24">
@@ -72,12 +72,14 @@ const FriendsList = () => {
           {t("title")}
           <span className="ml-3 text-secondary ">{friendsCount}</span>
         </h2>
-        <Link
-          href={referralLink}
+        <button
+          type="button"
+          // href={referralLink}
           className="w-full btn btn-success font-bold py-3 px-4 rounded-full my-6"
+          onClick={handleShare}
         >
           {t("inviteBtnLabel")}
-        </Link>
+        </button>
         <ul className="space-y-4">
           {friends.map((friend) => (
             <FriendDynamicImport options={friend} />
