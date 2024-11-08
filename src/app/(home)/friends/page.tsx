@@ -9,8 +9,8 @@ import { createReferralLink } from "@/utils";
 import { TFriend } from "@/components/Friend/Friend";
 import Link from "next/link";
 
-const WebApp =
-  typeof window !== "undefined" ? require("@twa-dev/sdk").default : null;
+// const WebApp =
+//   typeof window !== "undefined" ? require("@twa-dev/sdk").default : null;
 
 const FriendDynamicImport = dynamic(
   () => import("@/components/Friend/Friend"),
