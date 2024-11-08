@@ -17,7 +17,7 @@ export const createReferralLink = (userId: string | number): TRefferalLink => {
   const botName = `testGrinGlide_bot`;
   const text = "Hi BRO! Connect to our community";
   const link = `https://t.me/share/url?url=https://t.me/${botName}/TestGrinG?startapp=${userId}&text=${text}`;
-  const linkForCopy = `https://t.me/share/url?url=https://t.me/${botName}/TestGrinG?startapp=${userId}`;
+  const linkForCopy = `https://t.me/${botName}/TestGrinG?startapp=${userId}`;
 
   return { link, linkForCopy };
 };
