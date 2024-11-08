@@ -53,7 +53,7 @@ export const useTelegramUser = () => {
             selected_language: "en",
             friends: [],
             completeTasks: [],
-            inviter: inviterId || "",
+            inviter: inviterId || "bot_link",
             status: "user",
             points: 0,
             wallet: "",
