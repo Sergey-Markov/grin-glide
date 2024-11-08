@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";

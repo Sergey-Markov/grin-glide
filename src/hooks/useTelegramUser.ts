@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Locale } from "@/i18n/config";
 import { addUser } from "@/services/addNewUser";
 import WebApp from "@twa-dev/sdk";
@@ -43,7 +42,6 @@ export const useTelegramUser = () => {
           const initData = WebApp.initDataUnsafe;
           const telegramUser = initData.user as TelegramUser;
           const inviterId = initData.start_param;
-          console.log("inviterId:", initData.start_param);
 
           // Map TelegramUser to IDbUser format
           const dbUser: IDbUser = {
