@@ -46,6 +46,7 @@ const friends: TFriend[] = [
 const friendsCount = friends.length;
 
 const FriendsList = () => {
+  const [copied, setCopied] = useState<boolean>(false);
   const [referralLink, setReferralLink] = useState<string>("");
   const { userTelegram } = useTelegramUser();
   const t = useTranslations("FriendsList");
@@ -64,6 +65,19 @@ const FriendsList = () => {
     }
   };
 
+  const handleCopy = async () => {
+    if (referralLink) {
+      try {
+        // Копируем текст в буфер обмена
+        await navigator.clipboard.writeText(referralLink);
+        setCopied(true); // Устанавливаем состояние, что ссылка скопирована
+        setTimeout(() => setCopied(false), 3000); // Очищаем сообщение через 3 секунды
+      } catch (err) {
+        console.error("Failed to copy the text to clipboard: ", err);
+      }
+    }
+  };
+
   return (
     <main className=" min-h-screen p-4 md:p-8 text-white md:pb-24">
       <div className="max-w-md mx-auto">
@@ -77,6 +91,13 @@ const FriendsList = () => {
           onClick={handleShare}
         >
           {t("inviteBtnLabel")}
+        </button>
+        <button
+          type="button"
+          className="w-full btn btn-success font-bold py-3 px-4 rounded-full my-6"
+          onClick={handleCopy}
+        >
+          {copied ? "Copied!" : "Copy Referral Link"}
         </button>
         <ul className="space-y-4">
           {friends.map((friend) => (
