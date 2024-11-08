@@ -3,11 +3,13 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Preloader from "@/components/Preloader/Preloader";
-import WebApp from "@twa-dev/sdk";
 import { useTranslations } from "next-intl";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { createReferralLink } from "@/utils";
 import { TFriend } from "@/components/Friend/Friend";
+
+const WebApp =
+  typeof window !== "undefined" ? require("@twa-dev/sdk").default : null;
 
 const FriendDynamicImport = dynamic(
   () => import("@/components/Friend/Friend"),
