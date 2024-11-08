@@ -39,7 +39,7 @@ const FriendsList = () => {
   const t = useTranslations("FriendsList");
 
   useEffect(() => {
-    if (userTelegram) {
+    if (WebApp && userTelegram) {
       const userId = userTelegram?.telegram_id;
       const sharedRefferalLink = createReferralLink(userId);
       setReferralLink(sharedRefferalLink);
