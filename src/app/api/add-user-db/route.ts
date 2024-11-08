@@ -7,8 +7,14 @@ export const POST = async (request: Request) => {
   try {
     const body = await request.json();
 
-    const { telegram_id, first_name, last_name, username, language_code } =
-      body;
+    const {
+      telegram_id,
+      first_name,
+      last_name,
+      username,
+      language_code,
+      inviter,
+    } = body;
 
     // Check for required fields
     if (!telegram_id || !username || !first_name || !language_code) {
@@ -44,7 +50,7 @@ export const POST = async (request: Request) => {
       selected_language: "en", // Default value if not provided
       friends: [], // Default empty array
       completeTasks: [], // Default empty array
-      inviter: "",
+      inviter,
       status: "user", // Default status
       points: 1000,
       wallet: "",
