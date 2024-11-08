@@ -39,7 +39,9 @@ export const useTelegramUser = () => {
     const fetchAndAddUser = async () => {
       try {
         if (typeof window !== "undefined" && WebApp.initDataUnsafe?.user) {
-          const telegramUser = WebApp.initDataUnsafe.user as TelegramUser;
+          const initData = WebApp.initDataUnsafe;
+          const telegramUser = initData.user as TelegramUser;
+          const inviterId = initData.start_param;
 
           // Map TelegramUser to IDbUser format
           const dbUser: IDbUser = {
@@ -47,12 +49,12 @@ export const useTelegramUser = () => {
             first_name: telegramUser.first_name,
             last_name: telegramUser.last_name,
             username: telegramUser.username,
-            language_code: WebApp.initDataUnsafe?.user?.language_code || "en", // Handle language_code if available
-            selected_language: "en", // default language or set based on some logic
+            language_code: WebApp.initDataUnsafe?.user?.language_code || "en",
+            selected_language: "en",
             friends: [],
             completeTasks: [],
-            inviter: "",
-            status: "user", // or set dynamically
+            inviter: inviterId || "",
+            status: "user",
             points: 0,
             wallet: "",
             wallet_name: "",

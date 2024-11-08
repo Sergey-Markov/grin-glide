@@ -8,3 +8,10 @@ export const getFirstAndLastLetter = (name: string): string => {
   const result = `${firstLetter}${lastLetter}`;
   return result;
 };
+
+export const createReferralLink = (userId: string | number): string => {
+  const botName = `testGrinGlide_bot`;
+  const link = `https://t.me/${botName}?start=${userId}`;
+
+  return link;
+};
