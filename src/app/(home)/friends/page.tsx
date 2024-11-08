@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import Preloader from "@/components/Preloader/Preloader";
 import { useTranslations } from "next-intl";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
-import { createReferralLink } from "@/utils";
+import { createReferralLink, TRefferalLink } from "@/utils";
 import { TFriend } from "@/components/Friend/Friend";
 
 const WebApp =
@@ -49,7 +49,10 @@ const friendsCount = friends.length;
 
 const FriendsList = () => {
   const [copied, setCopied] = useState<boolean>(false);
-  const [referralLink, setReferralLink] = useState<string>("");
+  const [referralLink, setReferralLink] = useState<TRefferalLink>({
+    link: "",
+    linkForCopy: "",
+  });
   const { userTelegram } = useTelegramUser();
   const t = useTranslations("FriendsList");
 
@@ -62,16 +65,16 @@ const FriendsList = () => {
   }, [userTelegram]);
 
   const handleShare = () => {
-    if (referralLink) {
-      WebApp.openTelegramLink(referralLink);
+    if (referralLink.link) {
+      WebApp.openTelegramLink(referralLink.link);
     }
   };
 
   const handleCopy = async () => {
-    if (referralLink) {
+    if (referralLink.linkForCopy) {
       try {
         // Копируем текст в буфер обмена
-        await navigator.clipboard.writeText(referralLink);
+        await navigator.clipboard.writeText(referralLink.linkForCopy);
         setCopied(true); // Устанавливаем состояние, что ссылка скопирована
         setTimeout(() => setCopied(false), 3000); // Очищаем сообщение через 3 секунды
       } catch (err) {

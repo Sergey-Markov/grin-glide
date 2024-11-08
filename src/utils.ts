@@ -9,10 +9,15 @@ export const getFirstAndLastLetter = (name: string): string => {
   return result;
 };
 
-export const createReferralLink = (userId: string | number): string => {
+export type TRefferalLink = {
+  link: string;
+  linkForCopy: string;
+};
+export const createReferralLink = (userId: string | number): TRefferalLink => {
   const botName = `testGrinGlide_bot`;
   const text = "Hi BRO! Connect to our community";
   const link = `https://t.me/share/url?url=https://t.me/${botName}/TestGrinG?startapp=${userId}&text=${text}`;
+  const linkForCopy = `https://t.me/share/url?url=https://t.me/${botName}/TestGrinG?startapp=${userId}`;
 
-  return link;
+  return { link, linkForCopy };
 };
