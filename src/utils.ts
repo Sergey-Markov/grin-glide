@@ -12,7 +12,7 @@ export const getFirstAndLastLetter = (name: string): string => {
 export const createReferralLink = (userId: string | number): string => {
   const botName = `testGrinGlide_bot`;
   const text = "Hi BRO! Connect to our community";
-  const link = `https://t.me/share/url?url=https://t.me/${botName}/TestGrinG&start=${userId}&text=${text}`;
+  const link = `https://t.me/share/url?url=https://t.me/${botName}/TestGrinG?start=rf_${userId}&text=${text}`;
 
   return link;
 };

@@ -43,7 +43,7 @@ export const useTelegramUser = () => {
           const initData = WebApp.initDataUnsafe;
           const telegramUser = initData.user as TelegramUser;
           const inviterId = initData.start_param;
-          console.log("inviterId:", initData.query_id);
+          console.log("inviterId:", initData.query_id, initData.start_param);
 
           // Map TelegramUser to IDbUser format
           const dbUser: IDbUser = {
