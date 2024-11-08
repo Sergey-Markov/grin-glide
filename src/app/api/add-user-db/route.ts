@@ -13,7 +13,7 @@ export const POST = async (request: Request) => {
       last_name,
       username,
       language_code,
-      inviter,
+      inviterId,
     } = body;
 
     // Check for required fields
@@ -50,7 +50,7 @@ export const POST = async (request: Request) => {
       selected_language: "en", // Default value if not provided
       friends: [], // Default empty array
       completeTasks: [], // Default empty array
-      inviter,
+      inviterId,
       status: "user", // Default status
       points: 1000,
       wallet: "",
