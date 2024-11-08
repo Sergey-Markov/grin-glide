@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import Preloader from "@/components/Preloader/Preloader";
 import WebApp from "@twa-dev/sdk";
 import { useTranslations } from "next-intl";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { createReferralLink } from "@/utils";
-import dynamic from "next/dynamic";
-import Preloader from "@/components/Preloader/Preloader";
 import { TFriend } from "@/components/Friend/Friend";
 
 const FriendDynamicImport = dynamic(
@@ -49,7 +49,7 @@ const FriendsList = () => {
   const t = useTranslations("FriendsList");
 
   useEffect(() => {
-    if (WebApp && userTelegram) {
+    if (typeof window !== "undefined" && WebApp && userTelegram) {
       const userId = userTelegram?.telegram_id;
       const sharedRefferalLink = createReferralLink(userId);
       setReferralLink(sharedRefferalLink);
