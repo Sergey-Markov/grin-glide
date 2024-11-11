@@ -115,7 +115,7 @@ const FriendsList = () => {
           ))}
         </ul>
       </div>
-      {!isToastVisible && <Toast />}
+      {isToastVisible && <Toast />}
     </main>
   );
 };
