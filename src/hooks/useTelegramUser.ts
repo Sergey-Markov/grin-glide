@@ -80,7 +80,7 @@ export const useTelegramUser = () => {
     if (!userTelegram) {
       fetchAndAddUser();
     }
-  }, [userTelegram?.telegram_id]);
+  }, [userTelegram]);
 
   return { userTelegram, error, setUserTelegram, isNewUser, setIsNewUser };
 };

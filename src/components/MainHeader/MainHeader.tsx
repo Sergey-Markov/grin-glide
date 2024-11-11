@@ -1,6 +1,7 @@
-/* eslint-disable no-console */
-
 "use client";
+
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import { getFirstAndLastLetter } from "@/utils";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
@@ -23,7 +24,11 @@ const MainHeader = ({ open, openToggler }: IMainHeaderProps) => {
     if (userTelegram && userTelegram.selected_language) {
       setUserLocale(userTelegram.selected_language);
     }
-  }, [userTelegram]);
+  }, [
+    userTelegram?.username,
+    userTelegram?.points,
+    userTelegram?.selected_language,
+  ]);
 
   if (!userTelegram) {
     return null;
