@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { createReferralLink, TRefferalLink } from "@/utils";
 import { TFriend } from "@/components/Friend/Friend";
+import Toast from "@/components/Toast/Toast";
 
 const WebApp =
   typeof window !== "undefined" ? require("@twa-dev/sdk").default : null;
@@ -49,6 +50,7 @@ const friendsCount = friends.length;
 
 const FriendsList = () => {
   const [copied, setCopied] = useState<boolean>(false);
+  const [isToastVisible, setIsToastVisible] = useState<boolean>(false);
   const [referralLink, setReferralLink] = useState<TRefferalLink>({
     link: "",
     linkForCopy: "",
@@ -75,10 +77,11 @@ const FriendsList = () => {
       try {
         // Копируем текст в буфер обмена
         await navigator.clipboard.writeText(referralLink.linkForCopy);
-        setCopied(true); // Устанавливаем состояние, что ссылка скопирована
-        setTimeout(() => setCopied(false), 3000); // Очищаем сообщение через 3 секунды
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
       } catch (err) {
-        console.error("Failed to copy the text to clipboard: ", err);
+        setIsToastVisible(true);
+        setTimeout(() => setIsToastVisible(false), 3500);
       }
     }
   };
@@ -112,6 +115,7 @@ const FriendsList = () => {
           ))}
         </ul>
       </div>
+      {!isToastVisible && <Toast />}
     </main>
   );
 };
