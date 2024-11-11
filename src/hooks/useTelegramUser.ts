@@ -64,6 +64,9 @@ export const useTelegramUser = () => {
 
           const result = await addUser(dbUser);
           setUserTelegram(result.data.userDB);
+          // eslint-disable-next-line no-console
+          console.log("result.status:", result.status);
+
           if (result.status === 201) {
             setIsNewUser(true);
           } // Assuming addUser returns the user
