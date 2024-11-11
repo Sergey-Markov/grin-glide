@@ -63,7 +63,7 @@ export const useTelegramUser = () => {
           };
 
           const result = await addUser(dbUser);
-          setUserTelegram(result.userDB);
+          setUserTelegram(result.data.userDB);
           if (result.status === 201) {
             setIsNewUser(true);
           } // Assuming addUser returns the user

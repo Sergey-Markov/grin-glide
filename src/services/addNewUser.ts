@@ -9,7 +9,7 @@ export async function addUser(user: IDbUser) {
         "Content-Type": "application/json",
       },
     });
-    return response.data;
+    return response;
   } catch (error) {
     throw new Error("Failed to add user");
   }
