@@ -90,7 +90,7 @@ const FriendsList = () => {
           {t("title")}
           <span className="ml-3 text-secondary ">{friendsCount}</span>
         </h2>
-        <div className="my-6 space-x-2">
+        <div className="my-6 space-y-2">
           <button
             type="button"
             className="w-full btn btn-success font-bold py-3 px-4 rounded-full"
