@@ -48,12 +48,14 @@ export const POST = async (request: Request) => {
       if (referrer) {
         const bonusPoints = 100; // Количество бонусных поинтов за приглашение
         const sumRefPoints = bonusPoints + referrer.points;
+        const updateReferrerFields = {
+          points: sumRefPoints,
+          friends: [...referrer.friends, telegram_id],
+        }; // Начисляем поинты рефереру
+
         await usersCollection.updateOne(
           { telegram_id: inviterId },
-          {
-            points: sumRefPoints,
-            friends: [...referrer.friends, telegram_id],
-          } // Начисляем поинты рефереру
+          { $set: updateReferrerFields }
         );
       }
     }
