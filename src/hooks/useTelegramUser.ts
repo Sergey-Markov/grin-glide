@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Locale } from "@/i18n/config";
 import { addUser } from "@/services/addNewUser";
 import WebApp from "@twa-dev/sdk";
@@ -79,7 +80,7 @@ export const useTelegramUser = () => {
     if (!userTelegram) {
       fetchAndAddUser();
     }
-  }, [userTelegram]);
+  }, []);
 
   return { userTelegram, error, setUserTelegram, isNewUser, setIsNewUser };
 };

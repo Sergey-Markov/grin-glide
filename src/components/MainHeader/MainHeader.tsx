@@ -23,7 +23,7 @@ const MainHeader = ({ open, openToggler }: IMainHeaderProps) => {
     if (userTelegram && userTelegram.selected_language) {
       setUserLocale(userTelegram.selected_language);
     }
-  }, [userTelegram, userTelegram?.selected_language]);
+  }, [userTelegram]);
 
   if (!userTelegram) {
     return null;
