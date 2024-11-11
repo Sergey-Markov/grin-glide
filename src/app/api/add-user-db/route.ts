@@ -27,7 +27,8 @@ export const POST = async (request: Request) => {
     const client = await connectToDatabase();
     const db = client.db("test_gring");
     const usersCollection = db.collection("users");
-
+    // Create unique index for telegram_id
+    await usersCollection.createIndex({ telegram_id: 1 }, { unique: true });
     // Check if the user already exists
     const existingUser = await usersCollection.findOne({ telegram_id });
 
