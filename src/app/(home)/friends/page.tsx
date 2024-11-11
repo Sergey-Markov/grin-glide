@@ -148,7 +148,7 @@ const FriendsList = () => {
             {copied ? "Copied!" : "Copy Referral Link"}
           </button>
         </div>
-        <ul className="space-y-4">
+        <ul className="space-y-4 pb-24">
           {friends.map((friend) => (
             <FriendDynamicImport options={friend} />
           ))}
