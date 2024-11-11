@@ -41,7 +41,9 @@
   },
   "FriendsList": {
     "title": "Друзі:",
-    "inviteBtnLabel": "Запросити"
+    "inviteBtnLabel": "Запросити",
+    "copyRefLinkBtn": "Скопіювати посилання",
+    "copiedRefLinkBtn": "Скопійовано"
   },
   "Investments": {
     "title": "Для інвесторів",

@@ -43,48 +43,6 @@ const friends: TFriend[] = [
     points: 277000000,
     investor: true,
   },
-  {
-    id: "7",
-    name: "feil_nail",
-    avatar: "",
-    points: 200,
-    investor: true,
-  },
-  {
-    id: "8",
-    name: "Ivvike week",
-    avatar: "",
-    points: 256,
-    investor: false,
-  },
-  {
-    id: "9",
-    name: "qt-tr",
-    avatar: "",
-    points: 277000000,
-    investor: true,
-  },
-  {
-    id: "4",
-    name: "feil_nail",
-    avatar: "",
-    points: 200,
-    investor: true,
-  },
-  {
-    id: "5",
-    name: "Ivvike week",
-    avatar: "",
-    points: 256,
-    investor: false,
-  },
-  {
-    id: "6",
-    name: "qt-tr",
-    avatar: "",
-    points: 277000000,
-    investor: true,
-  },
 ];
 
 const friendsCount = friends.length;

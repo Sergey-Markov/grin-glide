@@ -41,7 +41,9 @@
   },
   "FriendsList": {
     "title": "Friends:",
-    "inviteBtnLabel": "Invite Friend"
+    "inviteBtnLabel": "Invite Friend",
+    "copyRefLinkBtn": "Copy Referral Link",
+    "copiedRefLinkBtn": "Copied"
   },
   "Investments": {
     "title": "For investors",
