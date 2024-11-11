@@ -1,14 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import { useTelegramUser } from "@/hooks/useTelegramUser";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
+import Modal from "../Modal/Modal";
+import GetMorePointsAlert from "../GetMorePointsAlert/GetMorePointsAlert";
 
 const HomePage = () => {
+  const { isNewUser, setIsNewUser } = useTelegramUser();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  const closeModalHandler = () => {
+    setIsNewUser(false);
+  };
 
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
@@ -32,6 +41,11 @@ const HomePage = () => {
           <VoteForm options={formFirstVoteOptions} />
         </main>
       </div>
+      {isNewUser && (
+        <Modal closeModal={closeModalHandler}>
+          <GetMorePointsAlert points={1000} />
+        </Modal>
+      )}
     </div>
   );
 };
