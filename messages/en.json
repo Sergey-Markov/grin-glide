@@ -45,6 +45,9 @@
     "copyRefLinkBtn": "Copy Referral Link",
     "copiedRefLinkBtn": "Copied"
   },
+  "Toast": {
+    "failedCopyLink": "Failed to copy the link"
+  },
   "Investments": {
     "title": "For investors",
     "lookingInvestors": "We are seeking strategic partners and investors to help us expand the app and raise capital for listing the GrinG token on an exchange. Our goal is to position GrinG as a key tool for decentralized community governance and a platform for earning real profits through investments by leveraging both current and future technologies. GrinG aims to scale not just within the digital economy but also into the real sector to diversify assets. More detailed information can be found in the relevant section of the main menu. You can make an investment using the quick access buttons below, and we are also open to discussing special offers for serious, long-term partnerships.",
