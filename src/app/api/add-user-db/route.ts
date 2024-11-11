@@ -40,6 +40,24 @@ export const POST = async (request: Request) => {
       );
     }
 
+    if (inviterId && inviterId !== "bot_link") {
+      const referrer = await usersCollection.findOne({
+        telegram_id: inviterId,
+      });
+
+      if (referrer) {
+        const bonusPoints = 100; // Количество бонусных поинтов за приглашение
+        const sumRefPoints = bonusPoints + referrer.points;
+        await usersCollection.updateOne(
+          { telegram_id: inviterId },
+          {
+            points: sumRefPoints,
+            friends: [...referrer.friends, telegram_id],
+          } // Начисляем поинты рефереру
+        );
+      }
+    }
+
     const newUser = {
       telegram_id,
       first_name,
