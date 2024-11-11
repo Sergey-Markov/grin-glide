@@ -14,9 +14,7 @@ import GetMorePointsAlert from "../GetMorePointsAlert/GetMorePointsAlert";
 
 const HomePage = () => {
   const { isNewUser, setIsNewUser } = useTelegramUser();
-  // eslint-disable-next-line indent, no-console
-  console.log("isNewUser:", isNewUser);
-  const [isOpen, setIsOpen] = useState(isNewUser);
+  const [isOpen, setIsOpen] = useState(false);
 
   const closeModalHandler = () => {
     setIsNewUser(false);
@@ -45,9 +43,9 @@ const HomePage = () => {
         </main>
       </div>
       {/* {!isNewUser && ( */}
-      {/* <Modal closeModal={closeModalHandler}> */}
-      <GetMorePointsAlert points={1000} />
-      {/* </Modal> */}
+      <Modal closeModal={closeModalHandler}>
+        <GetMorePointsAlert points={1000} />
+      </Modal>
       {/* )} */}
     </div>
   );
