@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 "use client";
 
 import { useState } from "react";
@@ -41,11 +43,11 @@ const HomePage = () => {
           <VoteForm options={formFirstVoteOptions} />
         </main>
       </div>
-      {!isNewUser && (
-        <Modal closeModal={closeModalHandler}>
-          <GetMorePointsAlert points={1000} />
-        </Modal>
-      )}
+      {/* {!isNewUser && ( */}
+      <Modal closeModal={closeModalHandler}>
+        <GetMorePointsAlert points={1000} />
+      </Modal>
+      {/* )} */}
     </div>
   );
 };
