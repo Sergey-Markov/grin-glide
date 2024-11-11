@@ -106,7 +106,7 @@ const FriendsList = () => {
             className="w-full btn btn-success font-bold py-3 px-4 rounded-full"
             onClick={handleCopy}
           >
-            {copied ? "Copied!" : "Copy Referral Link"}
+            {copied ? `${t("Copied!")}` : `${t("copyRefLinkBtn")}`}
           </button>
         </div>
         <ul className="space-y-4 pb-24">
