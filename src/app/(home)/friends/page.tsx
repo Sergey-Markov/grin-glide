@@ -90,20 +90,22 @@ const FriendsList = () => {
           {t("title")}
           <span className="ml-3 text-secondary ">{friendsCount}</span>
         </h2>
-        <button
-          type="button"
-          className="w-full btn btn-success font-bold py-3 px-4 rounded-full my-6"
-          onClick={handleShare}
-        >
-          {t("inviteBtnLabel")}
-        </button>
-        <button
-          type="button"
-          className="w-full btn btn-success font-bold py-3 px-4 rounded-full my-6"
-          onClick={handleCopy}
-        >
-          {copied ? "Copied!" : "Copy Referral Link"}
-        </button>
+        <div className="my-6 space-x-2">
+          <button
+            type="button"
+            className="w-full btn btn-success font-bold py-3 px-4 rounded-full"
+            onClick={handleShare}
+          >
+            {t("inviteBtnLabel")}
+          </button>
+          <button
+            type="button"
+            className="w-full btn btn-success font-bold py-3 px-4 rounded-full"
+            onClick={handleCopy}
+          >
+            {copied ? "Copied!" : "Copy Referral Link"}
+          </button>
+        </div>
         <ul className="space-y-4">
           {friends.map((friend) => (
             <FriendDynamicImport options={friend} />
