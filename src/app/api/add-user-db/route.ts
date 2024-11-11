@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
@@ -42,8 +43,9 @@ export const POST = async (request: Request) => {
 
     if (inviterId && inviterId !== "bot_link") {
       const referrer = await usersCollection.findOne({
-        telegram_id: inviterId,
+        telegram_id: String(inviterId),
       });
+      console.log("inviterId:", inviterId);
 
       if (referrer) {
         const bonusPoints = 100; // Количество бонусных поинтов за приглашение
