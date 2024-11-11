@@ -16,7 +16,7 @@ const HomePage = () => {
   const { isNewUser, setIsNewUser } = useTelegramUser();
   // eslint-disable-next-line indent, no-console
   console.log("isNewUser:", isNewUser);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(isNewUser);
 
   const closeModalHandler = () => {
     setIsNewUser(false);
