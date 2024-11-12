@@ -30,17 +30,17 @@ export const POST = async (request: Request) => {
     // Create unique index for telegram_id
     await usersCollection.createIndex({ telegram_id: 1 }, { unique: true });
     // Check if the user already exists
-    const existingUser = await usersCollection.findOne({ telegram_id });
+    // const existingUser = await usersCollection.findOne({ telegram_id });
 
-    if (existingUser) {
-      return NextResponse.json(
-        {
-          message: "User with this telegram_id already exists",
-          userDB: existingUser,
-        },
-        { status: 200 }
-      );
-    }
+    // if (existingUser) {
+    //   return NextResponse.json(
+    //     {
+    //       message: "User with this telegram_id already exists",
+    //       userDB: existingUser,
+    //     },
+    //     { status: 200 }
+    //   );
+    // }
 
     if (inviterId && inviterId !== "bot_link") {
       const referrer = await usersCollection.findOne({

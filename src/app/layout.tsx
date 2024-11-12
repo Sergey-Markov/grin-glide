@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { inter, merriweather } from "@/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import { AppProvider } from "./contexts/AppContext";
 
 import "./globals.css";
 
@@ -54,9 +55,11 @@ export default async function RootLayout({
       lang={locale}
     >
       <body className={`${inter.variable} ${merriweather.variable}`}>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <AppProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </AppProvider>
       </body>
     </html>
   );

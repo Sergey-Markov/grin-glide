@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { Locale } from "@/i18n/config";
-import { addUser } from "@/services/addNewUser";
-import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
+import WebApp from "@twa-dev/sdk";
 
 export interface TelegramUser {
   id: number;
@@ -11,76 +8,18 @@ export interface TelegramUser {
   username?: string;
 }
 
-export interface IDbUser {
-  telegram_id: number;
-  first_name?: string;
-  last_name?: string;
-  username?: string;
-  language_code: string;
-  selected_language?: Locale;
-  friends: number[];
-  completeTasks: string[];
-  inviterId: string;
-  status: "investor" | "user";
-  points: number;
-  wallet: string;
-  wallet_name: string;
-  investment_sum: {
-    id: number;
-    amount: number;
-    currency: "TON" | "USDT";
-  }[];
-}
-
 export const useTelegramUser = () => {
-  const [userTelegram, setUserTelegram] = useState<IDbUser | null>(null);
-  const [isNewUser, setIsNewUser] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [userTelegram, setUserTelegram] = useState<TelegramUser | null>(null);
 
   useEffect(() => {
-    const fetchAndAddUser = async () => {
-      try {
-        if (typeof window !== "undefined" && WebApp.initDataUnsafe?.user) {
-          const initData = WebApp.initDataUnsafe;
-          const telegramUser = initData.user as TelegramUser;
-          const inviterId = initData.start_param;
-
-          // Map TelegramUser to IDbUser format
-          const dbUser: IDbUser = {
-            telegram_id: telegramUser.id,
-            first_name: telegramUser.first_name,
-            last_name: telegramUser.last_name,
-            username: telegramUser.username,
-            language_code: WebApp.initDataUnsafe?.user?.language_code || "en",
-            selected_language: "en",
-            friends: [],
-            completeTasks: [],
-            inviterId: inviterId || "bot_link",
-            status: "user",
-            points: 0,
-            wallet: "",
-            wallet_name: "",
-            investment_sum: [],
-          };
-
-          const result = await addUser(dbUser);
-          setUserTelegram(result.data.userDB);
-          // eslint-disable-next-line no-console
-          console.log("result.status:", result.status);
-
-          if (result.status === 201) {
-            setIsNewUser(true);
-          } // Assuming addUser returns the user
-        }
-      } catch (err) {
-        setError("Failed to add user to database.");
+    if (typeof window !== "undefined" && WebApp.initDataUnsafe?.user) {
+      const initData = WebApp.initDataUnsafe;
+      const telegramUser = initData.user as TelegramUser;
+      if (!userTelegram) {
+        setUserTelegram(telegramUser);
       }
-    };
-
-    if (!userTelegram) {
-      fetchAndAddUser();
     }
   }, [userTelegram]);
 
-  return { userTelegram, error, setUserTelegram, isNewUser, setIsNewUser };
+  return { userTelegram, setUserTelegram };
 };

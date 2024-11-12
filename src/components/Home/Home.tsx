@@ -1,19 +1,20 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 
 "use client";
 
 import { useState } from "react";
-import { useTelegramUser } from "@/hooks/useTelegramUser";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
+import { useUser } from "@/app/contexts/AppContext";
 import Modal from "../Modal/Modal";
 import GetMorePointsAlert from "../GetMorePointsAlert/GetMorePointsAlert";
 
 const HomePage = () => {
-  const { isNewUser, setIsNewUser } = useTelegramUser();
+  const { user, updateUser, setIsNewUser, isNewUser } = useUser();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModalHandler = () => {
@@ -27,10 +28,13 @@ const HomePage = () => {
   return (
     <div className="font-sans text-white min-h-screen pb-12">
       <div className="relative mx-auto px-3 py-6 overflow-hidden">
-        <MainHeader
-          open={isOpen}
-          openToggler={openMenuHandler}
-        />
+        {user && (
+          <MainHeader
+            open={isOpen}
+            openToggler={openMenuHandler}
+            userDB={user}
+          />
+        )}
         <Menu open={isOpen} />
         <main className="p-4">
           <section

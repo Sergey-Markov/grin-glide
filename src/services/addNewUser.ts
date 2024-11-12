@@ -1,8 +1,8 @@
 // src/services/api.ts
 import axios from "axios";
-import { IDbUser } from "@/hooks/useTelegramUser";
+import { TUserContext } from "@/app/contexts/AppContext";
 
-export async function addUser(user: IDbUser) {
+export async function addNewUser(user: TUserContext) {
   try {
     const response = await axios.post("/api/add-user-db", user, {
       headers: {
