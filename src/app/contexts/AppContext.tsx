@@ -122,7 +122,7 @@ export function AppProvider({ children }: AppProviderProps) {
       }
     };
     getUserFromDB();
-  }, []);
+  }, [userTelegram]);
 
   const updateUser = (updates: Partial<TUserContext>) => {
     setUser((prevUser) => {
