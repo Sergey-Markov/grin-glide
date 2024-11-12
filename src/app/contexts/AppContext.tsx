@@ -80,11 +80,14 @@ export function AppProvider({ children }: AppProviderProps) {
           };
           const result = await getUser(bodyReq);
 
+          // eslint-disable-next-line no-console
+          console.log("result.status200:", result.status);
           if (result.status === 200) {
             setUser(result.data.userDB);
+            return;
           }
           // eslint-disable-next-line no-console
-          console.log("result.status:", result.status);
+          console.log("result.status202:", result.status);
           if (result.status === 202) {
             try {
               const inviterId = WebApp.initDataUnsafe?.start_param;
