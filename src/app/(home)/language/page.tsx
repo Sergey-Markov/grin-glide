@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
-
 "use client";
+
+/* eslint-disable no-console */
 
 import { useEffect } from "react";
 import { Locale } from "@/i18n/config";
@@ -8,28 +8,28 @@ import { setUserLocale } from "@/services/locale";
 import classNames from "classnames";
 import { localesBtns } from "@/constants";
 import { useTranslations } from "next-intl";
-import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { updateUserFields } from "@/services/updateUserFields";
+import { useUser } from "@/app/contexts/AppContext";
 
 const Language = () => {
-  const { userTelegram, setUserTelegram } = useTelegramUser();
+  const { user, updateUser } = useUser();
   const t = useTranslations("LanguagePage");
 
   useEffect(() => {
-    if (userTelegram?.selected_language) {
-      setUserLocale(userTelegram.selected_language);
+    if (user?.selected_language) {
+      setUserLocale(user.selected_language);
     }
-  }, [userTelegram?.selected_language]);
+  }, [user?.selected_language]);
 
   const onClick = async (lg: Locale) => {
-    if (userTelegram?.telegram_id) {
+    if (user?.telegram_id) {
       const newLang = { selected_language: lg };
       try {
         const updatedUserLangResult = await updateUserFields(
-          userTelegram.telegram_id,
+          user.telegram_id,
           newLang
         );
-        setUserTelegram(updatedUserLangResult.userDB);
+        updateUser(updatedUserLangResult.userDB);
         await setUserLocale(lg);
       } catch (error) {
         console.error("Failed to update user language:", error);
@@ -44,7 +44,7 @@ const Language = () => {
       </h2>
       <ul className="grid grid-cols-2 grid-rows-2 gap-1 sm:grid-cols-3 sm:grid-rows-3 sm:gap-2 md:grid-cols-5 md:grid-rows-5 md:gap-3">
         {localesBtns.map((btn) => {
-          const isChecked = btn.value === userTelegram?.selected_language;
+          const isChecked = btn.value === user?.selected_language;
           return (
             <li key={btn.value}>
               <button
