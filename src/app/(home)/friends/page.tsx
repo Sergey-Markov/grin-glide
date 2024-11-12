@@ -60,7 +60,7 @@ const FriendsList = () => {
 
   useEffect(() => {
     if (userTelegram) {
-      const userId = userTelegram?.telegram_id;
+      const userId = userTelegram?.id;
       const sharedRefferalLink = createReferralLink(userId);
       setReferralLink(sharedRefferalLink);
     }
