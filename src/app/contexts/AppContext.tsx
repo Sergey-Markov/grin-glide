@@ -85,7 +85,7 @@ export function AppProvider({ children }: AppProviderProps) {
           }
           // eslint-disable-next-line no-console
           console.log("result.status:", result.status);
-          if (result.status === 404) {
+          if (result.status === 202) {
             try {
               const inviterId = WebApp.initDataUnsafe?.start_param;
 
