@@ -4,12 +4,11 @@ import { connectToDatabase } from "@/lib/mongodb";
 
 export const GET = async (request: Request) => {
   try {
-    const body = await request.json();
-
-    const { telegram_id, first_name, last_name, username } = body;
+    const { searchParams } = new URL(request.url);
+    const telegram_id = searchParams.get("telegram_id");
 
     // Check for required fields
-    if (!telegram_id || !username || !first_name || !last_name) {
+    if (!telegram_id) {
       return NextResponse.json(
         { message: "Missing required fields" },
         { status: 400 }
