@@ -6,6 +6,7 @@ export const GET = async (request: Request) => {
   try {
     const { searchParams } = new URL(request.url);
     const telegram_id = searchParams.get("telegram_id");
+    const normalizeId = Number(telegram_id);
 
     // Check for required fields
     if (!telegram_id) {
@@ -19,7 +20,7 @@ export const GET = async (request: Request) => {
     const db = client.db("test_gring");
     const usersCollection = db.collection("users");
 
-    const existingUser = await usersCollection.findOne({ telegram_id });
+    const existingUser = await usersCollection.findOne({ normalizeId });
 
     if (!existingUser) {
       return NextResponse.json(
