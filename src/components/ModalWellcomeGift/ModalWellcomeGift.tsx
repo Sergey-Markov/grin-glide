@@ -26,19 +26,19 @@ const ModalWellcomeGift = ({ closeModal }: ModalProps) => {
   }, []);
 
   return (
-    <dialog
-      id="my_modal_5"
-      className="modal modal-bottom sm:modal-middle"
-    >
-      <div className="modal-box ">
-        <ConfettiWrapper>
+    <ConfettiWrapper>
+      <dialog
+        id="my_modal_5"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box ">
           <GetMorePointsAlert
             closeModal={closeModalHandler}
             points={1000}
           />
-        </ConfettiWrapper>
-      </div>
-    </dialog>
+        </div>
+      </dialog>
+    </ConfettiWrapper>
   );
 };
 
