@@ -8,7 +8,7 @@ interface ModalProps {
 const Modal = ({ closeModal, children }: ModalProps) => (
   <dialog
     id="my_modal_5"
-    className="modal modal-bottom sm:modal-middle absolute top-0 left-0"
+    className="modal modal-bottom sm:modal-middle absolute top-0 left-0 z-50 "
   >
     <div className="modal-box">
       {children}
