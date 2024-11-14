@@ -14,7 +14,7 @@ interface AutoConfettiWrapperProps {
 
 export default function AutoConfettiWrapper({
   children,
-  interval = 10000, // За замовчуванням, запускаємо кожні 10 секунд
+  interval = 8000, // За замовчуванням, запускаємо кожні 10 секунд
   duration = 5000, // За замовчуванням, показуємо протягом 5 секунд
 }: AutoConfettiWrapperProps) {
   const [isConfettiActive, setIsConfettiActive] = useState(false);
