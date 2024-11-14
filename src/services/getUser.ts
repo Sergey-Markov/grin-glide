@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // src/services/api.ts
 import axios from "axios";
 import { TelegramUser } from "@/hooks/useTelegramUser";
@@ -15,6 +16,7 @@ export async function getUser(user: TelegramUser) {
         "Content-Type": "application/json",
       },
     });
+    console.log("response.status:", response.status);
     if (response.status === 404 && WebApp) {
       try {
         const initData = WebApp.initDataUnsafe;
