@@ -27,6 +27,7 @@ export const GET = async (request: Request) => {
         {
           message: "User not found",
           existingUser,
+          normalizeId,
         },
         { status: 404 }
       );
