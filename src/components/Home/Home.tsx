@@ -10,8 +10,7 @@ import Menu from "@/components/Menu/Menu";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import { useUser } from "@/app/contexts/AppContext";
-import Modal from "../Modal/Modal";
-import GetMorePointsAlert from "../GetMorePointsAlert/GetMorePointsAlert";
+import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
 
 const HomePage = () => {
   const { user, updateUser, setIsNewUser, isNewUser } = useUser();
@@ -47,11 +46,7 @@ const HomePage = () => {
           <VoteForm options={formFirstVoteOptions} />
         </main>
       </div>
-      {isNewUser && (
-        <Modal closeModal={closeModalHandler}>
-          <GetMorePointsAlert points={1000} />
-        </Modal>
-      )}
+      {isNewUser && <ModalWellcomeGift closeModal={closeModalHandler} />}
     </div>
   );
 };
