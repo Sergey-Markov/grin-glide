@@ -46,7 +46,7 @@ export const POST = async (request: Request) => {
 
         await usersCollection.updateOne(
           { telegram_id: Number(inviterId) },
-          { updateReferrerFields }
+          { $set: { updateReferrerFields } }
         );
       }
     }
