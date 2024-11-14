@@ -46,11 +46,11 @@ const HomePage = () => {
           <VoteForm options={formFirstVoteOptions} />
         </main>
       </div>
-      {/* {!isNewUser && ( */}
-      <Modal closeModal={closeModalHandler}>
-        <GetMorePointsAlert points={1000} />
-      </Modal>
-      {/* )} */}
+      {!isNewUser && (
+        <Modal closeModal={closeModalHandler}>
+          <GetMorePointsAlert points={1000} />
+        </Modal>
+      )}
     </div>
   );
 };
