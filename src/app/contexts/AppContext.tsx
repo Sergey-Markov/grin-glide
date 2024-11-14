@@ -84,38 +84,10 @@ export function AppProvider({ children }: AppProviderProps) {
           const result = await getUser(bodyReq);
           console.log("result.status:", result.status);
 
-          if (result.status === 404) {
-            try {
-              const inviterId = WebApp.initDataUnsafe?.start_param;
-
-              const dbUser: TUserContext = {
-                telegram_id: userTelegram.id,
-                first_name: userTelegram.first_name,
-                last_name: userTelegram.last_name,
-                username: userTelegram.username,
-                language_code:
-                  WebApp.initDataUnsafe?.user?.language_code || "en",
-                selected_language: "en",
-                friends: [],
-                completeTasks: [],
-                inviterId: inviterId || "bot_link",
-                status: "user",
-                points: 0,
-                wallet: "",
-                wallet_name: "",
-                investment_sum: [],
-              };
-
-              const resultOfAddNewUser = await addNewUser(dbUser);
-              if (resultOfAddNewUser.status === 201) {
-                setUser(resultOfAddNewUser.data.userDB);
-                setIsNewUser(true);
-                return;
-              }
-            } catch (err) {
-              // eslint-disable-next-line no-console
-              console.log("Failed to add user to database.");
-            }
+          if (result.status === 201) {
+            setUser(result.data.userDB);
+            setIsNewUser(true);
+            return;
           }
 
           console.log("result.status200:", result.status);
