@@ -60,10 +60,9 @@ export default function AutoConfettiWrapper({
   }, [interval, duration]);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="absolute overflow-hidden">
       {isConfettiActive && (
         <Confetti
-          className="absolute top-0 left-0 "
           width={windowDimensions.width}
           height={windowDimensions.height}
           recycle={false}
