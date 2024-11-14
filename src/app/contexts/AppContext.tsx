@@ -80,50 +80,45 @@ export function AppProvider({ children }: AppProviderProps) {
       type TReqParam = typeof bodyReq;
 
       const getUserFromDB = async () => {
-        try {
-          const result = await getUser(bodyReq);
-          console.log("result.status:", result.status);
+        const result = await getUser(bodyReq);
+        console.log("result.status:", result.status);
 
-          console.log("result.status200:", result.status);
-          if (result.status === 200) {
-            setUser(result.data.userDB);
-          }
-        } catch (error: any) {
-          // eslint-disable-next-line no-console
-          if (error.status === 404) {
-            try {
-              const inviterId = WebApp.initDataUnsafe?.start_param;
+        if (result.status === 404) {
+          try {
+            const inviterId = WebApp.initDataUnsafe?.start_param;
 
-              const dbUser: TUserContext = {
-                telegram_id: userTelegram.id,
-                first_name: userTelegram.first_name,
-                last_name: userTelegram.last_name,
-                username: userTelegram.username,
-                language_code:
-                  WebApp.initDataUnsafe?.user?.language_code || "en",
-                selected_language: "en",
-                friends: [],
-                completeTasks: [],
-                inviterId: inviterId || "bot_link",
-                status: "user",
-                points: 0,
-                wallet: "",
-                wallet_name: "",
-                investment_sum: [],
-              };
+            const dbUser: TUserContext = {
+              telegram_id: userTelegram.id,
+              first_name: userTelegram.first_name,
+              last_name: userTelegram.last_name,
+              username: userTelegram.username,
+              language_code: WebApp.initDataUnsafe?.user?.language_code || "en",
+              selected_language: "en",
+              friends: [],
+              completeTasks: [],
+              inviterId: inviterId || "bot_link",
+              status: "user",
+              points: 0,
+              wallet: "",
+              wallet_name: "",
+              investment_sum: [],
+            };
 
-              const resultOfAddNewUser = await addNewUser(dbUser);
-              if (resultOfAddNewUser.status === 201) {
-                setUser(resultOfAddNewUser.data.userDB);
-                setIsNewUser(true);
-                return;
-              }
-            } catch (err) {
-              // eslint-disable-next-line no-console
-              console.log("Failed to add user to database.");
+            const resultOfAddNewUser = await addNewUser(dbUser);
+            if (resultOfAddNewUser.status === 201) {
+              setUser(resultOfAddNewUser.data.userDB);
+              setIsNewUser(true);
+              return;
             }
+          } catch (err) {
+            // eslint-disable-next-line no-console
+            console.log("Failed to add user to database.");
           }
-          console.log("Failed to get user data.");
+        }
+
+        console.log("result.status200:", result.status);
+        if (result.status === 200) {
+          setUser(result.data.userDB);
         }
       };
       getUserFromDB();
