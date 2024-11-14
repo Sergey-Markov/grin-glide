@@ -75,9 +75,7 @@ export function AppProvider({ children }: AppProviderProps) {
       const getUserFromDB = async () => {
         try {
           // Получаем пользователя из базы данных
-          const result = await fetch(
-            `/api/get-user-db?telegram_id=${bodyReq.id}`
-          );
+          const result = await getUser(bodyReq);
           console.log("result.status:", result.status);
 
           if (result.status === 404) {
@@ -103,18 +101,10 @@ export function AppProvider({ children }: AppProviderProps) {
 
             try {
               // Отправляем запрос на добавление нового пользователя
-              const resultOfAddNewUser = await fetch("/api/add-user-db", {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(dbUser),
-              });
-
+              const resultOfAddNewUser = await addNewUser(dbUser);
               if (resultOfAddNewUser.status === 201) {
-                const newUser = await resultOfAddNewUser.json();
                 console.log("User created successfully");
-                setUser(newUser.userDB);
+                setUser(resultOfAddNewUser.data.userDB);
                 setIsNewUser(true);
               } else {
                 console.log(
@@ -126,9 +116,9 @@ export function AppProvider({ children }: AppProviderProps) {
               console.error("Error while adding new user:", error);
             }
           } else if (result.status === 200) {
-            const userData = await result.json();
-            console.log("User found:", userData.userDB);
-            setUser(userData.userDB);
+            // Пользователь найден, обновляем состояние
+            console.log("User found:", result.data.userDB);
+            setUser(result.data.userDB);
           } else {
             console.error("Unexpected status:", result.status);
           }
