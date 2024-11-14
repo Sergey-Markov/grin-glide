@@ -1,9 +1,6 @@
 "use client";
 
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable camelcase */
-/* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-unused-vars */
 
 import React, {
@@ -12,12 +9,11 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useMemo,
 } from "react";
 import { Locale } from "@/i18n/config";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { getUser } from "@/services/getUser";
-import WebApp from "@twa-dev/sdk";
-import { addNewUser } from "@/services/addNewUser";
 
 export type TUserContext = {
   telegram_id: number;
@@ -80,7 +76,6 @@ export function AppProvider({ children }: AppProviderProps) {
       const getUserFromDB = async () => {
         try {
           const result = await getUser(bodyReq);
-          console.log("result.status:", result.status);
 
           if (result.status === 201) {
             setUser(result.data.userDB);
@@ -111,11 +106,10 @@ export function AppProvider({ children }: AppProviderProps) {
     });
   };
 
-  return (
-    <AppContext.Provider
-      value={{ user, setUser, updateUser, isNewUser, setIsNewUser }}
-    >
-      {children}
-    </AppContext.Provider>
+  const value = useMemo(
+    () => ({ user, setUser, updateUser, isNewUser, setIsNewUser }),
+    [isNewUser, user]
   );
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
