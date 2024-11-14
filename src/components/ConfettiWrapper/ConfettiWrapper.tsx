@@ -66,7 +66,7 @@ export default function AutoConfettiWrapper({
           width={windowDimensions.width}
           height={windowDimensions.height}
           recycle={false}
-          numberOfPieces={200}
+          numberOfPieces={400}
         />
       )}
       {children}
