@@ -25,6 +25,7 @@ export const GET = async (request: Request) => {
       return NextResponse.json(
         {
           message: "User not found",
+          existingUser,
         },
         { status: 404 }
       );
