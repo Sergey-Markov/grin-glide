@@ -45,7 +45,7 @@ export const POST = async (request: Request) => {
         }; // Начисляем поинты рефереру
 
         await usersCollection.updateOne(
-          { telegram_id: inviterId },
+          { telegram_id: Number(inviterId) },
           { updateReferrerFields }
         );
       }
