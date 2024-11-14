@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import GetMorePointsAlert from "../GetMorePointsAlert/GetMorePointsAlert";
+import ConfettiWrapper from "../ConfettiWrapper/ConfettiWrapper";
 
 interface ModalProps {
   closeModal: () => void;
@@ -30,10 +31,12 @@ const ModalWellcomeGift = ({ closeModal }: ModalProps) => {
       className="modal modal-bottom sm:modal-middle"
     >
       <div className="modal-box ">
-        <GetMorePointsAlert
-          closeModal={closeModalHandler}
-          points={1000}
-        />
+        <ConfettiWrapper>
+          <GetMorePointsAlert
+            closeModal={closeModalHandler}
+            points={1000}
+          />
+        </ConfettiWrapper>
       </div>
     </dialog>
   );
