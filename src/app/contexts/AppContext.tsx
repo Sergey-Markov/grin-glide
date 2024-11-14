@@ -70,63 +70,63 @@ export function AppProvider({ children }: AppProviderProps) {
   useEffect(() => {
     if (typeof window !== "undefined" && userTelegram) {
       const { id, first_name, last_name, username } = userTelegram;
-      const bodyReq = { id, first_name, last_name, username };
+      const bodyReq = {
+        id,
+        first_name,
+        last_name,
+        username,
+      };
+
+      type TReqParam = typeof bodyReq;
 
       const getUserFromDB = async () => {
         try {
-          // Получаем пользователя из базы данных
           const result = await getUser(bodyReq);
           console.log("result.status:", result.status);
 
           if (result.status === 404) {
-            console.log("User not found, creating new user...");
-            const inviterId = WebApp.initDataUnsafe?.start_param;
-
-            const dbUser: TUserContext = {
-              telegram_id: userTelegram.id,
-              first_name: userTelegram.first_name,
-              last_name: userTelegram.last_name,
-              username: userTelegram.username,
-              language_code: WebApp.initDataUnsafe?.user?.language_code || "en",
-              selected_language: "en",
-              friends: [],
-              completeTasks: [],
-              inviterId: inviterId || "bot_link",
-              status: "user",
-              points: 0,
-              wallet: "",
-              wallet_name: "",
-              investment_sum: [],
-            };
-
             try {
-              // Отправляем запрос на добавление нового пользователя
+              const inviterId = WebApp.initDataUnsafe?.start_param;
+
+              const dbUser: TUserContext = {
+                telegram_id: userTelegram.id,
+                first_name: userTelegram.first_name,
+                last_name: userTelegram.last_name,
+                username: userTelegram.username,
+                language_code:
+                  WebApp.initDataUnsafe?.user?.language_code || "en",
+                selected_language: "en",
+                friends: [],
+                completeTasks: [],
+                inviterId: inviterId || "bot_link",
+                status: "user",
+                points: 0,
+                wallet: "",
+                wallet_name: "",
+                investment_sum: [],
+              };
+
               const resultOfAddNewUser = await addNewUser(dbUser);
               if (resultOfAddNewUser.status === 201) {
-                console.log("User created successfully");
                 setUser(resultOfAddNewUser.data.userDB);
                 setIsNewUser(true);
-              } else {
-                console.log(
-                  "Failed to create new user, status:",
-                  resultOfAddNewUser.status
-                );
+                return;
               }
-            } catch (error) {
-              console.error("Error while adding new user:", error);
+            } catch (err) {
+              // eslint-disable-next-line no-console
+              console.log("Failed to add user to database.");
             }
-          } else if (result.status === 200) {
-            // Пользователь найден, обновляем состояние
-            console.log("User found:", result.data.userDB);
-            setUser(result.data.userDB);
-          } else {
-            console.error("Unexpected status:", result.status);
           }
-        } catch (error) {
-          console.error("Error while fetching user:", error);
+
+          console.log("result.status200:", result.status);
+          if (result.status === 200) {
+            setUser(result.data.userDB);
+          }
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.log("Failed to get user data.");
         }
       };
-
       getUserFromDB();
     }
   }, [userTelegram]);
