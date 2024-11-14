@@ -3,7 +3,7 @@
 import { getFirstAndLastLetter } from "@/utils";
 import { useEffect } from "react";
 import { setUserLocale } from "@/services/locale";
-import { TUserContext } from "@/app/contexts/AppContext";
+import { TUserContext, useUser } from "@/app/contexts/AppContext";
 import PointGringImg from "../PointGringImg/PointGringImg";
 import BurgerBtn from "../BurgerBtn/BurgerBtn";
 
@@ -16,6 +16,8 @@ export interface IMainHeaderProps {
 }
 
 const MainHeader = ({ open, openToggler, userDB }: IMainHeaderProps) => {
+  const { isNewUser } = useUser();
+
   useEffect(() => {
     if (userDB && userDB.selected_language) {
       setUserLocale(userDB.selected_language);
@@ -35,7 +37,7 @@ const MainHeader = ({ open, openToggler, userDB }: IMainHeaderProps) => {
         <div>
           <h1 className={s.userName}>{userDB.username}</h1>
           <div className="flex items-center gap-1">
-            <p className="">{userDB.points}</p>
+            <p className="">{isNewUser ? "0" : userDB.points}</p>
             <PointGringImg variant="small" />
           </div>
         </div>
