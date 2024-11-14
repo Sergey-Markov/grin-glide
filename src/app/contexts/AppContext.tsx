@@ -88,9 +88,9 @@ export function AppProvider({ children }: AppProviderProps) {
           if (result.status === 200) {
             setUser(result.data.userDB);
           }
-        } catch (err: any) {
+        } catch (error: any) {
           // eslint-disable-next-line no-console
-          if (err.status === 404) {
+          if (error.status === 404) {
             try {
               const inviterId = WebApp.initDataUnsafe?.start_param;
 
