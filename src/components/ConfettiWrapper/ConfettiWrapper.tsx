@@ -1,48 +1,72 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
-import dynamic from "next/dynamic";
+/* eslint-disable no-plusplus */
 
-// Динамический импорт для оптимизации загрузки
-const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 interface ConfettiWrapperProps {
   children: React.ReactNode;
+  duration?: number;
+  colors?: string[];
+  particleCount?: number;
 }
 
-export default function ConfettiWrapper({ children }: ConfettiWrapperProps) {
-  const [isConfettiActive, setIsConfettiActive] = useState(false);
+const ConfettiWrapper: React.FC<ConfettiWrapperProps> = ({
+  children,
+  duration = 4,
+  colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],
+  particleCount = 50,
+}) => {
+  const [confetti, setConfetti] = useState<React.JSX.Element[]>([]);
 
-  const triggerConfetti = useCallback(() => {
-    setIsConfettiActive(true);
-    const timer = setTimeout(() => setIsConfettiActive(false), 5000);
+  useEffect(() => {
+    const newConfetti = [];
 
-    return () => clearTimeout(timer);
-  }, []);
+    for (let i = 0; i < particleCount; i++) {
+      const x = Math.random() * 200 - 100; // Random x position
+      const y = Math.random() * -100 - 50; // Start above the container
+      const rotation = Math.random() * 360; // Random rotation
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size = Math.random() * 10 + 5; // Random size between 5 and 15
 
-  // Преобразуем дочерние элементы и передаем пропс triggerConfetti
-  const childrenWithProps = React.Children.map(children, (child) => {
-    // Проверяем, является ли это валидным элементом React
-    if (React.isValidElement(child) && typeof child.type !== "string") {
-      // Типизация через React.cloneElement
-      return React.cloneElement(child as React.ReactElement<any>, {
-        triggerConfetti, // Передаем функцию как пропс
-      });
+      newConfetti.push(
+        <motion.div
+          key={i}
+          className="absolute"
+          style={{
+            backgroundColor: color,
+            width: size,
+            height: size,
+            borderRadius: Math.random() > 0.5 ? "50%" : "0%", // Mix of circles and squares
+          }}
+          initial={{ x, y, rotate: 0, opacity: 1 }}
+          animate={{
+            y: [y, 200], // Fall down
+            x: [x, x + (Math.random() * 100 - 50)], // Slight horizontal movement
+            rotate: [0, rotation],
+            opacity: [1, 1, 0],
+          }}
+          transition={{
+            duration,
+            ease: "easeInOut",
+            times: [0, 0.8, 1],
+            repeat: Infinity,
+            repeatDelay: Math.random() * 2,
+          }}
+        />
+      );
     }
-    return child;
-  });
+
+    setConfetti(newConfetti);
+  }, [colors, duration, particleCount]);
 
   return (
-    <div className="relative overflow-hidden">
-      {isConfettiActive && (
-        <Confetti
-          width={typeof window !== "undefined" ? window.innerWidth : 0}
-          height={typeof window !== "undefined" ? window.innerHeight : 0}
-          recycle={false}
-          numberOfPieces={200}
-        />
-      )}
-      {childrenWithProps}
+    <div className="relative flex items-center justify-center overflow-hidden min-h-[300px] min-w-[300px]">
+      {confetti}
+      {children}
     </div>
   );
-}
+};
+
+export default ConfettiWrapper;
