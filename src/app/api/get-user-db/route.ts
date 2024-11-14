@@ -20,7 +20,9 @@ export const GET = async (request: Request) => {
     const db = client.db("test_gring");
     const usersCollection = db.collection("users");
 
-    const existingUser = await usersCollection.findOne({ normalizeId });
+    const existingUser = await usersCollection.findOne({
+      telegram_id: normalizeId,
+    });
 
     if (!existingUser) {
       return NextResponse.json(
