@@ -20,7 +20,6 @@ export async function getUser(user: TelegramUser) {
       .catch(async (error) => {
         const { data, status } = error.response;
 
-        console.log("response.status:", status, data);
         if (status === 404 && WebApp) {
           try {
             const initData = WebApp.initDataUnsafe;

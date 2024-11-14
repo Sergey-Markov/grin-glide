@@ -8,7 +8,6 @@ export const GET = async (request: Request) => {
     const telegram_id = searchParams.get("telegram_id");
     const normalizeId = Number(telegram_id);
 
-    // Check for required fields
     if (!telegram_id) {
       return NextResponse.json(
         { message: "Missing required fields" },
@@ -28,8 +27,6 @@ export const GET = async (request: Request) => {
       return NextResponse.json(
         {
           message: "User not found",
-          existingUser,
-          normalizeId,
         },
         { status: 404 }
       );

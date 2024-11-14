@@ -29,18 +29,6 @@ export const POST = async (request: Request) => {
     const usersCollection = db.collection("users");
     // Create unique index for telegram_id
     await usersCollection.createIndex({ telegram_id: 1 }, { unique: true });
-    // Check if the user already exists
-    // const existingUser = await usersCollection.findOne({ telegram_id });
-
-    // if (existingUser) {
-    //   return NextResponse.json(
-    //     {
-    //       message: "User with this telegram_id already exists",
-    //       userDB: existingUser,
-    //     },
-    //     { status: 200 }
-    //   );
-    // }
 
     if (inviterId && inviterId !== "bot_link") {
       const referrer = await usersCollection.findOne({
@@ -58,7 +46,7 @@ export const POST = async (request: Request) => {
 
         await usersCollection.updateOne(
           { telegram_id: inviterId },
-          { $set: updateReferrerFields }
+          { updateReferrerFields }
         );
       }
     }
@@ -80,13 +68,12 @@ export const POST = async (request: Request) => {
       investment_sum: [],
     };
 
-    // Insert the new user into the database
     await usersCollection.insertOne(newUser);
 
     return NextResponse.json(
       {
         message: "User added successfully",
-        userDB: newUser, // Return the inserted document
+        userDB: newUser,
       },
       { status: 201 }
     );
