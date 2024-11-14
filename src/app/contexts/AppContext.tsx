@@ -65,7 +65,7 @@ interface AppProviderProps {
 export function AppProvider({ children }: AppProviderProps) {
   const [user, setUser] = useState<TUserContext | null>(null);
   const [isNewUser, setIsNewUser] = useState(false);
-  const { userTelegram, setUserTelegram } = useTelegramUser();
+  const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
     if (typeof window !== "undefined" && userTelegram) {
@@ -76,8 +76,6 @@ export function AppProvider({ children }: AppProviderProps) {
         last_name,
         username,
       };
-
-      type TReqParam = typeof bodyReq;
 
       const getUserFromDB = async () => {
         try {
@@ -90,7 +88,6 @@ export function AppProvider({ children }: AppProviderProps) {
             return;
           }
 
-          console.log("result.status200:", result.status);
           if (result.status === 200) {
             setUser(result.data.userDB);
           }
