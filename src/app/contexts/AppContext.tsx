@@ -84,7 +84,13 @@ export function AppProvider({ children }: AppProviderProps) {
           const result = await getUser(bodyReq);
           console.log("result.status:", result.status);
 
-          if (result.status === 404) {
+          console.log("result.status200:", result.status);
+          if (result.status === 200) {
+            setUser(result.data.userDB);
+          }
+        } catch (err: any) {
+          // eslint-disable-next-line no-console
+          if (err.status === 404) {
             try {
               const inviterId = WebApp.initDataUnsafe?.start_param;
 
@@ -117,13 +123,6 @@ export function AppProvider({ children }: AppProviderProps) {
               console.log("Failed to add user to database.");
             }
           }
-
-          console.log("result.status200:", result.status);
-          if (result.status === 200) {
-            setUser(result.data.userDB);
-          }
-        } catch (err) {
-          // eslint-disable-next-line no-console
           console.log("Failed to get user data.");
         }
       };
