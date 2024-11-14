@@ -27,6 +27,7 @@ export const POST = async (request: Request) => {
     const client = await connectToDatabase();
     const db = client.db("test_gring");
     const usersCollection = db.collection("users");
+
     // Create unique index for telegram_id
     await usersCollection.createIndex({ telegram_id: 1 }, { unique: true });
 
@@ -35,15 +36,14 @@ export const POST = async (request: Request) => {
       const referrer = await usersCollection.findOne({
         telegram_id: normalizeTelegramIdForFindUserInDB,
       });
-      console.log("inviterId:", inviterId);
 
       if (referrer) {
-        const bonusPoints = 100; // Количество бонусных поинтов за приглашение
+        const bonusPoints = 100;
         const sumRefPoints = bonusPoints + referrer.points;
         const updateReferrerFields = {
           points: sumRefPoints,
           friends: [...referrer.friends, telegram_id],
-        }; // Начисляем поинты рефереру
+        };
 
         await usersCollection.updateOne(
           { telegram_id: normalizeTelegramIdForFindUserInDB },
