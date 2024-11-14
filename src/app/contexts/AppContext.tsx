@@ -70,21 +70,16 @@ export function AppProvider({ children }: AppProviderProps) {
   useEffect(() => {
     if (typeof window !== "undefined" && userTelegram) {
       const { id, first_name, last_name, username } = userTelegram;
-      const bodyReq = {
-        id,
-        first_name,
-        last_name,
-        username,
-      };
-
-      type TReqParam = typeof bodyReq;
+      const bodyReq = { id, first_name, last_name, username };
 
       const getUserFromDB = async () => {
-        const result = await getUser(bodyReq);
-        console.log("result.status:", result.status);
+        try {
+          // Получаем пользователя из базы данных
+          const result = await getUser(bodyReq);
+          console.log("result.status:", result.status);
 
-        if (result.status === 404) {
-          try {
+          if (result.status === 404) {
+            console.log("User not found, creating new user...");
             const inviterId = WebApp.initDataUnsafe?.start_param;
 
             const dbUser: TUserContext = {
@@ -104,23 +99,34 @@ export function AppProvider({ children }: AppProviderProps) {
               investment_sum: [],
             };
 
-            const resultOfAddNewUser = await addNewUser(dbUser);
-            if (resultOfAddNewUser.status === 201) {
-              setUser(resultOfAddNewUser.data.userDB);
-              setIsNewUser(true);
-              return;
+            try {
+              // Отправляем запрос на добавление нового пользователя
+              const resultOfAddNewUser = await addNewUser(dbUser);
+              if (resultOfAddNewUser.status === 201) {
+                console.log("User created successfully");
+                setUser(resultOfAddNewUser.data.userDB);
+                setIsNewUser(true);
+              } else {
+                console.log(
+                  "Failed to create new user, status:",
+                  resultOfAddNewUser.status
+                );
+              }
+            } catch (error) {
+              console.error("Error while adding new user:", error);
             }
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.log("Failed to add user to database.");
+          } else if (result.status === 200) {
+            // Пользователь найден, обновляем состояние
+            console.log("User found:", result.data.userDB);
+            setUser(result.data.userDB);
+          } else {
+            console.error("Unexpected status:", result.status);
           }
-        }
-
-        console.log("result.status200:", result.status);
-        if (result.status === 200) {
-          setUser(result.data.userDB);
+        } catch (error) {
+          console.error("Error while fetching user:", error);
         }
       };
+
       getUserFromDB();
     }
   }, [userTelegram]);
