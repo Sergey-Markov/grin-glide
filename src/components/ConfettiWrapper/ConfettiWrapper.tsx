@@ -63,6 +63,7 @@ export default function AutoConfettiWrapper({
     <div className="relative overflow-hidden">
       {isConfettiActive && (
         <Confetti
+          className="absolute top-0 left-0 "
           width={windowDimensions.width}
           height={windowDimensions.height}
           recycle={false}
