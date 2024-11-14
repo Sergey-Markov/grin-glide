@@ -1,72 +1,75 @@
 "use client";
 
-/* eslint-disable no-plusplus */
-
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 
-interface ConfettiWrapperProps {
+// Динамічний імпорт для оптимізації завантаження
+const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
+
+interface AutoConfettiWrapperProps {
   children: React.ReactNode;
-  duration?: number;
-  colors?: string[];
-  particleCount?: number;
+  interval?: number; // Інтервал між запусками конфеті (в мілісекундах)
+  duration?: number; // Тривалість показу конфеті (в мілісекундах)
 }
 
-const ConfettiWrapper: React.FC<ConfettiWrapperProps> = ({
+export default function AutoConfettiWrapper({
   children,
-  duration = 4,
-  colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],
-  particleCount = 50,
-}) => {
-  const [confetti, setConfetti] = useState<React.JSX.Element[]>([]);
+  interval = 10000, // За замовчуванням, запускаємо кожні 10 секунд
+  duration = 5000, // За замовчуванням, показуємо протягом 5 секунд
+}: AutoConfettiWrapperProps) {
+  const [isConfettiActive, setIsConfettiActive] = useState(false);
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
-    const newConfetti = [];
+    // Встановлюємо початкові розміри вікна
+    setWindowDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
 
-    for (let i = 0; i < particleCount; i++) {
-      const x = Math.random() * 200 - 100; // Random x position
-      const y = Math.random() * -100 - 50; // Start above the container
-      const rotation = Math.random() * 360; // Random rotation
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      const size = Math.random() * 10 + 5; // Random size between 5 and 15
+    // Оновлюємо розміри при зміні розміру вікна
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
 
-      newConfetti.push(
-        <motion.div
-          key={i}
-          className="absolute"
-          style={{
-            backgroundColor: color,
-            width: size,
-            height: size,
-            borderRadius: Math.random() > 0.5 ? "50%" : "0%", // Mix of circles and squares
-          }}
-          initial={{ x, y, rotate: 0, opacity: 1 }}
-          animate={{
-            y: [y, 200], // Fall down
-            x: [x, x + (Math.random() * 100 - 50)], // Slight horizontal movement
-            rotate: [0, rotation],
-            opacity: [1, 1, 0],
-          }}
-          transition={{
-            duration,
-            ease: "easeInOut",
-            times: [0, 0.8, 1],
-            repeat: Infinity,
-            repeatDelay: Math.random() * 2,
-          }}
-        />
-      );
-    }
+    window.addEventListener("resize", handleResize);
 
-    setConfetti(newConfetti);
-  }, [colors, duration, particleCount]);
+    // Функція для запуску конфеті
+    const triggerConfetti = () => {
+      setIsConfettiActive(true);
+      setTimeout(() => setIsConfettiActive(false), duration);
+    };
+
+    // Запускаємо конфеті одразу при монтуванні компонента
+    triggerConfetti();
+
+    // Встановлюємо інтервал для періодичного запуску конфеті
+    const confettiInterval = setInterval(triggerConfetti, interval);
+
+    // Очищення при розмонтуванні компонента
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearInterval(confettiInterval);
+    };
+  }, [interval, duration]);
 
   return (
-    <div className="relative flex items-center justify-center overflow-hidden min-h-[300px] min-w-[300px]">
-      {confetti}
+    <div className="relative overflow-hidden">
+      {isConfettiActive && (
+        <Confetti
+          width={windowDimensions.width}
+          height={windowDimensions.height}
+          recycle={false}
+          numberOfPieces={200}
+        />
+      )}
       {children}
     </div>
   );
-};
-
-export default ConfettiWrapper;
+}
