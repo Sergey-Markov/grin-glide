@@ -31,8 +31,9 @@ export const POST = async (request: Request) => {
     await usersCollection.createIndex({ telegram_id: 1 }, { unique: true });
 
     if (inviterId && inviterId !== "bot_link") {
+      const normalizeTelegramIdForFindUserInDB = Number(inviterId);
       const referrer = await usersCollection.findOne({
-        telegram_id: String(inviterId),
+        telegram_id: normalizeTelegramIdForFindUserInDB,
       });
       console.log("inviterId:", inviterId);
 
@@ -45,8 +46,8 @@ export const POST = async (request: Request) => {
         }; // Начисляем поинты рефереру
 
         await usersCollection.updateOne(
-          { telegram_id: Number(inviterId) },
-          { $set: { updateReferrerFields } }
+          { telegram_id: normalizeTelegramIdForFindUserInDB },
+          { $set: updateReferrerFields }
         );
       }
     }
