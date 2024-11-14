@@ -47,7 +47,7 @@ const HomePage = () => {
           <VoteForm options={formFirstVoteOptions} />
         </main>
       </div>
-      {!isNewUser && (
+      {isNewUser && (
         <Modal closeModal={closeModalHandler}>
           <GetMorePointsAlert points={1000} />
         </Modal>
