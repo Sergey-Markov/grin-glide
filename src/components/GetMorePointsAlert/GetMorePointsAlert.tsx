@@ -7,13 +7,15 @@ const GetMorePointsAlert = ({
   points,
   closeModal,
 }: GetMorePointsAlertProps) => (
-  <button
-    type="button"
-    className="btn  btn-success"
-    onClick={closeModal}
-  >
-    <p>{`Тримай бонус ${points}`}</p>
-  </button>
+  <div className="flex justify-center items-center w-full h-full">
+    <button
+      type="button"
+      className="btn  btn-success"
+      onClick={closeModal}
+    >
+      <p>{`Тримай бонус ${points}`}</p>
+    </button>
+  </div>
 );
 
 export default GetMorePointsAlert;

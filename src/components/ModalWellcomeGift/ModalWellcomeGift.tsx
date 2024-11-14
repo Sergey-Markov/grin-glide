@@ -29,7 +29,7 @@ const ModalWellcomeGift = ({ closeModal }: ModalProps) => {
       id="my_modal_5"
       className="modal modal-bottom sm:modal-middle"
     >
-      <div className="modal-box">
+      <div className="modal-box ">
         <GetMorePointsAlert
           closeModal={closeModalHandler}
           points={1000}
