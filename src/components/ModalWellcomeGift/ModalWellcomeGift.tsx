@@ -34,21 +34,6 @@ const ModalWellcomeGift = ({ closeModal }: ModalProps) => {
           closeModal={closeModalHandler}
           points={1000}
         />
-        {/* <div className="modal-action">
-          <button
-            type="button"
-            className="btn"
-            onClick={() => {
-              const modal = document.getElementById(
-                "my_modal_5"
-              ) as HTMLDialogElement;
-              modal?.close();
-              closeModal();
-            }}
-          >
-            Close
-          </button>
-        </div> */}
       </div>
     </dialog>
   );

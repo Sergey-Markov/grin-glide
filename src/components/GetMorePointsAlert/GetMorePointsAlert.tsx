@@ -7,17 +7,13 @@ const GetMorePointsAlert = ({
   points,
   closeModal,
 }: GetMorePointsAlertProps) => (
-  <div
-    role="alert"
-    className="alert alert-warning"
+  <button
+    type="button"
+    className="btn  btn-success"
+    onClick={closeModal}
   >
-    <button
-      type="button"
-      onClick={closeModal}
-    >
-      <p>{`Тримай бонус ${points}`}</p>
-    </button>
-  </div>
+    <p>{`Тримай бонус ${points}`}</p>
+  </button>
 );
 
 export default GetMorePointsAlert;
