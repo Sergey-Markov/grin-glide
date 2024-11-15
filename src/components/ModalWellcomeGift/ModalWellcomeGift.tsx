@@ -31,7 +31,7 @@ const ModalWellcomeGift = ({ closeModal }: ModalProps) => {
       className="modal modal-bottom sm:modal-middle flex flex-col justify-end items-center"
     >
       <ConfettiWrapper>
-        <div className=" bg-slate-900 w-full h-1/3 rounded-t-lg ">
+        <div className=" bg-slate-900 w-full h-fit rounded-t-2xl pb-12 pt-8 ">
           <GetMorePointsAlert
             closeModal={closeModalHandler}
             points={1000}
