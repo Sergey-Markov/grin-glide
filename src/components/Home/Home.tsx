@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* eslint-disable no-unused-vars */
 
 "use client";
 
@@ -13,7 +12,7 @@ import { useUser } from "@/app/contexts/AppContext";
 import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
 
 const HomePage = () => {
-  const { user, updateUser, setIsNewUser, isNewUser } = useUser();
+  const { user, setIsNewUser, isNewUser } = useUser();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModalHandler = () => {
@@ -23,8 +22,6 @@ const HomePage = () => {
   const openMenuHandler = () => {
     setIsOpen(!isOpen);
   };
-  // eslint-disable-next-line no-console
-  console.log("isNewUser", isNewUser);
   return (
     <div className="font-sans text-white min-h-screen pb-12">
       <div className="relative mx-auto px-3 py-6 overflow-hidden">
