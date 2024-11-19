@@ -40,9 +40,13 @@ export const POST = async (request: Request) => {
       if (referrer) {
         const bonusPoints = 100;
         const sumRefPoints = bonusPoints + referrer.points;
+        const newFriend = {
+          telegram_id,
+          username,
+        };
         const updateReferrerFields = {
           points: sumRefPoints,
-          friends: [...referrer.friends, telegram_id],
+          friends: [...referrer.friends, newFriend],
         };
 
         await usersCollection.updateOne(

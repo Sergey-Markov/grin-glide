@@ -15,6 +15,11 @@ import { Locale } from "@/i18n/config";
 import { useTelegramUser } from "@/hooks/useTelegramUser";
 import { getUser } from "@/services/getUser";
 
+export type TFriend = {
+  telegram_id: number;
+  username: string;
+};
+
 export type TUserContext = {
   telegram_id: number;
   first_name?: string;
@@ -22,7 +27,7 @@ export type TUserContext = {
   username?: string;
   language_code: string;
   selected_language?: Locale;
-  friends: number[];
+  friends: TFriend[];
   completeTasks: string[];
   inviterId: string;
   status: "investor" | "user";
