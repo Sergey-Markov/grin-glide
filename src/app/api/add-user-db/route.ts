@@ -43,6 +43,7 @@ export const POST = async (request: Request) => {
         const newFriend = {
           telegram_id,
           username,
+          status: "user",
         };
         const updateReferrerFields = {
           points: sumRefPoints,

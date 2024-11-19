@@ -18,6 +18,7 @@ import { getUser } from "@/services/getUser";
 export type TFriend = {
   telegram_id: number;
   username: string;
+  status: "investor" | "user";
 };
 
 export type TUserContext = {

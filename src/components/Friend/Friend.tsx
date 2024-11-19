@@ -1,16 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { investorStatus } from "@/constants";
 import { getFirstAndLastLetter } from "@/utils";
-import PointGringImg from "../PointGringImg/PointGringImg";
 
 export type TFriend = {
-  id: string;
-  name: string;
-  avatar: string;
-  points: number;
-  investor: boolean;
+  telegram_id: number;
+  username: string;
+  status: "investor" | "user";
 };
 
 interface IFriend {
@@ -19,33 +15,23 @@ interface IFriend {
 
 const Friend = ({ options }: IFriend) => (
   <li
-    key={options.id}
+    key={options.telegram_id}
     className="flex items-center bg-emerald-700 rounded-full p-2 pr-4"
   >
     <div
       id="optionsAvatar"
       className="relative"
     >
-      {options.avatar ? (
-        <Image
-          src={options.avatar}
-          alt={options.name}
-          className="w-12 h-12 rounded-full mr-3"
-        />
-      ) : (
-        <p className="w-12 h-12 rounded-full mr-3 uppercase bg-teal-950 flex items-center justify-center">
-          {getFirstAndLastLetter(options.name)}
-        </p>
-      )}
+      <p className="w-12 h-12 rounded-full mr-3 uppercase bg-teal-950 flex items-center justify-center">
+        {getFirstAndLastLetter(options.username)}
+      </p>
     </div>
     <div className="flex-grow">
-      <h2 className="font-semibold">{options.name}</h2>
-      <div className="flex items-center text-sm text-emerald-300">
-        <span className="text-lg mr-1">{options.points}</span>
-        <PointGringImg variant="small" />
-      </div>
+      <h2 className="font-semibold">{options.username}</h2>
     </div>
-    {options.investor && <p className="text-yellow-500 ">{investorStatus}</p>}
+    {options.status === "investor" && (
+      <p className="text-yellow-500 ">{investorStatus}</p>
+    )}
   </li>
 );
 
