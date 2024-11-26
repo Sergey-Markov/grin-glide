@@ -35,7 +35,9 @@
   },
   "Tasks": {
     "title": "Завдання",
-    "connectToBlumTG": "Приєднатися до телеграм каналу Blum",
+    "connectToGrinGTG": "Приєднатися до телеграм каналу GinG",
+    "inviteThreeFriends": "Запросити 2-x друзів",
+    "inviteTenFriends": "Запросити 10 друзів",
     "sendAStars": "надіслати Telegram Stars",
     "investInProject": "Інвестувати в проект не менше 10$"
   },

@@ -65,7 +65,7 @@ export const POST = async (request: Request) => {
       language_code,
       selected_language: "en", // Default value if not provided
       friends: [], // Default empty array
-      completeTasks: [], // Default empty array
+      completedTasks: [], // Default empty array
       inviterId,
       status: "user", // Default status
       points: 1000,

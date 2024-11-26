@@ -9,7 +9,10 @@ import { BsFillBarChartLineFill, BsFillInfoCircleFill } from "react-icons/bs";
 import { LuCalendarHeart } from "react-icons/lu";
 import { FaHandsHelping } from "react-icons/fa";
 import { GoTasklist } from "react-icons/go";
-import { GiThreeFriends } from "react-icons/gi";
+import { GiStarsStack, GiThreeFriends } from "react-icons/gi";
+import { IconType } from "react-icons";
+import { FaHandPeace, FaHandshakeAngle } from "react-icons/fa6";
+import { TbBrandCashapp } from "react-icons/tb";
 
 export const formFirstVoteOptions = [
   {
@@ -241,30 +244,45 @@ export type TTask = {
   id: string;
   taskTitle: string;
   points: number;
-  completed: boolean;
-  icon?: string;
+  icon?: IconType;
+  src?: string;
 };
 export const tasks: TTask[] = [
   {
     id: "1",
-    taskTitle: "connectToBlumTG",
+    taskTitle: "connectToGrinGTG",
     points: 100,
-    completed: true,
-    icon: "https://i.pinimg.com/1200x/56/79/39/567939f537288a8ac91acdea1e0a355c.jpg",
+    src: "https://github.com/Sergey-Markov/meme-coin-first/blob/main/GrinGlide.png",
   },
   {
     id: "2",
+    taskTitle: "inviteThreeFriends",
+    points: 100,
+    icon: FaHandPeace,
+  },
+  {
+    id: "3",
+    taskTitle: "inviteTenFriends",
+    points: 100,
+    icon: FaHandshakeAngle,
+  },
+  // {
+  //   id: "4",
+  //   taskTitle: "connectToGrinGTG",
+  //   points: 100,
+  //   icon: "https://github.com/Sergey-Markov/meme-coin-first/blob/main/GrinGlide.png",
+  // },
+  {
+    id: "5",
     taskTitle: "sendAStars",
     points: 100,
-    completed: false,
-    icon: "",
+    icon: GiStarsStack,
   },
   {
-    id: "2",
+    id: "6",
     taskTitle: "investInProject",
-    points: 1000000,
-    completed: false,
-    icon: "",
+    points: 1000,
+    icon: TbBrandCashapp,
   },
 ];
 export type TWallet = {

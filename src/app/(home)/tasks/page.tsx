@@ -2,15 +2,19 @@
 
 import React from "react";
 import { BiCheckDouble, BiCheckbox } from "react-icons/bi";
-import { FaListCheck } from "react-icons/fa6";
 import { FiFileText } from "react-icons/fi";
 import Image from "next/image";
 import classNames from "classnames";
 import { tasks } from "@/constants";
 import { useTranslations } from "next-intl";
+import { useUser } from "@/app/contexts/AppContext";
+import { checkCompletedTask } from "@/utils";
 
 const Tasks = () => {
+  const { user } = useUser();
   const t = useTranslations("Tasks");
+
+  const completedTasks = user?.completedTasks || [];
 
   return (
     <main className="bg-transparent min-h-screen p-4 md:p-8">
@@ -23,49 +27,48 @@ const Tasks = () => {
         </div>
 
         <ul className="space-y-4">
-          {tasks.map((task) => (
-            <li
-              key={task.id}
-              className="flex items-center justify-between bg-emerald-700 rounded-xl p-2"
-            >
-              <div className="flex items-center">
-                <div className="avatar">
-                  <div className="w-10 rounded-xl">
-                    {task.icon ? (
-                      <Image
-                        src={task.icon}
-                        alt="product"
-                        width={500}
-                        height={500}
-                        objectFit="cover"
-                      />
-                    ) : (
-                      <FaListCheck className="w-10 h-10" />
-                    )}
+          {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
+            const isTaskCompleted = checkCompletedTask(completedTasks, id);
+
+            return (
+              <li
+                key={id}
+                className="flex items-center justify-between bg-emerald-700 rounded-xl p-2"
+              >
+                <div className="flex items-center">
+                  <div className="avatar">
+                    <div className="w-10 rounded-xl">
+                      {!src && TaskIcon && <TaskIcon className="w-10 h-10" />}
+                      {src && (
+                        <Image
+                          src={src}
+                          alt="product"
+                          width={500}
+                          height={500}
+                          style={{ objectFit: "cover" }}
+                        />
+                      )}
+                    </div>
                   </div>
+                  <p
+                    className={classNames("ml-3", {
+                      "text-emerald-300 line-through": isTaskCompleted,
+                      "text-white": !isTaskCompleted,
+                    })}
+                  >
+                    {t(taskTitle)}
+                  </p>
                 </div>
-                <p
-                  className={classNames([
-                    `ml-3`,
-                    `${
-                      task.completed
-                        ? "text-emerald-300 line-through"
-                        : "text-white"
-                    }`,
-                  ])}
-                >
-                  {t(task.taskTitle)}
-                </p>
-              </div>
-              <div className="text-emerald-400">
-                {task.completed ? (
-                  <BiCheckDouble className="w-6 h-6" />
-                ) : (
-                  <BiCheckbox className="w-6 h-6" />
-                )}
-              </div>
-            </li>
-          ))}
+                <div className="text-emerald-400">
+                  {isTaskCompleted ? (
+                    <BiCheckDouble className="w-6 h-6" />
+                  ) : (
+                    <BiCheckbox className="w-6 h-6" />
+                  )}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </main>

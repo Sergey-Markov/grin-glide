@@ -35,7 +35,9 @@
   },
   "Tasks": {
     "title": "Tasks",
-    "connectToBlumTG": "Connect to BLUM TG chanel",
+    "connectToGrinGTG": "Connect to GinG chanel",
+    "inviteTenFriends": "Invite 10 friends",
+    "inviteThreeFriends": "Invite 2 friends",
     "sendAStars": "Send a Stars",
     "investInProject": "Invest in project up 10$"
   },
