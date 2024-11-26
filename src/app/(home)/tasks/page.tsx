@@ -30,7 +30,6 @@ const Tasks = () => {
         <ul className="space-y-4">
           {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
             const isTaskCompleted = checkCompletedTask(completedTasks, id);
-            console.log("isTaskCompleted", isTaskCompleted);
             return (
               <li
                 key={id}
