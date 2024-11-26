@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable no-console */
 import React from "react";
 import { BiCheckDouble, BiCheckbox } from "react-icons/bi";
 import { FiFileText } from "react-icons/fi";
@@ -29,7 +30,7 @@ const Tasks = () => {
         <ul className="space-y-4">
           {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
             const isTaskCompleted = checkCompletedTask(completedTasks, id);
-
+            console.log("isTaskCompleted", isTaskCompleted);
             return (
               <li
                 key={id}
