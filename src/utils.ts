@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export const getFirstAndLastLetter = (name: string): string => {
   if (name.length === 0) {
     throw new Error("Имя не может быть пустым");
@@ -27,5 +28,8 @@ export const checkCompletedTask = (
   taskId: string
 ): boolean => {
   const idNormalize = String(taskId);
+  console.log("idNormalize", idNormalize);
+  console.log("taskId", taskId);
+
   return taskArray.includes(idNormalize);
 };
