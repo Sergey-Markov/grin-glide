@@ -25,4 +25,7 @@ export const createReferralLink = (userId: string | number): TRefferalLink => {
 export const checkCompletedTask = (
   taskArray: string[],
   taskId: string
-): boolean => taskArray.includes(taskId);
+): boolean => {
+  const idNormalize = String(taskId);
+  return taskArray.includes(idNormalize);
+};

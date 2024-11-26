@@ -13,6 +13,7 @@ import { GiStarsStack, GiThreeFriends } from "react-icons/gi";
 import { IconType } from "react-icons";
 import { FaHandPeace, FaHandshakeAngle } from "react-icons/fa6";
 import { TbBrandCashapp } from "react-icons/tb";
+import pointImg from "@images/coin_png_sqooshed.webp";
 
 export const formFirstVoteOptions = [
   {
@@ -252,7 +253,7 @@ export const tasks: TTask[] = [
     id: "1",
     taskTitle: "connectToGrinGTG",
     points: 100,
-    src: "https://github.com/Sergey-Markov/meme-coin-first/blob/main/GrinGlide.png",
+    src: pointImg as any,
   },
   {
     id: "2",
