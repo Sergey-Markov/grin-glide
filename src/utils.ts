@@ -30,6 +30,7 @@ export const checkCompletedTask = (
   const idNormalize = String(taskId);
   console.log("idNormalize", idNormalize);
   console.log("taskId", taskId);
+  console.log("taskArray", taskArray);
 
   return taskArray.includes(idNormalize);
 };
