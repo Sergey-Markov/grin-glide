@@ -34,7 +34,7 @@ export async function getUser(user: TelegramUser) {
               language_code: WebApp.initDataUnsafe?.user?.language_code || "en",
               selected_language: "en",
               friends: [],
-              completeTasks: [],
+              completedTasks: [],
               inviterId: inviterId || "bot_link",
               status: "user",
               points: 0,
