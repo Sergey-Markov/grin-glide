@@ -2,7 +2,7 @@
 
 /* eslint-disable no-console */
 import React from "react";
-import { BiCheckDouble, BiCheckbox } from "react-icons/bi";
+import { BiCheckDouble } from "react-icons/bi";
 import { FiFileText } from "react-icons/fi";
 import Image from "next/image";
 import classNames from "classnames";
@@ -63,7 +63,12 @@ const Tasks = () => {
                   {isTaskCompleted ? (
                     <BiCheckDouble className="w-6 h-6" />
                   ) : (
-                    <BiCheckbox className="w-6 h-6" />
+                    <button
+                      type="button"
+                      className="btn btn-xs text-emerald-400"
+                    >
+                      check
+                    </button>
                   )}
                 </div>
               </li>
