@@ -10,9 +10,10 @@ import { tasks } from "@/constants";
 import { useTranslations } from "next-intl";
 import { useUser } from "@/app/contexts/AppContext";
 import { checkCompletedTask } from "@/utils";
+import { updateUserFields } from "@/services/updateUserFields";
 
 const Tasks = () => {
-  const { user } = useUser();
+  const { user, updateUser } = useUser();
   const t = useTranslations("Tasks");
 
   const completedTasks = user?.completedTasks || [];
@@ -30,6 +31,29 @@ const Tasks = () => {
         <ul className="space-y-4">
           {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
             const isTaskCompleted = checkCompletedTask(completedTasks, id);
+
+            const checkTaskInviteTwoFriendHandler = async () => {
+              if (user && user.friends.length >= 2) {
+                const newCompletedTask = {
+                  id,
+                  isClaimed: false,
+                };
+                try {
+                  const result = await updateUserFields(user.telegram_id, {
+                    completedTasks: [...completedTasks, newCompletedTask],
+                  });
+                  if (result) {
+                    updateUser(result.userDB);
+                  }
+                } catch (error) {
+                  console.error(
+                    "Failed to update user completed tasks:",
+                    error
+                  );
+                }
+              }
+            };
+
             return (
               <li
                 key={id}
@@ -66,6 +90,7 @@ const Tasks = () => {
                     <button
                       type="button"
                       className="btn btn-xs text-emerald-400"
+                      onClick={checkTaskInviteTwoFriendHandler}
                     >
                       check
                     </button>

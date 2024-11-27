@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { v4 as uuid } from "uuid";
 import {
   IoGameController,
@@ -261,30 +262,30 @@ export const tasks: TTask[] = [
     points: 100,
     icon: FaHandPeace,
   },
-  {
-    id: "3",
-    taskTitle: "inviteTenFriends",
-    points: 100,
-    icon: FaHandshakeAngle,
-  },
+  // {
+  //   id: "3",
+  //   taskTitle: "inviteTenFriends",
+  //   points: 100,
+  //   icon: FaHandshakeAngle,
+  // },
   // {
   //   id: "4",
   //   taskTitle: "connectToGrinGTG",
   //   points: 100,
   //   icon: "https://github.com/Sergey-Markov/meme-coin-first/blob/main/GrinGlide.png",
   // },
-  {
-    id: "5",
-    taskTitle: "sendAStars",
-    points: 100,
-    icon: GiStarsStack,
-  },
-  {
-    id: "6",
-    taskTitle: "investInProject",
-    points: 1000,
-    icon: TbBrandCashapp,
-  },
+  // {
+  //   id: "5",
+  //   taskTitle: "sendAStars",
+  //   points: 100,
+  //   icon: GiStarsStack,
+  // },
+  // {
+  //   id: "6",
+  //   taskTitle: "investInProject",
+  //   points: 1000,
+  //   icon: TbBrandCashapp,
+  // },
 ];
 export type TWallet = {
   id: string;
