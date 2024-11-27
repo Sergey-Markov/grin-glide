@@ -29,7 +29,10 @@ export type TUserContext = {
   language_code: string;
   selected_language?: Locale;
   friends: TFriend[];
-  completedTasks: string[];
+  completedTasks: {
+    id: string;
+    isClaimed: boolean;
+  }[];
   inviterId: string;
   status: "investor" | "user";
   points: number;

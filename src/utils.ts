@@ -23,10 +23,13 @@ export const createReferralLink = (userId: string | number): TRefferalLink => {
 };
 
 export const checkCompletedTask = (
-  taskArray: string[],
+  taskArray: {
+    id: string;
+    isClaimed: boolean;
+  }[],
   taskId: string
 ): boolean => {
   const idNormalize = String(taskId);
 
-  return taskArray.includes(idNormalize);
+  return taskArray.some((task) => task.id === idNormalize);
 };
