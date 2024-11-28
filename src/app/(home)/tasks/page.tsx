@@ -20,8 +20,8 @@ const Tasks = () => {
 
   return (
     <main className="bg-transparent min-h-screen p-4 md:p-8">
-      <div className="p-6">
-        <div className="flex items-center mb-6">
+      <div className="p-6 space-y-6 ">
+        <div className="flex items-center">
           <FiFileText className="w-6 h-6 text-primary mr-2" />
           <h1 className="text-2xl font-bold font-mono text-white">
             {t("title")}
