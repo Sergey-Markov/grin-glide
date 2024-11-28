@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { Locale } from "@/i18n/config";
 import { setUserLocale } from "@/services/locale";
 import classNames from "classnames";
@@ -10,7 +11,6 @@ import { localesBtns } from "@/constants";
 import { useTranslations } from "next-intl";
 import { updateUserFields } from "@/services/updateUserFields";
 import { useUser } from "@/app/contexts/AppContext";
-import { useRouter } from "next/router";
 import BackBtn from "@/components/BackBtn/BackBtn";
 
 const Language = () => {
