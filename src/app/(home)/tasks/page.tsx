@@ -123,21 +123,18 @@ const Tasks = () => {
                   </p>
                 </div>
                 <div className="text-emerald-400">
-                  {isTaskCompleted ? (
+                  {isTaskCompleted && !isTaskPointsClaimed ? (
                     <button
                       type="button"
                       className={classNames(
                         "btn btn-xs",
-                        completedTasks.some(
-                          (task) => task.id === id && task.isClaimed
-                        )
+                        isTaskPointsClaimed
                           ? "text-gray-400 cursor-not-allowed"
                           : "text-emerald-400"
                       )}
                       onClick={claimPointHandler}
-                      disabled={isTaskPointsClaimed}
                     >
-                      {isTaskPointsClaimed ? "claimed" : "claim"}
+                      claim
                     </button>
                   ) : (
                     <button
@@ -151,6 +148,46 @@ const Tasks = () => {
                 </div>
               </li>
             );
+          })}
+        </ul>
+        <h2 className="text-2xl font-bold font-mono text-white">
+          {t("title")}
+        </h2>
+        <ul className="space-y-4">
+          {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
+            const isTaskPointsClaimed = completedTasks.some(
+              (task) => task.id === id && task.isClaimed
+            );
+
+            if (isTaskPointsClaimed) {
+              return (
+                <li
+                  key={id}
+                  className="flex items-center justify-between bg-emerald-700 rounded-xl p-2"
+                >
+                  <div className="flex items-center">
+                    <div className="avatar">
+                      <div className="w-10 rounded-xl">
+                        {!src && TaskIcon && <TaskIcon className="w-10 h-10" />}
+                        {src && (
+                          <Image
+                            src={src}
+                            alt="product"
+                            width={500}
+                            height={500}
+                            style={{ objectFit: "cover" }}
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <p className="ml-3 text-emerald-300 line-through">
+                      {t(taskTitle)}
+                    </p>
+                  </div>
+                </li>
+              );
+            }
+            return null;
           })}
         </ul>
       </div>
