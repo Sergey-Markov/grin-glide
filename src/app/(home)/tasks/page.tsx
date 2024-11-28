@@ -32,6 +32,10 @@ const Tasks = () => {
           {tasks.map(({ id, icon: TaskIcon, src, taskTitle, points }) => {
             const isTaskCompleted = checkCompletedTask(completedTasks, id);
 
+            const isTaskPointsClaimed = completedTasks.some(
+              (task) => task.id === id && task.isClaimed
+            );
+
             const checkTaskInviteTwoFriendHandler = async () => {
               if (user && user.friends.length >= 2) {
                 const isAlreadyCompleted = completedTasks.some(
@@ -122,13 +126,20 @@ const Tasks = () => {
                   {isTaskCompleted ? (
                     <button
                       type="button"
-                      className="btn btn-xs text-emerald-400"
+                      className={classNames(
+                        "btn btn-xs",
+                        completedTasks.some(
+                          (task) => task.id === id && task.isClaimed
+                        )
+                          ? "text-gray-400 cursor-not-allowed"
+                          : "text-emerald-400"
+                      )}
                       onClick={claimPointHandler}
+                      disabled={isTaskPointsClaimed}
                     >
-                      claim
+                      {isTaskPointsClaimed ? "claimed" : "claim"}
                     </button>
                   ) : (
-                    // <BiCheckDouble className="w-6 h-6" />
                     <button
                       type="button"
                       className="btn btn-xs text-emerald-400"
