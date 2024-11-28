@@ -15,10 +15,15 @@ import BackBtn from "@/components/BackBtn/BackBtn";
 
 const Language = () => {
   const { user, updateUser } = useUser();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = typeof window !== "undefined" ? useRouter() : null;
   const t = useTranslations("LanguagePage");
-  const router = useRouter();
 
-  const backHandler = () => router.back();
+  const backHandler = () => {
+    if (router) {
+      router.back();
+    }
+  };
 
   useEffect(() => {
     if (user?.selected_language) {
