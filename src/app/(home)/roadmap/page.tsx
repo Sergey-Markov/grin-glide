@@ -29,7 +29,7 @@ const RoadMap = () => {
               {t("title")}
             </h2>
           </div>
-          <ul className="steps steps-vertical">
+          <ul className="steps steps-vertical px-1">
             {completedStages.map(({ id, title }) => (
               <li
                 key={id}
