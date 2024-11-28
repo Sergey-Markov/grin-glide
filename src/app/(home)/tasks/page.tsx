@@ -29,18 +29,53 @@ const Tasks = () => {
         </div>
 
         <ul className="space-y-4">
-          {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
+          {tasks.map(({ id, icon: TaskIcon, src, taskTitle, points }) => {
             const isTaskCompleted = checkCompletedTask(completedTasks, id);
 
             const checkTaskInviteTwoFriendHandler = async () => {
               if (user && user.friends.length >= 2) {
+                const isAlreadyCompleted = completedTasks.some(
+                  (task) => task.id === id
+                );
+                if (isAlreadyCompleted) return;
+
                 const newCompletedTask = {
                   id,
                   isClaimed: false,
                 };
+
                 try {
                   const result = await updateUserFields(user.telegram_id, {
                     completedTasks: [...completedTasks, newCompletedTask],
+                  });
+                  if (result) {
+                    updateUser(result.userDB);
+                  }
+                } catch (error) {
+                  console.error(
+                    "Failed to update user completed tasks:",
+                    error
+                  );
+                }
+              }
+            };
+
+            const claimPointHandler = async () => {
+              if (user && isTaskCompleted) {
+                const updatedTasks = completedTasks.map((task) => {
+                  if (task.id === id) {
+                    return { ...task, isClaimed: true };
+                  }
+
+                  return task;
+                });
+
+                const newPointCount = user.points + points;
+
+                try {
+                  const result = await updateUserFields(user.telegram_id, {
+                    points: newPointCount,
+                    completedTasks: updatedTasks,
                   });
                   if (result) {
                     updateUser(result.userDB);
@@ -88,6 +123,7 @@ const Tasks = () => {
                     <button
                       type="button"
                       className="btn btn-xs text-emerald-400"
+                      onClick={claimPointHandler}
                     >
                       claim
                     </button>
