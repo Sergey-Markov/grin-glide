@@ -1,16 +1,23 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { BiCheckDouble, BiWallet } from "react-icons/bi";
 import { walletsList } from "@/constants";
+import BackBtn from "@/components/BackBtn/BackBtn";
 
 const Wallet = () => {
   const t = useTranslations("Wallet");
 
   return (
-    <main className="min-h-screen p-4 md:p-8 text-white pb-24">
-      <h2 className="text-primary text-4xl font-bold font-mono mb-6">
-        {t("title")}
-      </h2>
+    <main className="min-h-screen p-4 md:p-8 text-white pb-24 space-y-6">
+      <div className="mb-7 flex flex-row justify-between items-center">
+        <Link href="/">
+          <BackBtn />
+        </Link>
+        <h2 className="text-primary text-4xl font-mono font-bold">
+          {t("title")}
+        </h2>
+      </div>
       <ul className="space-y-4">
         {walletsList.map(({ id, name, avatarSrc, isConnect }) => (
           <li
