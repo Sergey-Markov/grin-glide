@@ -1,7 +1,7 @@
 import { RiArrowGoBackFill } from "react-icons/ri";
 
 interface BackBtnProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const BackBtn = ({ onClick }: BackBtnProps) => (

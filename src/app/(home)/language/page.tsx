@@ -3,7 +3,6 @@
 /* eslint-disable no-console */
 
 import { useEffect } from "react";
-import { useRouter } from "next/router";
 import { Locale } from "@/i18n/config";
 import { setUserLocale } from "@/services/locale";
 import classNames from "classnames";
@@ -11,19 +10,12 @@ import { localesBtns } from "@/constants";
 import { useTranslations } from "next-intl";
 import { updateUserFields } from "@/services/updateUserFields";
 import { useUser } from "@/app/contexts/AppContext";
+import Link from "next/link";
 import BackBtn from "@/components/BackBtn/BackBtn";
 
 const Language = () => {
   const { user, updateUser } = useUser();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = typeof window !== "undefined" ? useRouter() : null;
   const t = useTranslations("LanguagePage");
-
-  const backHandler = () => {
-    if (router) {
-      router.back();
-    }
-  };
 
   useEffect(() => {
     if (user?.selected_language) {
@@ -50,7 +42,9 @@ const Language = () => {
   return (
     <main className="min-h-screen p-4 md:p-8 text-white pb-24 space-y-6">
       <div className="mb-7 flex flex-row justify-between items-center">
-        <BackBtn onClick={backHandler} />
+        <Link href="/">
+          <BackBtn />
+        </Link>
         <h2 className="text-primary text-4xl font-mono font-bold">
           {t("title")}
         </h2>
