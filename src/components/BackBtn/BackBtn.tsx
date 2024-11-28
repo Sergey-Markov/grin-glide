@@ -1,4 +1,4 @@
-import { BsBackspace } from "react-icons/bs";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 interface BackBtnProps {
   onClick: () => void;
@@ -10,7 +10,7 @@ const BackBtn = ({ onClick }: BackBtnProps) => (
     onClick={onClick}
     className=" btn btn-circle "
   >
-    <BsBackspace />
+    <RiArrowGoBackFill className="text-primary" />
   </button>
 );
 

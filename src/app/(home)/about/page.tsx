@@ -16,7 +16,6 @@ const About = () => {
         <BackBtn onClick={backHandler} />
         <h2 className="text-primary text-4xl font-mono font-bold">
           {t("title")}
-          Who are Gring
         </h2>
       </div>
       <ul className="space-y-4">
