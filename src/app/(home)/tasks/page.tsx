@@ -123,7 +123,7 @@ const Tasks = () => {
                   </p>
                 </div>
                 <div className="text-emerald-400">
-                  {isTaskCompleted && !isTaskPointsClaimed ? (
+                  {isTaskCompleted && isTaskPointsClaimed ? (
                     <button
                       type="button"
                       className={classNames(
