@@ -6,8 +6,8 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 const About = () => {
-  const router = useRouter();
   const t = useTranslations("About");
+  const router = useRouter();
 
   const backHandler = () => router.back();
   return (
