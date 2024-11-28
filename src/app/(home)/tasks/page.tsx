@@ -92,7 +92,9 @@ const Tasks = () => {
                 }
               }
             };
-
+            if (isTaskPointsClaimed) {
+              return null;
+            }
             return (
               <li
                 key={id}
