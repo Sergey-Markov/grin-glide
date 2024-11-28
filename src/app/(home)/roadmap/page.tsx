@@ -1,7 +1,9 @@
 "use client";
 
-import { roadStages } from "@/constants";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
+import BackBtn from "@/components/BackBtn/BackBtn";
+import { roadStages } from "@/constants";
 
 const completedStages = roadStages.filter(({ isComplete }) => isComplete);
 const unCompletedStages = roadStages.filter(({ isComplete }) => !isComplete);
@@ -19,9 +21,14 @@ const RoadMap = () => {
       <div className="hero-overlay bg-opacity-60" />
       <div>
         <section className="p-4 pb-24 md:p-8 md:pb-24 space-y-6">
-          <h2 className="mb-5 text-5xl font-bold font-mono text-primary">
-            {t("title")}
-          </h2>
+          <div className="flex flex-row justify-between items-center">
+            <Link href="/">
+              <BackBtn />
+            </Link>
+            <h2 className="text-primary text-4xl font-mono font-bold">
+              {t("title")}
+            </h2>
+          </div>
           <ul className="steps steps-vertical">
             {completedStages.map(({ id, title }) => (
               <li
