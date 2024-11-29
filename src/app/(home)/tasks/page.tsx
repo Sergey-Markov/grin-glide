@@ -36,7 +36,7 @@ const Tasks = () => {
             );
 
             const isTaskPointsClaimed = completedTasks.some(
-              (task) => task.id === id && task.isClaimed
+              (task) => task.id === taskTitle && task.isClaimed
             );
 
             const taskHandler = getTaskHandler(taskTitle, user, updateUser);
@@ -100,7 +100,7 @@ const Tasks = () => {
             const claimPointHandler = async () => {
               if (user && isTaskCompleted) {
                 const updatedTasks = completedTasks.map((task) => {
-                  if (task.id === id) {
+                  if (task.id === taskTitle) {
                     return { ...task, isClaimed: true };
                   }
 
