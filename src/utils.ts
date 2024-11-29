@@ -1,3 +1,9 @@
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+import { TUserContext } from "./app/contexts/AppContext";
+import { updateUserFields } from "./services/updateUserFields";
+
 export const getFirstAndLastLetter = (name: string): string => {
   if (name.length === 0) {
     throw new Error("Имя не может быть пустым");
@@ -32,4 +38,63 @@ export const checkCompletedTask = (
   const idNormalize = String(taskId);
 
   return taskArray.some((task) => task.id === idNormalize);
+};
+
+export const getTaskHandler = (
+  taskId: string,
+  user: TUserContext | null,
+  updateUser: (user: TUserContext) => void
+) => {
+  const completedTasks = user?.completedTasks || [];
+
+  switch (taskId) {
+    case "inviteTwoFriends":
+      return async () => {
+        if (user && user.friends.length >= 2) {
+          const isAlreadyCompleted = completedTasks.some(
+            (task) => task.id === taskId
+          );
+          if (isAlreadyCompleted) return;
+
+          const newCompletedTask = { id: taskId, isClaimed: false };
+          try {
+            const result = await updateUserFields(user.telegram_id, {
+              completedTasks: [...completedTasks, newCompletedTask],
+            });
+            if (result) {
+              updateUser(result.userDB);
+            }
+          } catch (error) {
+            console.error("Failed to update user completed tasks:", error);
+          }
+        }
+      };
+
+    case "inviteTenFriends":
+      return async () => {
+        if (user && user.friends.length >= 10) {
+          const isAlreadyCompleted = completedTasks.some(
+            (task) => task.id === taskId
+          );
+          if (isAlreadyCompleted) return;
+
+          const newCompletedTask = { id: taskId, isClaimed: false };
+          try {
+            const result = await updateUserFields(user.telegram_id, {
+              completedTasks: [...completedTasks, newCompletedTask],
+            });
+            if (result) {
+              updateUser(result.userDB);
+            }
+          } catch (error) {
+            console.error("Failed to update user completed tasks:", error);
+          }
+        }
+      };
+
+    default:
+      return async () => {
+        console.warn(`No handler defined for task ${taskId}`);
+      };
+  }
 };

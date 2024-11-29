@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { tasks } from "@/constants";
 import { useTranslations } from "next-intl";
 import { useUser } from "@/app/contexts/AppContext";
-import { checkCompletedTask } from "@/utils";
+import { checkCompletedTask, getTaskHandler } from "@/utils";
 import { updateUserFields } from "@/services/updateUserFields";
 
 const Tasks = () => {
@@ -36,33 +36,63 @@ const Tasks = () => {
               (task) => task.id === id && task.isClaimed
             );
 
-            const checkTaskInviteTwoFriendHandler = async () => {
-              if (user && user.friends.length >= 2) {
-                const isAlreadyCompleted = completedTasks.some(
-                  (task) => task.id === id
-                );
-                if (isAlreadyCompleted) return;
+            const taskHandler = getTaskHandler(id, user, updateUser);
 
-                const newCompletedTask = {
-                  id,
-                  isClaimed: false,
-                };
+            // const checkTaskInviteTwoFriendHandler = async () => {
+            //   if (user && user.friends.length >= 2) {
+            //     const isAlreadyCompleted = completedTasks.some(
+            //       (task) => task.id === id
+            //     );
+            //     if (isAlreadyCompleted) return;
 
-                try {
-                  const result = await updateUserFields(user.telegram_id, {
-                    completedTasks: [...completedTasks, newCompletedTask],
-                  });
-                  if (result) {
-                    updateUser(result.userDB);
-                  }
-                } catch (error) {
-                  console.error(
-                    "Failed to update user completed tasks:",
-                    error
-                  );
-                }
-              }
-            };
+            //     const newCompletedTask = {
+            //       id,
+            //       isClaimed: false,
+            //     };
+
+            //     try {
+            //       const result = await updateUserFields(user.telegram_id, {
+            //         completedTasks: [...completedTasks, newCompletedTask],
+            //       });
+            //       if (result) {
+            //         updateUser(result.userDB);
+            //       }
+            //     } catch (error) {
+            //       console.error(
+            //         "Failed to update user completed tasks:",
+            //         error
+            //       );
+            //     }
+            //   }
+            // };
+
+            // const checkTaskInviteTenFriendHandler = async () => {
+            //   if (user && user.friends.length >= 10) {
+            //     const isAlreadyCompleted = completedTasks.some(
+            //       (task) => task.id === id
+            //     );
+            //     if (isAlreadyCompleted) return;
+
+            //     const newCompletedTask = {
+            //       id,
+            //       isClaimed: false,
+            //     };
+
+            //     try {
+            //       const result = await updateUserFields(user.telegram_id, {
+            //         completedTasks: [...completedTasks, newCompletedTask],
+            //       });
+            //       if (result) {
+            //         updateUser(result.userDB);
+            //       }
+            //     } catch (error) {
+            //       console.error(
+            //         "Failed to update user completed tasks:",
+            //         error
+            //       );
+            //     }
+            //   }
+            // };
 
             const claimPointHandler = async () => {
               if (user && isTaskCompleted) {
@@ -92,9 +122,11 @@ const Tasks = () => {
                 }
               }
             };
+
             if (isTaskPointsClaimed) {
               return null;
             }
+
             return (
               <li
                 key={id}
@@ -142,7 +174,7 @@ const Tasks = () => {
                     <button
                       type="button"
                       className="btn btn-xs text-emerald-400"
-                      onClick={checkTaskInviteTwoFriendHandler}
+                      onClick={taskHandler}
                     >
                       check
                     </button>
