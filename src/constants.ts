@@ -258,7 +258,7 @@ export const tasks: TTask[] = [
   },
   {
     id: "2",
-    taskTitle: "inviteThreeFriends",
+    taskTitle: "inviteTwoFriends",
     points: 100,
     icon: FaHandPeace,
   },
