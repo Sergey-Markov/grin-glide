@@ -35,6 +35,7 @@
   },
   "Tasks": {
     "title": "Tasks",
+    "completedTitle": "Completed",
     "connectToGrinGTG": "Connect to GinG chanel",
     "inviteTenFriends": "Invite 10 friends",
     "inviteThreeFriends": "Invite 2 friends",

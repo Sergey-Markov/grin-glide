@@ -35,6 +35,7 @@
   },
   "Tasks": {
     "title": "Задания",
+    "completedTitle": "Выполненные",
     "connectToGrinGTG": "Подписаться на телеграм-канал GinG",
     "inviteTenFriends": "Пригласить 10 друзей",
     "inviteThreeFriends": "Пригласить 2-x друзей",

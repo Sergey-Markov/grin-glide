@@ -153,7 +153,7 @@ const Tasks = () => {
           })}
         </ul>
         <h2 className="text-2xl font-bold font-mono text-white">
-          {t("title")}
+          {t("completedTitle")}
         </h2>
         <ul className="space-y-4">
           {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
