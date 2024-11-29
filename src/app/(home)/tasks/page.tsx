@@ -193,7 +193,7 @@ const Tasks = () => {
         <ul className="space-y-4">
           {tasks.map(({ id, icon: TaskIcon, src, taskTitle }) => {
             const isTaskPointsClaimed = completedTasks.some(
-              (task) => task.id === id && task.isClaimed
+              (task) => task.id === taskTitle && task.isClaimed
             );
 
             if (isTaskPointsClaimed) {
