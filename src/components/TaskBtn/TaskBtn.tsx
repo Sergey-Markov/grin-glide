@@ -1,8 +1,9 @@
 import classNames from "classnames";
 
-type TVariantBtn = "claim" | "check" | "loading";
+type TVariantBtn = "claim" | "check";
 
 interface ITaskBtnProps {
+  isLoading?: boolean;
   variant: TVariantBtn;
   onClick: () => void;
 }
@@ -15,11 +16,11 @@ const getCurrentLabel = (type: TVariantBtn) => {
       return "check";
 
     default:
-      return "loading";
+      return ":) error";
   }
 };
 
-const TaskBtn = ({ variant, onClick }: ITaskBtnProps) => {
+const TaskBtn = ({ variant, onClick, isLoading }: ITaskBtnProps) => {
   const currentLabel = getCurrentLabel(variant);
 
   return (
@@ -28,7 +29,11 @@ const TaskBtn = ({ variant, onClick }: ITaskBtnProps) => {
       className={classNames("btn btn-xs text-emerald-400")}
       onClick={onClick}
     >
-      {currentLabel}
+      {isLoading ? (
+        <span className="loading loading-infinity loading-xs" />
+      ) : (
+        currentLabel
+      )}
     </button>
   );
 };

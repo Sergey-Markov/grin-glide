@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable no-console */
-import React from "react";
+import React, { useState } from "react";
 // import { BiCheckDouble } from "react-icons/bi";
 import { FiFileText } from "react-icons/fi";
 import Image from "next/image";
@@ -14,6 +14,7 @@ import { updateUserFields } from "@/services/updateUserFields";
 import TaskBtn from "@/components/TaskBtn/TaskBtn";
 
 const Tasks = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { user, updateUser } = useUser();
   const t = useTranslations("Tasks");
 
@@ -40,7 +41,12 @@ const Tasks = () => {
               (task) => task.id === taskTitle && task.isClaimed
             );
 
-            const taskHandler = getTaskHandler(taskTitle, user, updateUser);
+            const taskHandler = getTaskHandler(
+              taskTitle,
+              user,
+              updateUser,
+              setIsLoading
+            );
 
             // const checkTaskInviteTwoFriendHandler = async () => {
             //   if (user && user.friends.length >= 2) {
@@ -111,12 +117,14 @@ const Tasks = () => {
                 const newPointCount = user.points + points;
 
                 try {
+                  setIsLoading(true);
                   const result = await updateUserFields(user.telegram_id, {
                     points: newPointCount,
                     completedTasks: updatedTasks,
                   });
                   if (result) {
                     updateUser(result.userDB);
+                    setIsLoading(false);
                   }
                 } catch (error) {
                   console.error(
@@ -163,11 +171,13 @@ const Tasks = () => {
                 <div className="text-emerald-400">
                   {isTaskCompleted ? (
                     <TaskBtn
+                      isLoading={isLoading}
                       variant="claim"
                       onClick={claimPointHandler}
                     />
                   ) : (
                     <TaskBtn
+                      isLoading={isLoading}
                       variant="check"
                       onClick={taskHandler}
                     />

@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
+import React from "react";
 import { TUserContext } from "./app/contexts/AppContext";
 import { updateUserFields } from "./services/updateUserFields";
 
@@ -43,7 +44,8 @@ export const checkCompletedTask = (
 export const getTaskHandler = (
   taskId: string,
   user: TUserContext | null,
-  updateUser: (user: TUserContext) => void
+  updateUser: (user: TUserContext) => void,
+  updateLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const completedTasks = user?.completedTasks || [];
 
@@ -58,11 +60,13 @@ export const getTaskHandler = (
 
           const newCompletedTask = { id: taskId, isClaimed: false };
           try {
+            updateLoadingStatus(true);
             const result = await updateUserFields(user.telegram_id, {
               completedTasks: [...completedTasks, newCompletedTask],
             });
             if (result) {
               updateUser(result.userDB);
+              updateLoadingStatus(false);
             }
           } catch (error) {
             console.error("Failed to update user completed tasks:", error);
