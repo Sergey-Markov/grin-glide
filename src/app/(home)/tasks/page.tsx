@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 import { useUser } from "@/app/contexts/AppContext";
 import { checkCompletedTask, getTaskHandler } from "@/utils";
 import { updateUserFields } from "@/services/updateUserFields";
+import TaskBtn from "@/components/TaskBtn/TaskBtn";
 
 const Tasks = () => {
   const { user, updateUser } = useUser();
@@ -161,26 +162,15 @@ const Tasks = () => {
                 </div>
                 <div className="text-emerald-400">
                   {isTaskCompleted ? (
-                    <button
-                      type="button"
-                      className={classNames(
-                        "btn btn-xs",
-                        isTaskPointsClaimed
-                          ? "text-gray-400 cursor-not-allowed"
-                          : "text-emerald-400"
-                      )}
+                    <TaskBtn
+                      variant="claim"
                       onClick={claimPointHandler}
-                    >
-                      claim
-                    </button>
+                    />
                   ) : (
-                    <button
-                      type="button"
-                      className="btn btn-xs text-emerald-400"
+                    <TaskBtn
+                      variant="check"
                       onClick={taskHandler}
-                    >
-                      check
-                    </button>
+                    />
                   )}
                 </div>
               </li>
