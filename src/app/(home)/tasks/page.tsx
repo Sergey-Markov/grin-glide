@@ -30,13 +30,16 @@ const Tasks = () => {
 
         <ul className="space-y-4">
           {tasks.map(({ id, icon: TaskIcon, src, taskTitle, points }) => {
-            const isTaskCompleted = checkCompletedTask(completedTasks, id);
+            const isTaskCompleted = checkCompletedTask(
+              completedTasks,
+              taskTitle
+            );
 
             const isTaskPointsClaimed = completedTasks.some(
               (task) => task.id === id && task.isClaimed
             );
 
-            const taskHandler = getTaskHandler(id, user, updateUser);
+            const taskHandler = getTaskHandler(taskTitle, user, updateUser);
 
             // const checkTaskInviteTwoFriendHandler = async () => {
             //   if (user && user.friends.length >= 2) {
