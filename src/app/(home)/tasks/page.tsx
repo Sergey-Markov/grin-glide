@@ -14,11 +14,17 @@ import { updateUserFields } from "@/services/updateUserFields";
 import TaskBtn from "@/components/TaskBtn/TaskBtn";
 
 const Tasks = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
+    {}
+  );
   const { user, updateUser } = useUser();
   const t = useTranslations("Tasks");
 
   const completedTasks = user?.completedTasks || [];
+
+  const setLoading = (id: string, isLoading: boolean) => {
+    setLoadingStates((prev) => ({ ...prev, [id]: isLoading }));
+  };
 
   return (
     <main className="bg-transparent min-h-screen p-4 md:p-8">
@@ -41,68 +47,17 @@ const Tasks = () => {
               (task) => task.id === taskTitle && task.isClaimed
             );
 
-            const taskHandler = getTaskHandler(
-              taskTitle,
-              user,
-              updateUser,
-              setIsLoading
-            );
-
-            // const checkTaskInviteTwoFriendHandler = async () => {
-            //   if (user && user.friends.length >= 2) {
-            //     const isAlreadyCompleted = completedTasks.some(
-            //       (task) => task.id === id
-            //     );
-            //     if (isAlreadyCompleted) return;
-
-            //     const newCompletedTask = {
-            //       id,
-            //       isClaimed: false,
-            //     };
-
-            //     try {
-            //       const result = await updateUserFields(user.telegram_id, {
-            //         completedTasks: [...completedTasks, newCompletedTask],
-            //       });
-            //       if (result) {
-            //         updateUser(result.userDB);
-            //       }
-            //     } catch (error) {
-            //       console.error(
-            //         "Failed to update user completed tasks:",
-            //         error
-            //       );
-            //     }
-            //   }
-            // };
-
-            // const checkTaskInviteTenFriendHandler = async () => {
-            //   if (user && user.friends.length >= 10) {
-            //     const isAlreadyCompleted = completedTasks.some(
-            //       (task) => task.id === id
-            //     );
-            //     if (isAlreadyCompleted) return;
-
-            //     const newCompletedTask = {
-            //       id,
-            //       isClaimed: false,
-            //     };
-
-            //     try {
-            //       const result = await updateUserFields(user.telegram_id, {
-            //         completedTasks: [...completedTasks, newCompletedTask],
-            //       });
-            //       if (result) {
-            //         updateUser(result.userDB);
-            //       }
-            //     } catch (error) {
-            //       console.error(
-            //         "Failed to update user completed tasks:",
-            //         error
-            //       );
-            //     }
-            //   }
-            // };
+            const taskHandler = async () => {
+              try {
+                setLoading(id, true);
+                const taskFn = getTaskHandler(taskTitle, user, updateUser);
+                await taskFn();
+              } catch (error) {
+                console.error(`Failed to complete task ${taskTitle}:`, error);
+              } finally {
+                setLoading(id, false);
+              }
+            };
 
             const claimPointHandler = async () => {
               if (user && isTaskCompleted) {
@@ -117,20 +72,21 @@ const Tasks = () => {
                 const newPointCount = user.points + points;
 
                 try {
-                  setIsLoading(true);
+                  setLoading(id, true);
                   const result = await updateUserFields(user.telegram_id, {
                     points: newPointCount,
                     completedTasks: updatedTasks,
                   });
                   if (result) {
                     updateUser(result.userDB);
-                    setIsLoading(false);
                   }
                 } catch (error) {
                   console.error(
                     "Failed to update user completed tasks:",
                     error
                   );
+                } finally {
+                  setLoading(id, false);
                 }
               }
             };
@@ -171,13 +127,13 @@ const Tasks = () => {
                 <div className="text-emerald-400">
                   {isTaskCompleted ? (
                     <TaskBtn
-                      isLoading={isLoading}
+                      isLoading={loadingStates[id] || false}
                       variant="claim"
                       onClick={claimPointHandler}
                     />
                   ) : (
                     <TaskBtn
-                      isLoading={isLoading}
+                      isLoading={loadingStates[id] || false}
                       variant="check"
                       onClick={taskHandler}
                     />
