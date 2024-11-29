@@ -38,10 +38,7 @@ const Tasks = () => {
 
             const checkTaskInviteTwoFriendHandler = async () => {
               if (user && user.friends.length >= 2) {
-                const isAlreadyCompleted = completedTasks.some(
-                  (task) => task.id === id
-                );
-                if (isAlreadyCompleted) return;
+                if (isTaskPointsClaimed) return;
 
                 const newCompletedTask = {
                   id,
