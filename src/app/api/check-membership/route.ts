@@ -25,15 +25,15 @@ export const POST = async (req: Request) => {
   }
 
   try {
-    // let formattedChatId = channelUserName;
-    // if (
-    //   !channelUserName.startsWith("@") &&
-    //   !channelUserName.startsWith("-100")
-    // ) {
-    //   formattedChatId = `${channelUserName}`;
-    // }
+    let formattedChatId = channelUserName;
+    if (
+      !channelUserName.startsWith("@") &&
+      !channelUserName.startsWith("-100")
+    ) {
+      formattedChatId = `${channelUserName}`;
+    }
 
-    const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${channelUserName}&user_id=${telegramId}`;
+    const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${formattedChatId}&user_id=${telegramId}`;
 
     const response = await fetch(url);
 
