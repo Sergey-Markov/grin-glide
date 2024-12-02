@@ -28,33 +28,30 @@ export const POST = async (req: Request) => {
   // }
 
   // try {
-    let formattedChatId = channelUserName;
-    if (
-      !channelUserName.startsWith("@") &&
-      !channelUserName.startsWith("-100")
-    ) {
-      formattedChatId = `@${channelUserName}`;
-    }
+  let formattedChatId = channelUserName;
+  if (!channelUserName.startsWith("@") && !channelUserName.startsWith("-100")) {
+    formattedChatId = `@${channelUserName}`;
+  }
 
-    const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${encodeURIComponent(
-      formattedChatId
-    )}&user_id=${telegramId}`;
+  const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${encodeURIComponent(
+    formattedChatId
+  )}&user_id=${telegramId}`;
 
-    const response = await fetch(url);
-    return NextResponse.json({ response: response, body }, { status: 200 });
+  const response = await fetch(url);
+  return NextResponse.json({ response, body }, { status: 200 });
 
-    // if (!response.ok) {
-    //   const errorText = await response.text();
-    //   console.error(`Telegram API error: ${response.status} ${errorText} `);
-    //   return NextResponse.json(
-    //     {
-    //       error: `Telegram API error: ${response.status} ${errorText}`,
-    //     },
-    //     {
-    //       status: 500,
-    //     }
-    //   );
-    // }
+  // if (!response.ok) {
+  //   const errorText = await response.text();
+  //   console.error(`Telegram API error: ${response.status} ${errorText} `);
+  //   return NextResponse.json(
+  //     {
+  //       error: `Telegram API error: ${response.status} ${errorText}`,
+  //     },
+  //     {
+  //       status: 500,
+  //     }
+  //   );
+  // }
 
   //   const data = await response.json();
 
@@ -92,5 +89,5 @@ export const POST = async (req: Request) => {
   //       status: 500,
   //     }
   //   );
-  }
+  // }
 };
