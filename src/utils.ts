@@ -98,7 +98,7 @@ export const getTaskHandler = (
       return async () => {
         if (user) {
           try {
-            const channelUserName = "GrinGlide";
+            const channelUserName = "@GrinGlide";
             const result = await checkChannelMembers(
               user.telegram_id,
               channelUserName
