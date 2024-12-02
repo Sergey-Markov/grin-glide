@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 import { NextResponse } from "next/server";
 
@@ -19,7 +20,7 @@ export const POST = async (req: Request) => {
   // if (!telegramId || !channelUserName) {
   //   return NextResponse.json(
   //     {
-  //       error: `Invalid request: missing telegramId or channelUserName: telID ${telegramId}, ${channelUserName}`,
+  // error: `Invalid request: missing telegramId or channelUserName: telID $???{telegramId}, ${channelUserName}`,
   //       body,
   //     },
   //     { status: 400 }

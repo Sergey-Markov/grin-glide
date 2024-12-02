@@ -12,6 +12,6 @@ export async function checkChannelMembers(
     });
     return response;
   } catch (error) {
-    throw new Error("Failed to check");
+    throw new Error(`Failed to check, ${error}`);
   }
 }
