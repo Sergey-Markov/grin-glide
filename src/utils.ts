@@ -3,7 +3,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 import React from "react";
-import axios from "axios";
 import { TUserContext } from "./app/contexts/AppContext";
 import { updateUserFields } from "./services/updateUserFields";
 import { checkChannelMembers } from "./services/checkMembership";
@@ -100,46 +99,37 @@ export const getTaskHandler = (
         if (user) {
           try {
             const channelUserName = "@GrinGlide";
-            const botToken = process.env.BOT_TOKEN;
-
-            const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${channelUserName}&user_id=${user.telegram_id}`;
-            const result = await axios.get(url);
-            console.log(result);
-          } catch (error) {
-            console.log(error);
+            const result = await checkChannelMembers(
+              user.telegram_id,
+              channelUserName
+            );
+            if (result.status !== 200) {
+              const errorData = result.statusText;
+              throw new Error(errorData || "failed to check membership");
+            }
+            const isAlreadyCompleted = completedTasks.some(
+              (task) => task.id === taskId
+            );
+            if (result.status === 200) {
+              if (isAlreadyCompleted) return;
+              const newCompletedTask = { id: taskId, isClaimed: false };
+              try {
+                const resultOfUpdateTasksDb = await updateUserFields(
+                  user.telegram_id,
+                  {
+                    completedTasks: [...completedTasks, newCompletedTask],
+                  }
+                );
+                if (resultOfUpdateTasksDb) {
+                  updateUser(resultOfUpdateTasksDb.userDB);
+                }
+              } catch (error) {
+                console.error("Failed to update user completed tasks:", error);
+              }
+            }
+          } catch (error: any) {
+            console.error("Error checking membership:", error);
           }
-          //     const result = await checkChannelMembers(
-          //       user.telegram_id,
-          //       channelUserName
-          //     );
-          //     if (result.status !== 200) {
-          //       const errorData = result.statusText;
-          //       throw new Error(errorData || "failed to check membership");
-          //     }
-          //     const isAlreadyCompleted = completedTasks.some(
-          //       (task) => task.id === taskId
-          //     );
-          //     if (result.status === 200) {
-          //       if (isAlreadyCompleted) return;
-          //       const newCompletedTask = { id: taskId, isClaimed: false };
-          //       try {
-          //         const resultOfUpdateTasksDb = await updateUserFields(
-          //           user.telegram_id,
-          //           {
-          //             completedTasks: [...completedTasks, newCompletedTask],
-          //           }
-          //         );
-          //         if (resultOfUpdateTasksDb) {
-          //           updateUser(resultOfUpdateTasksDb.userDB);
-          //         }
-          //       } catch (error) {
-          //         console.error("Failed to update user completed tasks:", error);
-          //       }
-          //     }
-          //   } catch (error: any) {
-          //     console.error("Error checking membership:", error);
-          //   }
-          // }
         }
       };
 
