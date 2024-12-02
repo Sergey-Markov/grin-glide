@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // src/services/api.ts
 import axios from "axios";
 
@@ -6,9 +5,14 @@ export async function checkChannelMembers(
   telegramId: number,
   channelUsername: string
 ) {
-  const response = await axios.post("/api/check-membership", {
+  const body = {
     telegramId,
     channelUsername,
-  });
-  return response.data;
+  };
+  try {
+    const response = await axios.post("/api/check-membership", body);
+    return response;
+  } catch (error) {
+    throw new Error(`Failed to check, ${error}`);
+  }
 }

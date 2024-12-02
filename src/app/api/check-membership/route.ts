@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-console */
 import { NextResponse } from "next/server";
 
@@ -15,79 +14,79 @@ export const POST = async (req: Request) => {
   const body = await req.json();
   const { telegramId, channelUserName } = await req.json();
 
-  console.log(`telID ${telegramId}, ${channelUserName}, ${body}`);
-
-  // if (!telegramId || !channelUserName) {
-  //   return NextResponse.json(
-  //     {
-  // error: `Invalid request: missing telegramId or channelUserName: telID $???{telegramId}, ${channelUserName}`,
-  //       body,
-  //     },
-  //     { status: 400 }
-  //   );
-  // }
-
-  // try {
-  let formattedChatId = channelUserName;
-  if (!channelUserName.startsWith("@") && !channelUserName.startsWith("-100")) {
-    formattedChatId = `@${channelUserName}`;
+  if (!telegramId || !channelUserName) {
+    return NextResponse.json(
+      {
+        error: `Invalid request: missing telegramId or channelUserName: telID ${telegramId}, ${channelUserName}`,
+        body,
+      },
+      { status: 400 }
+    );
   }
 
-  const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${encodeURIComponent(
-    formattedChatId
-  )}&user_id=${telegramId}`;
+  try {
+    let formattedChatId = channelUserName;
+    if (
+      !channelUserName.startsWith("@") &&
+      !channelUserName.startsWith("-100")
+    ) {
+      formattedChatId = `@${channelUserName}`;
+    }
 
-  const response = await fetch(url);
-  return NextResponse.json({ response, body }, { status: 200 });
+    const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${encodeURIComponent(
+      formattedChatId
+    )}&user_id=${telegramId}`;
 
-  // if (!response.ok) {
-  //   const errorText = await response.text();
-  //   console.error(`Telegram API error: ${response.status} ${errorText} `);
-  //   return NextResponse.json(
-  //     {
-  //       error: `Telegram API error: ${response.status} ${errorText}`,
-  //     },
-  //     {
-  //       status: 500,
-  //     }
-  //   );
-  // }
+    const response = await fetch(url);
 
-  //   const data = await response.json();
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Telegram API error: ${response.status} ${errorText} `);
+      return NextResponse.json(
+        {
+          error: `Telegram API error: ${response.status} ${errorText}`,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
 
-  //   if (data.ok) {
-  //     const { status } = data.result;
-  //     const isMember = ["creator", "administrator", "member"].includes(status);
-  //     return NextResponse.json({ isMember }, { status: 200 });
-  //   }
+    const data = await response.json();
 
-  //   return NextResponse.json(
-  //     {
-  //       error: `Telegram API returned false: ${JSON.stringify(data)}`,
-  //     },
-  //     {
-  //       status: 500,
-  //     }
-  //   );
-  // } catch (error) {
-  //   console.error("Error checking channel membership:", error);
-  //   if (error instanceof Error) {
-  //     return NextResponse.json(
-  //       {
-  //         error: `Failed to check channel membership: ${error.message}`,
-  //       },
-  //       {
-  //         status: 500,
-  //       }
-  //     );
-  //   }
-  //   return NextResponse.json(
-  //     {
-  //       error: `An unknown error occurred while checking channel membership`,
-  //     },
-  //     {
-  //       status: 500,
-  //     }
-  //   );
-  // }
+    if (data.ok) {
+      const { status } = data.result;
+      const isMember = ["creator", "administrator", "member"].includes(status);
+      return NextResponse.json({ isMember }, { status: 200 });
+    }
+
+    return NextResponse.json(
+      {
+        error: `Telegram API returned false: ${JSON.stringify(data)}`,
+      },
+      {
+        status: 500,
+      }
+    );
+  } catch (error) {
+    console.error("Error checking channel membership:", error);
+    if (error instanceof Error) {
+      return NextResponse.json(
+        {
+          error: `Failed to check channel membership: ${error.message}`,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+    return NextResponse.json(
+      {
+        error: `An unknown error occurred while checking channel membership`,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 };
