@@ -36,5 +36,5 @@ export const POST = async (req: Request) => {
     const isMember = ["creator", "administrator", "member"].includes(status);
     return NextResponse.json({ isMember }, { status: 200 });
   }
-  return NextResponse.json({ response }, { status: 500 });
+  return NextResponse.json({ response }, { status: 200 });
 };

@@ -68,7 +68,7 @@ export const getTaskHandler = (
               updateUser(result.userDB);
             }
           } catch (error) {
-            console.error("Failed to update user completed tasks:", error);
+            alert("Failed to update user completed tasks");
           }
         }
       };
@@ -106,8 +106,8 @@ export const getTaskHandler = (
             console.log("result:", result);
 
             if (!result.isMember) {
-              const errorData = result.statusText;
               console.log("you are not a member of channel");
+              alert("you are not a member of channel");
             }
             const isAlreadyCompleted = completedTasks.some(
               (task) => task.id === taskId
@@ -130,35 +130,14 @@ export const getTaskHandler = (
               }
             }
           } catch (error: any) {
-            console.error("Error checking membership:", error);
+            alert("Error checking membership:");
           }
         }
       };
 
     default:
       return async () => {
-        console.warn(`No handler defined for task ${taskId}`);
+        alert(`No handler defined for task ${taskId}`);
       };
   }
 };
-
-// export const checkChannelMembership = async (
-//   telegramId: number,
-//   channelUserName: string
-// ) => {
-//   if (!telegramId) {
-//     alert("This App can only be used within Telegram");
-//   }
-//   if (!channelUserName) {
-//     alert("Add channel username");
-//     return;
-//   }
-//   try {
-//     const result = await checkChannelMembers(telegramId, channelUserName);
-//     if (result.status !== 200) {
-//       const errorData = result.statusText;
-//       throw new Error(errorData || "failed to check membership");
-//     }
-//     return result;
-//   } catch (error) {}
-// };
