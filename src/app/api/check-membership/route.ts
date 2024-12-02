@@ -21,7 +21,10 @@ export const POST = async (req: Request) => {
 
   try {
     let formattedChatId = channelUserName;
-    if (!channelUserName.startWith("@") && !channelUserName.startWith("-100")) {
+    if (
+      !channelUserName.startsWith("@") &&
+      !channelUserName.startWith("-100")
+    ) {
       formattedChatId = `@${channelUserName}`;
     }
 
