@@ -10,11 +10,16 @@ export const POST = async (req: Request) => {
       { status: 500 }
     );
   }
+
+  const body = await req.json();
   const { telegramId, channelUserName } = await req.json();
 
   if (!telegramId || !channelUserName) {
     return NextResponse.json(
-      { error: "Invalid request: missing telegramId or channelUserName" },
+      {
+        error: `Invalid request: missing telegramId or channelUserName: telID ${telegramId}, ${channelUserName}`,
+        body,
+      },
       { status: 400 }
     );
   }
