@@ -5,16 +5,9 @@ export const checkChannelMembers = async (
   telegramId: number,
   channelUserName: string
 ) => {
-  try {
-    const response = await axios.post("/api/checkMembership", {
-      telegramId,
-      channelUserName,
-    });
-    return response.data; // Або відповідно до API
-  } catch (error: any) {
-    console.error("Error in checkChannelMembers:", error);
-    throw new Error(
-      error.response?.data?.error || "Failed to check membership"
-    );
-  }
+  const response = await axios.post("/api/checkMembership", {
+    telegramId,
+    channelUserName,
+  });
+  return response.data; // Або відповідно до API
 };
