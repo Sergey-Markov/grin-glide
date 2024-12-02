@@ -105,14 +105,14 @@ export const getTaskHandler = (
             );
             console.log("result:", result);
 
-            if (result.status !== 200) {
+            if (!result.isMember) {
               const errorData = result.statusText;
-              throw new Error(errorData || "failed to check membership");
+              console.log("you are not a member of channel");
             }
             const isAlreadyCompleted = completedTasks.some(
               (task) => task.id === taskId
             );
-            if (result.status === 200) {
+            if (result.isMember) {
               if (isAlreadyCompleted) return;
               const newCompletedTask = { id: taskId, isClaimed: false };
               try {
