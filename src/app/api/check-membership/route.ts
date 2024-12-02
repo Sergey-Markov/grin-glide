@@ -27,7 +27,7 @@ export const POST = async (req: Request) => {
   //   );
   // }
 
-  try {
+  // try {
     let formattedChatId = channelUserName;
     if (
       !channelUserName.startsWith("@") &&
@@ -41,6 +41,7 @@ export const POST = async (req: Request) => {
     )}&user_id=${telegramId}`;
 
     const response = await fetch(url);
+    return NextResponse.json({ response: response, body }, { status: 200 });
 
     // if (!response.ok) {
     //   const errorText = await response.text();
@@ -55,41 +56,41 @@ export const POST = async (req: Request) => {
     //   );
     // }
 
-    const data = await response.json();
+  //   const data = await response.json();
 
-    if (data.ok) {
-      const { status } = data.result;
-      const isMember = ["creator", "administrator", "member"].includes(status);
-      return NextResponse.json({ isMember }, { status: 200 });
-    }
+  //   if (data.ok) {
+  //     const { status } = data.result;
+  //     const isMember = ["creator", "administrator", "member"].includes(status);
+  //     return NextResponse.json({ isMember }, { status: 200 });
+  //   }
 
-    return NextResponse.json(
-      {
-        error: `Telegram API returned false: ${JSON.stringify(data)}`,
-      },
-      {
-        status: 500,
-      }
-    );
-  } catch (error) {
-    console.error("Error checking channel membership:", error);
-    if (error instanceof Error) {
-      return NextResponse.json(
-        {
-          error: `Failed to check channel membership: ${error.message}`,
-        },
-        {
-          status: 500,
-        }
-      );
-    }
-    return NextResponse.json(
-      {
-        error: `An unknown error occurred while checking channel membership`,
-      },
-      {
-        status: 500,
-      }
-    );
+  //   return NextResponse.json(
+  //     {
+  //       error: `Telegram API returned false: ${JSON.stringify(data)}`,
+  //     },
+  //     {
+  //       status: 500,
+  //     }
+  //   );
+  // } catch (error) {
+  //   console.error("Error checking channel membership:", error);
+  //   if (error instanceof Error) {
+  //     return NextResponse.json(
+  //       {
+  //         error: `Failed to check channel membership: ${error.message}`,
+  //       },
+  //       {
+  //         status: 500,
+  //       }
+  //     );
+  //   }
+  //   return NextResponse.json(
+  //     {
+  //       error: `An unknown error occurred while checking channel membership`,
+  //     },
+  //     {
+  //       status: 500,
+  //     }
+  //   );
   }
 };
