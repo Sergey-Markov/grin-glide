@@ -100,7 +100,7 @@ export const getTaskHandler = (
           try {
             const channelUserName = "GrinGlide";
             const result = await checkChannelMembers(
-              String(user.telegram_id),
+              user.telegram_id,
               channelUserName
             );
             if (result.status !== 200) {

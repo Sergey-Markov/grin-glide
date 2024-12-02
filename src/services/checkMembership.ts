@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export const checkChannelMembers = async (
-  telegramId: string,
+  telegramId: number,
   channelUserName: string
 ) => {
   try {
