@@ -14,15 +14,17 @@ export const POST = async (req: Request) => {
   const body = await req.json();
   const { telegramId, channelUserName } = await req.json();
 
-  if (!telegramId || !channelUserName) {
-    return NextResponse.json(
-      {
-        error: `Invalid request: missing telegramId or channelUserName: telID ${telegramId}, ${channelUserName}`,
-        body,
-      },
-      { status: 400 }
-    );
-  }
+  console.log(`telID ${telegramId}, ${channelUserName}, ${body}`);
+
+  // if (!telegramId || !channelUserName) {
+  //   return NextResponse.json(
+  //     {
+  //       error: `Invalid request: missing telegramId or channelUserName: telID ${telegramId}, ${channelUserName}`,
+  //       body,
+  //     },
+  //     { status: 400 }
+  //   );
+  // }
 
   try {
     let formattedChatId = channelUserName;
@@ -39,18 +41,18 @@ export const POST = async (req: Request) => {
 
     const response = await fetch(url);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`Telegram API error: ${response.status} ${errorText} `);
-      return NextResponse.json(
-        {
-          error: `Telegram API error: ${response.status} ${errorText}`,
-        },
-        {
-          status: 500,
-        }
-      );
-    }
+    // if (!response.ok) {
+    //   const errorText = await response.text();
+    //   console.error(`Telegram API error: ${response.status} ${errorText} `);
+    //   return NextResponse.json(
+    //     {
+    //       error: `Telegram API error: ${response.status} ${errorText}`,
+    //     },
+    //     {
+    //       status: 500,
+    //     }
+    //   );
+    // }
 
     const data = await response.json();
 
