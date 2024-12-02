@@ -10,7 +10,7 @@ export const checkChannelMembers = async (
       telegramId,
       channelUserName,
     });
-    return response.data; // Або відповідно до API
+    return response.data;
   } catch (error: any) {
     console.error("Error in checkChannelMembers:", error);
     throw new Error(

@@ -103,6 +103,8 @@ export const getTaskHandler = (
               user.telegram_id,
               channelUserName
             );
+            console.log("result:", result);
+
             if (result.status !== 200) {
               const errorData = result.statusText;
               throw new Error(errorData || "failed to check membership");

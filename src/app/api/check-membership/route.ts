@@ -36,56 +36,5 @@ export const POST = async (req: Request) => {
     const isMember = ["creator", "administrator", "member"].includes(status);
     return NextResponse.json({ isMember }, { status: 200 });
   }
-  return NextResponse.json({ response }, { status: 201 });
-
-  //   if (!response.ok) {
-  //     const errorText = await response.text();
-  //     console.error(`Telegram API error: ${response.status} ${errorText} `);
-  //     return NextResponse.json(
-  //       {
-  //         error: `Telegram API error: ${response.status} ${errorText}`,
-  //       },
-  //       {
-  //         status: 500,
-  //       }
-  //     );
-  //   }
-
-  //   const data = await response.json();
-
-  //   if (data.ok) {
-  //     const { status } = data.result;
-  //     const isMember = ["creator", "administrator", "member"].includes(status);
-  //     return NextResponse.json({ isMember }, { status: 200 });
-  //   }
-
-  //   return NextResponse.json(
-  //     {
-  //       error: `Telegram API returned false: ${JSON.stringify(data)}`,
-  //     },
-  //     {
-  //       status: 500,
-  //     }
-  //   );
-  // } catch (error) {
-  //   console.error("Error checking channel membership:", error);
-  //   if (error instanceof Error) {
-  //     return NextResponse.json(
-  //       {
-  //         error: `Failed to check channel membership: ${error.message}`,
-  //       },
-  //       {
-  //         status: 500,
-  //       }
-  //     );
-  //   }
-  //   return NextResponse.json(
-  //     {
-  //       error: `An unknown error occurred while checking channel membership`,
-  //     },
-  //     {
-  //       status: 500,
-  //     }
-  //   );
-  // }
+  return NextResponse.json({ response }, { status: 500 });
 };
