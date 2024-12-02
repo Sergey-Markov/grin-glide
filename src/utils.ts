@@ -130,7 +130,7 @@ export const getTaskHandler = (
               }
             }
           } catch (error: any) {
-            alert("Error checking membership:");
+            alert("Error checking membership, connect to channel & try again");
           }
         }
       };
