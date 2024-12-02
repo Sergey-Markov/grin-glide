@@ -28,7 +28,8 @@ export const POST = async (req: Request) => {
     formattedChatId = `${channelUserName}`;
   }
 
-  const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${formattedChatId}&user_id=${telegramId}`;
+  const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${formattedChatId}&user_id=27908630`;
+  // const url = `https://api.telegram.org/bot${botToken}/getChatMember?chat_id=${formattedChatId}&user_id=${telegramId}`;
 
   const response = await axios.get(url);
   if (response.data.ok) {
