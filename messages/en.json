@@ -36,7 +36,7 @@
   "Tasks": {
     "title": "Tasks",
     "completedTitle": "Completed",
-    "connectToGrinGTG": "Connect to GinG chanel",
+    "connectToGrinGTG": "Join the Telegram channel GinG",
     "inviteTenFriends": "Invite 10 friends",
     "inviteTwoFriends": "Invite 2 friends",
     "sendAStars": "Send a Stars",
@@ -49,7 +49,9 @@
     "copiedRefLinkBtn": "Copied"
   },
   "Toast": {
-    "failedCopyLink": "Failed to copy the link"
+    "failedCopyLink": "Failed to copy the link",
+    "NotCompleted": "Not completed",
+    "TryLater": "Try later"
   },
   "Investments": {
     "title": "For investors",

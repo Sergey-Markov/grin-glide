@@ -68,7 +68,7 @@ export const getTaskHandler = (
             }
           } catch (error) {
             console.error("Failed to update user completed tasks:", error);
-            alert("Failed to update user completed tasks");
+            throw new Error("Failed to update user completed tasks");
           }
           return;
         }
@@ -92,7 +92,7 @@ export const getTaskHandler = (
             }
           } catch (error) {
             console.error("Failed to update user completed tasks:", error);
-            alert("Failed to update user completed tasks");
+            throw new Error("Failed to update user completed tasks");
           }
           return;
         }
@@ -129,7 +129,7 @@ export const getTaskHandler = (
                 }
               } catch (error) {
                 console.error("Failed to update user completed tasks:", error);
-                throw new Error();
+                throw new Error("Failed to update user completed tasks");
               }
             }
           } catch (error: any) {

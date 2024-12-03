@@ -49,7 +49,9 @@
     "copiedRefLinkBtn": "Скопировано"
   },
   "Toast": {
-    "failedCopyLink": "Не скопировано"
+    "failedCopyLink": "Не скопировано",
+    "NotCompleted": "Не выполненно",
+    "TryLater": "Попробуй позже"
   },
   "Investments": {
     "title": "Для инвесторов",

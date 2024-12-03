@@ -52,9 +52,9 @@ const Tasks = () => {
                 setLoading(id, true);
                 const taskFn = getTaskHandler(taskTitle, user, updateUser);
                 await taskFn();
-              } catch (error) {
+              } catch (error: any) {
                 setAppError({
-                  message: `${taskTitle}: not completed`,
+                  message: error.message ? `NotCompleted` : "TryLater",
                   isShow: true,
                 });
                 console.error(`Failed to complete task ${taskTitle}:`, error);
