@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
@@ -107,7 +108,7 @@ export const getTaskHandler = (
 
             if (!result.isMember) {
               console.log("you are not a member of channel");
-              alert("you are not a member of channel");
+              confirm("you are not a member of channel");
             }
             const isAlreadyCompleted = completedTasks.some(
               (task) => task.id === taskId
