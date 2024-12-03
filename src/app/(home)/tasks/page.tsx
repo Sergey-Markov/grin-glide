@@ -12,12 +12,13 @@ import { useUser } from "@/app/contexts/AppContext";
 import { checkCompletedTask, getTaskHandler } from "@/utils";
 import { updateUserFields } from "@/services/updateUserFields";
 import TaskBtn from "@/components/TaskBtn/TaskBtn";
+import Toast from "@/components/Toast/Toast";
 
 const Tasks = () => {
   const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
     {}
   );
-  const { user, updateUser } = useUser();
+  const { user, updateUser, appErrors, setAppError } = useUser();
   const t = useTranslations("Tasks");
 
   const completedTasks = user?.completedTasks || [];
@@ -53,9 +54,14 @@ const Tasks = () => {
                 const taskFn = getTaskHandler(taskTitle, user, updateUser);
                 await taskFn();
               } catch (error) {
+                setAppError({
+                  message: `${taskTitle}: not completed`,
+                  isShow: true,
+                });
                 console.error(`Failed to complete task ${taskTitle}:`, error);
               } finally {
                 setLoading(id, false);
+                setTimeout(() => setAppError(null), 3500);
               }
             };
 
@@ -184,6 +190,7 @@ const Tasks = () => {
           })}
         </ul>
       </div>
+      {appErrors && <Toast message={appErrors.message} />}
     </main>
   );
 };

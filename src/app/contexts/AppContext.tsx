@@ -45,12 +45,19 @@ export type TUserContext = {
   }[];
 };
 
+export type TAppError = {
+  message: string;
+  isShow: boolean;
+};
+
 interface AppContextType {
   user: TUserContext | null;
   setUser: React.Dispatch<React.SetStateAction<TUserContext | null>>;
   updateUser: (updates: Partial<TUserContext>) => void;
   isNewUser: boolean;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
+  appErrors: TAppError | null;
+  setAppError: React.Dispatch<React.SetStateAction<TAppError | null>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -70,6 +77,7 @@ interface AppProviderProps {
 export function AppProvider({ children }: AppProviderProps) {
   const [user, setUser] = useState<TUserContext | null>(null);
   const [isNewUser, setIsNewUser] = useState(false);
+  const [appErrors, setAppError] = useState<TAppError | null>(null);
   const { userTelegram } = useTelegramUser();
 
   useEffect(() => {
@@ -116,8 +124,16 @@ export function AppProvider({ children }: AppProviderProps) {
   };
 
   const value = useMemo(
-    () => ({ user, setUser, updateUser, isNewUser, setIsNewUser }),
-    [isNewUser, user]
+    () => ({
+      user,
+      setUser,
+      updateUser,
+      isNewUser,
+      setIsNewUser,
+      appErrors,
+      setAppError,
+    }),
+    [isNewUser, user, appErrors]
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

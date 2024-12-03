@@ -92,7 +92,7 @@ const FriendsList = () => {
           ))}
         </ul>
       </div>
-      {isToastVisible && <Toast />}
+      {isToastVisible && <Toast message="failedCopyLink" />}
     </main>
   );
 };

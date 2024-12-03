@@ -107,8 +107,9 @@ export const getTaskHandler = (
             console.log("result:", result);
 
             if (!result.isMember) {
-              console.log("you are not a member of channel");
-              confirm("you are not a member of channel");
+              // console.log("you are not a member of channel");
+              throw new Error("you are not a member of channel");
+              // confirm("you are not a member of channel");
             }
             const isAlreadyCompleted = completedTasks.some(
               (task) => task.id === taskId
@@ -127,11 +128,15 @@ export const getTaskHandler = (
                   updateUser(resultOfUpdateTasksDb.userDB);
                 }
               } catch (error) {
-                console.error("Failed to update user completed tasks:", error);
+                // console.error("Failed to update user completed tasks:", error);
+                throw new Error("Failed to update user completed tasks");
               }
             }
           } catch (error: any) {
-            alert("Error checking membership, connect to channel & try again");
+            // alert("Error checking membership, connect to channel & try again");
+            throw new Error(
+              "Error checking membership, connect to channel & try again"
+            );
           }
         }
       };

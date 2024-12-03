@@ -2,13 +2,17 @@
 
 import { useTranslations } from "next-intl";
 
-const Toast = () => {
+interface IToast {
+  message: string;
+}
+
+const Toast = ({ message }: IToast) => {
   const t = useTranslations("Toast");
 
   return (
     <div className="toast toast-top toast-center">
       <div className="alert alert-warning">
-        <span>{t("failedCopyLink")}</span>
+        <span>{t(message)}</span>
       </div>
     </div>
   );
