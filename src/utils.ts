@@ -1,9 +1,7 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-import React from "react";
+/* eslint-disable no-alert */
 import { TUserContext } from "./app/contexts/AppContext";
 import { updateUserFields } from "./services/updateUserFields";
 import { checkChannelMembers } from "./services/checkMembership";
@@ -76,7 +74,6 @@ export const getTaskHandler = (
         }
         throw new Error();
       };
-
     case "inviteTenFriends":
       return async () => {
         if (user && user.friends.length >= 10) {
@@ -110,10 +107,8 @@ export const getTaskHandler = (
               user.telegram_id,
               channelUserName
             );
-            console.log("result:", result);
 
             if (!result.isMember) {
-              console.log("you are not a member of channel");
               throw new Error();
             }
             const isAlreadyCompleted = completedTasks.some(
