@@ -72,6 +72,7 @@ export const getTaskHandler = (
             console.error("Failed to update user completed tasks:", error);
             alert("Failed to update user completed tasks");
           }
+          return;
         }
         throw new Error();
       };
@@ -96,6 +97,7 @@ export const getTaskHandler = (
             console.error("Failed to update user completed tasks:", error);
             alert("Failed to update user completed tasks");
           }
+          return;
         }
         throw new Error();
       };
