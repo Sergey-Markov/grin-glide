@@ -2,7 +2,6 @@
 
 /* eslint-disable no-console */
 import React, { useState } from "react";
-// import { BiCheckDouble } from "react-icons/bi";
 import { FiFileText } from "react-icons/fi";
 import Image from "next/image";
 import classNames from "classnames";
