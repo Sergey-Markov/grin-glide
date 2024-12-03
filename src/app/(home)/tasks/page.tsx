@@ -54,7 +54,7 @@ const Tasks = () => {
                 await taskFn();
               } catch (error: any) {
                 setAppError({
-                  message: error.message ? `NotCompleted` : "TryLater",
+                  message: !error.message ? `NotCompleted` : "TryLater",
                   isShow: true,
                 });
                 console.error(`Failed to complete task ${taskTitle}:`, error);
