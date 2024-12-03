@@ -96,7 +96,7 @@ export const getTaskHandler = (
           }
           return;
         }
-        throw new Error();
+        throw new Error("test");
       };
     case "connectToGrinGTG":
       return async () => {
