@@ -248,6 +248,7 @@ export type TTask = {
   points: number;
   icon?: IconType;
   src?: string;
+  href?: string;
 };
 export const tasks: TTask[] = [
   {
@@ -255,6 +256,7 @@ export const tasks: TTask[] = [
     taskTitle: "connectToGrinGTG",
     points: 100,
     src: pointImg as any,
+    href: "https://t.me/GrinGlide",
   },
   {
     id: "2",

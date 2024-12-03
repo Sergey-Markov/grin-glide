@@ -37,7 +37,7 @@ const Tasks = () => {
         </div>
 
         <ul className="space-y-4">
-          {tasks.map(({ id, icon: TaskIcon, src, taskTitle, points }) => {
+          {tasks.map(({ id, icon: TaskIcon, src, taskTitle, points, href }) => {
             const isTaskCompleted = checkCompletedTask(
               completedTasks,
               taskTitle
@@ -105,7 +105,15 @@ const Tasks = () => {
                 key={id}
                 className="flex items-center justify-between bg-emerald-700 rounded-xl p-2"
               >
-                <div className="flex items-center">
+                <button
+                  type="button"
+                  className="flex items-center"
+                  onClick={() => {
+                    if (href) {
+                      window.location.href = href;
+                    }
+                  }}
+                >
                   <div className="avatar">
                     <div className="w-10 rounded-xl">
                       {!src && TaskIcon && <TaskIcon className="w-10 h-10" />}
@@ -128,7 +136,7 @@ const Tasks = () => {
                   >
                     {t(taskTitle)}
                   </p>
-                </div>
+                </button>
                 <div className="text-emerald-400">
                   {isTaskCompleted ? (
                     <TaskBtn
