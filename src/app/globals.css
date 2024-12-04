@@ -5,11 +5,11 @@
 @layer utilities {
   .animate-gradient-start {
     stop-color: theme("colors.primary");
-    animation: gradient-x 3s ease infinite;
+    animation: gradient-x 2s ease infinite;
   }
   .animate-gradient-end {
     stop-color: theme("colors.secondary");
-    animation: gradient-x 3s ease infinite reverse;
+    animation: gradient-x 2s ease infinite reverse;
   }
 }
 

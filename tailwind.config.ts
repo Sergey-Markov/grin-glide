@@ -30,9 +30,9 @@ const config: Config = {
           "slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
         "slide-in-right":
           "slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
-        "spin-slow": "spin 3s linear infinite",
-        draw: "draw 3s ease-in-out infinite",
-        "gradient-x": "gradient-x 3s ease infinite",
+        "spin-slow": "spin 2s linear infinite",
+        draw: "draw 2s ease-in-out infinite",
+        "gradient-x": "gradient-x 2s ease infinite",
       },
       keyframes: {
         wiggle: {
