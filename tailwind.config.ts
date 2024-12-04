@@ -30,6 +30,9 @@ const config: Config = {
           "slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
         "slide-in-right":
           "slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+        "spin-slow": "spin 3s linear infinite",
+        draw: "draw 3s ease-in-out infinite",
+        "gradient-x": "gradient-x 3s ease infinite",
       },
       keyframes: {
         wiggle: {
@@ -49,6 +52,20 @@ const config: Config = {
           "100%": {
             transform: "translateX(0)",
             opacity: "1",
+          },
+        },
+        draw: {
+          "0%": { strokeDasharray: "0 1500" },
+          "100%": { strokeDasharray: "1500 1500" },
+        },
+        "gradient-x": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
       },
