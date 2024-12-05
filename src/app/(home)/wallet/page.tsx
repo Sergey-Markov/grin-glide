@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable no-console */
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
