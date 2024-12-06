@@ -5,17 +5,8 @@
 /* eslint-disable no-console */
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import {
-  TonConnectButton,
-  useTonConnectUI,
-  useTonWallet,
-  useTonAddress,
-} from "@tonconnect/ui-react";
-// import Address from "@tonconnect/sdk";
+import { TonConnectButton, useTonConnectUI } from "@tonconnect/ui-react";
 import Link from "next/link";
-// import Image from "next/image";
-// import { BiCheckDouble, BiWallet } from "react-icons/bi";
-// import { walletsList } from "@/constants";
 import BackBtn from "@/components/BackBtn/BackBtn";
 import Preloader from "@/components/Preloader/Preloader";
 import { BiWallet } from "react-icons/bi";
@@ -27,7 +18,6 @@ const Wallet = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const currentWallet = tonConnectUI.wallet;
-  const currentWalletInfo = tonConnectUI.connected;
 
   const handleWalletConnection = useCallback((address: string) => {
     setTonWalletAddress(address);
@@ -85,8 +75,8 @@ const Wallet = () => {
         </h2>
       </div>
       <div className="flex items-center justify-between bg-emerald-700 rounded-full p-2 pr-4">
-        <div className=" flex-row items-center gap-1">
-          <BiWallet className="w-12 h-12 rounded-full mr-3 bg-teal-950 p-2" />
+        <div className=" flex items-center">
+          <BiWallet className="w-10  h-10 rounded-full mr-1 bg-teal-950 p-2" />
           {tonConnectUI && (
             <p className="font-semibold text-accent underline decoration-emerald-900">
               {currentWallet?.device.appName}
