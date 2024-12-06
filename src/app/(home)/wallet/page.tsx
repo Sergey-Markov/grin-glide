@@ -17,7 +17,8 @@ import { BiWallet } from "react-icons/bi";
 
 const Wallet = () => {
   const t = useTranslations("Wallet");
-  // const [tonConnectUI] = useTonConnectUI();
+  const [tonConnectUI] = useTonConnectUI();
+  console.log(tonConnectUI);
   // const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   // const [isLoading, setIsLoading] = useState(true);
 
