@@ -22,7 +22,7 @@ import { BiWallet } from "react-icons/bi";
 const Wallet = () => {
   const t = useTranslations("Wallet");
   const [tonConnectUI] = useTonConnectUI();
-  const walletInfo = useTonWallet()?.account.publicKey;
+  const walletInfo = useTonWallet()?.account.address;
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
