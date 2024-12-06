@@ -126,6 +126,7 @@ const Wallet = () => {
       {tonConnectUI && (
         <div>
           <div>{currentWalletInfo}</div>
+          <div>{currentWallet?.device.appName}</div>
 
           <p>{tonWalletAddress}</p>
           <p>{userFriendlyAddress}</p>
