@@ -5,7 +5,11 @@
 /* eslint-disable no-console */
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { TonConnectButton, useTonConnectUI } from "@tonconnect/ui-react";
+import {
+  TonConnectButton,
+  useTonConnectUI,
+  useTonWallet,
+} from "@tonconnect/ui-react";
 // import Address from "@tonconnect/sdk";
 import Link from "next/link";
 // import Image from "next/image";
@@ -18,6 +22,7 @@ import { BiWallet } from "react-icons/bi";
 const Wallet = () => {
   const t = useTranslations("Wallet");
   const [tonConnectUI] = useTonConnectUI();
+  const walletInfo = useTonWallet()?.account.publicKey;
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -114,10 +119,9 @@ const Wallet = () => {
       </div>
       {tonConnectUI && (
         <div>
-          <p>{tonConnectUI?.account?.address}</p>
+          <div>{walletInfo}</div>
           <p>{tonConnectUI?.account?.walletStateInit}</p>
           <p>{tonWalletAddress}</p>
-          <p>{tonConnectUI.wallet?.account.address}</p>
         </div>
       )}
 
