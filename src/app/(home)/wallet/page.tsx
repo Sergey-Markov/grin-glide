@@ -110,53 +110,13 @@ const Wallet = () => {
       </div>
       <div className="flex items-center justify-between bg-emerald-700 rounded-full p-2 pr-4">
         <BiWallet className="w-12 h-12 rounded-full mr-3 bg-teal-950 p-2" />
-        {/* <p className="font-semibold">
-        {tonWalletAddress
-          ? formatAddress(tonWalletAddress)
-          : "Connect a wallet"}
-      </p>
-      <button
-        type="button"
-        onClick={handleWalletAction}
-      >
-        {tonWalletAddress ? "disconnect" : "connect"}
-      </button> */}
+        {tonConnectUI && (
+          <p className="font-semibold text-accent">
+            {currentWallet?.device.appName}
+          </p>
+        )}
         <TonConnectButton />
       </div>
-      {tonConnectUI && (
-        <div>
-          <div>{currentWalletInfo}</div>
-          <div>{currentWallet?.device.appName}</div>
-
-          <p>{tonWalletAddress}</p>
-          <p>{userFriendlyAddress}</p>
-        </div>
-      )}
-
-      {/* <ul className="space-y-4">
-        {walletsList.map(({ id, name, avatarSrc, isConnect }) => (
-          <li
-            key={id}
-            className="flex items-center justify-between bg-emerald-700 rounded-full p-2 pr-4"
-          >
-            <div className="flex items-center">
-              {avatarSrc ? (
-                <Image
-                  className="w-12 h-12 rounded-full mr-3"
-                  src={avatarSrc}
-                  alt={name}
-                  width={500}
-                  height={500}
-                />
-              ) : (
-                <BiWallet className="w-12 h-12 rounded-full mr-3 bg-teal-950 p-2" />
-              )}
-              <p className="font-semibold">{name}</p>
-            </div>
-            {isConnect && <BiCheckDouble className="w-9 h-9 text-success " />}
-          </li>
-        ))}
-      </ul> */}
     </main>
   );
 };
