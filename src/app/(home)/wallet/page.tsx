@@ -112,6 +112,14 @@ const Wallet = () => {
       </button> */}
         <TonConnectButton />
       </div>
+      {tonConnectUI && (
+        <div>
+          <p>{tonConnectUI?.account?.address}</p>
+          <p>{tonConnectUI?.account?.walletStateInit}</p>
+          <p>{tonWalletAddress}</p>
+          <p>{tonConnectUI.wallet?.account.address}</p>
+        </div>
+      )}
 
       {/* <ul className="space-y-4">
         {walletsList.map(({ id, name, avatarSrc, isConnect }) => (
