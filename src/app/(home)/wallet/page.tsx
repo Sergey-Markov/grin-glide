@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 /* eslint-disable no-console */
-// import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { TonConnectButton, useTonConnectUI } from "@tonconnect/ui-react";
 // import Address from "@tonconnect/sdk";
@@ -18,44 +18,43 @@ import { BiWallet } from "react-icons/bi";
 const Wallet = () => {
   const t = useTranslations("Wallet");
   const [tonConnectUI] = useTonConnectUI();
-  console.log(tonConnectUI);
-  // const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // const handleWalletConnection = useCallback((address: string) => {
-  //   setTonWalletAddress(address);
-  //   console.log("Wallet connected successfully");
-  //   setIsLoading(false);
-  // }, []);
+  const handleWalletConnection = useCallback((address: string) => {
+    setTonWalletAddress(address);
+    console.log("Wallet connected successfully");
+    setIsLoading(false);
+  }, []);
 
-  // const handleWalletDisconnection = useCallback(() => {
-  //   setTonWalletAddress(null);
-  //   console.log("Wallet disconnected successfully");
-  //   setIsLoading(false);
-  // }, []);
+  const handleWalletDisconnection = useCallback(() => {
+    setTonWalletAddress(null);
+    console.log("Wallet disconnected successfully");
+    setIsLoading(false);
+  }, []);
 
-  // useEffect(() => {
-  //   const checkWalletConnection = async () => {
-  //     if (tonConnectUI.account?.address) {
-  //       handleWalletConnection(tonConnectUI.account?.address);
-  //     } else {
-  //       handleWalletDisconnection();
-  //     }
-  //   };
-  //   checkWalletConnection();
+  useEffect(() => {
+    const checkWalletConnection = async () => {
+      if (tonConnectUI.account?.address) {
+        handleWalletConnection(tonConnectUI.account?.address);
+      } else {
+        handleWalletDisconnection();
+      }
+    };
+    checkWalletConnection();
 
-  //   const unsubscribe = tonConnectUI.onStatusChange((wallet) => {
-  //     if (wallet) {
-  //       handleWalletConnection(wallet.account.address);
-  //     } else {
-  //       handleWalletDisconnection();
-  //     }
-  //   });
+    const unsubscribe = tonConnectUI.onStatusChange((wallet) => {
+      if (wallet) {
+        handleWalletConnection(wallet.account.address);
+      } else {
+        handleWalletDisconnection();
+      }
+    });
 
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, [tonConnectUI, handleWalletConnection, handleWalletDisconnection]);
+    return () => {
+      unsubscribe();
+    };
+  }, [tonConnectUI, handleWalletConnection, handleWalletDisconnection]);
 
   // const handleWalletAction = async () => {
   //   if (tonConnectUI.connected) {
@@ -74,15 +73,20 @@ const Wallet = () => {
   // const tempAddress = Address.parse(address).toString();
   // return `${tempAddress.slice(0, 4)}...${tempAddress.slice(-4)}`;
 
-  // if (isLoading) {
-  //   return (
-  //     <main className="min-h-screen flex-col items-center justify-center">
-  //       <div className="mb-7">
-  //         <Preloader />
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <main className="min-h-screen flex-col items-center justify-center">
+        <div className="mb-7">
+          <Preloader />
+        </div>
+      </main>
+    );
+  }
+  console.log("tonConnectUI:", tonConnectUI);
+  console.log("tonWalletAddress:", tonWalletAddress);
+  console.log("tonConnectUI.wallet:", tonConnectUI.wallet);
+  console.log("tonConnectUI.account?.address:", tonConnectUI.account?.address);
+
   return (
     <main className="min-h-screen p-4 md:p-8 text-white pb-24 space-y-6">
       <div className="mb-7 flex flex-row justify-between items-center">
