@@ -5,7 +5,7 @@ import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import BtmNav from "@/components/BtmNav/BtmNav";
 
 const stringManifest =
-  "https://gold-ready-angelfish-861.mypinata.cloud/ipfs/bafkreifgcoyel2esliyobndxg2s66xqc5mpzax6xmjzny6q4zhkmxdms3i";
+  "https://gold-ready-angelfish-861.mypinata.cloud/ipfs/bafkreif63q6khjhha7ho5ofwgbc2fwm34utvh6aukiax7rczupbi2ghp5m";
 
 export default function RootLayout({
   children,
