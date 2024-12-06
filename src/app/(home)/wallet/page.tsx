@@ -23,10 +23,14 @@ import { BiWallet } from "react-icons/bi";
 const Wallet = () => {
   const t = useTranslations("Wallet");
   const [tonConnectUI] = useTonConnectUI();
-  const walletInfo = useTonWallet()?.account.address;
+  const walletInfo = useTonWallet();
   const userFriendlyAddress = useTonAddress();
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const currentWallet = tonConnectUI.wallet;
+  const currentWalletInfo = tonConnectUI.connected;
+  console.log(currentWallet, currentWalletInfo);
 
   const handleWalletConnection = useCallback((address: string) => {
     setTonWalletAddress(address);
@@ -121,7 +125,8 @@ const Wallet = () => {
       </div>
       {tonConnectUI && (
         <div>
-          <div>{walletInfo}</div>
+          <div>{walletInfo?.connectItems?.tonProof?.name}</div>
+
           <p>{tonWalletAddress}</p>
           <p>{userFriendlyAddress}</p>
         </div>
