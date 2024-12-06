@@ -125,7 +125,7 @@ const Wallet = () => {
       </div>
       {tonConnectUI && (
         <div>
-          <div>{walletInfo?.connectItems?.tonProof?.name}</div>
+          <div>{currentWalletInfo}</div>
 
           <p>{tonWalletAddress}</p>
           <p>{userFriendlyAddress}</p>
