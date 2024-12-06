@@ -85,12 +85,14 @@ const Wallet = () => {
         </h2>
       </div>
       <div className="flex items-center justify-between bg-emerald-700 rounded-full p-2 pr-4">
-        <BiWallet className="w-12 h-12 rounded-full mr-3 bg-teal-950 p-2" />
-        {tonConnectUI && (
-          <p className="font-semibold text-accent">
-            {currentWallet?.device.appName}
-          </p>
-        )}
+        <div className=" flex-row items-center gap-1">
+          <BiWallet className="w-12 h-12 rounded-full mr-3 bg-teal-950 p-2" />
+          {tonConnectUI && (
+            <p className="font-semibold text-accent underline decoration-emerald-900">
+              {currentWallet?.device.appName}
+            </p>
+          )}
+        </div>
         <TonConnectButton />
       </div>
       <p>{`full address: ${tonWalletAddress}`}</p>
