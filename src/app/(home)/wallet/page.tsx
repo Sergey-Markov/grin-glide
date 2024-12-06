@@ -9,6 +9,7 @@ import {
   TonConnectButton,
   useTonConnectUI,
   useTonWallet,
+  useTonAddress,
 } from "@tonconnect/ui-react";
 // import Address from "@tonconnect/sdk";
 import Link from "next/link";
@@ -23,6 +24,7 @@ const Wallet = () => {
   const t = useTranslations("Wallet");
   const [tonConnectUI] = useTonConnectUI();
   const walletInfo = useTonWallet()?.account.address;
+  const userFriendlyAddress = useTonAddress();
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -120,8 +122,8 @@ const Wallet = () => {
       {tonConnectUI && (
         <div>
           <div>{walletInfo}</div>
-          <p>{tonConnectUI?.account?.walletStateInit}</p>
           <p>{tonWalletAddress}</p>
+          <p>{userFriendlyAddress}</p>
         </div>
       )}
 
