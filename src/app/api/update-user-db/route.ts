@@ -39,17 +39,11 @@ export const PATCH = async (request: Request) => {
     }
 
     // Update the user object with the new fields
-    const result = await usersCollection.updateOne(
+    await usersCollection.updateOne(
       { telegram_id },
       { $set: updateFields } // Use $set to update specific fields
     );
 
-    if (result.modifiedCount === 0) {
-      return NextResponse.json(
-        { message: "No changes were made to the user" },
-        { status: 400 }
-      );
-    }
     const updatedUser = await usersCollection.findOne({ telegram_id });
     return NextResponse.json({
       message: "User updated successfully",
