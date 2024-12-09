@@ -264,7 +264,6 @@ export const tasks: TTask[] = [
     id: "2",
     taskTitle: "connectWallet",
     points: 100,
-    src: pointImg as any,
     approute: "/wallet",
     icon: BiWallet,
   },
