@@ -28,9 +28,7 @@ const Wallet = () => {
             wallet: tonWalletAddress,
             wallet_name: currentWallet?.device.appName,
           };
-          const result = await updateUserFields(user.telegram_id, {
-            ...addWallet,
-          });
+          const result = await updateUserFields(user.telegram_id, addWallet);
           if (result) {
             updateUser(result.userDB);
           }
@@ -51,9 +49,7 @@ const Wallet = () => {
           wallet: "",
           wallet_name: "",
         };
-        const result = await updateUserFields(user.telegram_id, {
-          ...deletedWallet,
-        });
+        const result = await updateUserFields(user.telegram_id, deletedWallet);
         if (result) {
           updateUser(result.userDB);
         }
