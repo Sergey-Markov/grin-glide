@@ -7,24 +7,62 @@ import Link from "next/link";
 import BackBtn from "@/components/BackBtn/BackBtn";
 import Preloader from "@/components/Preloader/Preloader";
 import { BiWallet } from "react-icons/bi";
+import { useUser } from "@/app/contexts/AppContext";
+import { updateUserFields } from "@/services/updateUserFields";
 
 const Wallet = () => {
   const t = useTranslations("Wallet");
   const [tonConnectUI] = useTonConnectUI();
+  const { user, updateUser } = useUser();
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const currentWallet = tonConnectUI.wallet;
 
-  const handleWalletConnection = useCallback((address: string) => {
-    setTonWalletAddress(address);
-    setIsLoading(false);
-  }, []);
+  const handleWalletConnection = useCallback(
+    async (address: string) => {
+      setTonWalletAddress(address);
+      if (user) {
+        try {
+          const addWallet = {
+            wallet: tonWalletAddress,
+            wallet_name: currentWallet?.device.appName,
+          };
+          const result = await updateUserFields(user.telegram_id, {
+            ...addWallet,
+          });
+          if (result) {
+            updateUser(result.userDB);
+          }
+        } catch (error) {
+          throw new Error("Failed to update user wallet");
+        }
+      }
+      setIsLoading(false);
+    },
+    [currentWallet?.device.appName, tonWalletAddress, updateUser, user]
+  );
 
-  const handleWalletDisconnection = useCallback(() => {
+  const handleWalletDisconnection = useCallback(async () => {
     setTonWalletAddress(null);
+    if (user && user.wallet_name && user.wallet) {
+      try {
+        const deletedWallet = {
+          wallet: "",
+          wallet_name: "",
+        };
+        const result = await updateUserFields(user.telegram_id, {
+          ...deletedWallet,
+        });
+        if (result) {
+          updateUser(result.userDB);
+        }
+      } catch (error) {
+        throw new Error("Failed to update user wallet");
+      }
+    }
     setIsLoading(false);
-  }, []);
+  }, [updateUser, user]);
 
   useEffect(() => {
     const checkWalletConnection = async () => {

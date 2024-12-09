@@ -50,6 +50,30 @@ export const getTaskHandler = (
   const completedTasks = user?.completedTasks || [];
 
   switch (taskId) {
+    case "connectWallet":
+      return async () => {
+        if (user && user.friends.length >= 2) {
+          const isAlreadyCompleted = completedTasks.some(
+            (task) => task.id === taskId
+          );
+          if (isAlreadyCompleted) return;
+
+          const newCompletedTask = { id: taskId, isClaimed: false };
+          try {
+            const result = await updateUserFields(user.telegram_id, {
+              completedTasks: [...completedTasks, newCompletedTask],
+            });
+            if (result) {
+              updateUser(result.userDB);
+            }
+          } catch (error) {
+            console.error("Failed to update user completed tasks:", error);
+            throw new Error("Failed to update user completed tasks");
+          }
+          return;
+        }
+        throw new Error();
+      };
     case "inviteTwoFriends":
       return async () => {
         if (user && user.friends.length >= 2) {
