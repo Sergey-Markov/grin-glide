@@ -272,12 +272,14 @@ export const tasks: TTask[] = [
     id: "3",
     taskTitle: "inviteTwoFriends",
     points: 100,
+    approute: "/friends",
     icon: FaHandPeace,
   },
   {
     id: "4",
     taskTitle: "inviteTenFriends",
     points: 100,
+    approute: "/friends",
     icon: FaHandshakeAngle,
   },
   // {
