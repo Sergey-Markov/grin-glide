@@ -45,7 +45,7 @@ const Wallet = () => {
 
   const handleWalletDisconnection = useCallback(async () => {
     setTonWalletAddress(null);
-    if (user && user.wallet_name && user.wallet) {
+    if (user) {
       try {
         const deletedWallet = {
           wallet: "",
@@ -72,6 +72,7 @@ const Wallet = () => {
         handleWalletDisconnection();
       }
     };
+
     checkWalletConnection();
 
     const unsubscribe = tonConnectUI.onStatusChange((wallet) => {
@@ -119,6 +120,7 @@ const Wallet = () => {
         <TonConnectButton />
       </div>
       <p>{`full address: ${tonWalletAddress}`}</p>
+      <p>{`full address: ${user?.wallet_name}, ${user?.wallet}`}</p>
     </main>
   );
 };
