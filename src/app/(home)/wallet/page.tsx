@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
@@ -16,6 +18,7 @@ const Wallet = () => {
   const { user, updateUser } = useUser();
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState("");
 
   const currentWallet = tonConnectUI.wallet;
 
@@ -33,7 +36,7 @@ const Wallet = () => {
             updateUser(result.userDB);
           }
         } catch (error) {
-          throw new Error("Failed to update user wallet");
+          setErr("Failed to update user wallet in handleWalletConnection");
         }
       }
       setIsLoading(false);
@@ -54,7 +57,7 @@ const Wallet = () => {
           updateUser(result.userDB);
         }
       } catch (error) {
-        throw new Error("Failed to update user wallet");
+        setErr("Failed to update user wallet in handleWalletDisconnection");
       }
     }
     setIsLoading(false);
@@ -116,7 +119,8 @@ const Wallet = () => {
         <TonConnectButton />
       </div>
       <p>{`full address: ${tonWalletAddress}`}</p>
-      <p>{`full address: ${user?.wallet_name}, ${user?.wallet}`}</p>
+      <p>{`check user context address: ${user?.wallet_name}, ${user?.wallet}`}</p>
+      <p>{`check err address ${err}`}</p>
     </main>
   );
 };
