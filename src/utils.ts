@@ -52,7 +52,7 @@ export const getTaskHandler = (
   switch (taskId) {
     case "connectWallet":
       return async () => {
-        if (user && user.friends.length >= 2) {
+        if (user && !!user.wallet_name && !!user.wallet) {
           const isAlreadyCompleted = completedTasks.some(
             (task) => task.id === taskId
           );

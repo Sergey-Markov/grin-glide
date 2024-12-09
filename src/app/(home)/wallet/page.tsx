@@ -138,6 +138,7 @@ const Wallet = () => {
         </div>
         <TonConnectButton />
       </div>
+      {user && <p>{`!!user.wallet_name: ${!!user.wallet_name}`}</p>}
       {appErrors && <Toast message={appErrors.message} />}
     </main>
   );
