@@ -11,14 +11,14 @@ import Preloader from "@/components/Preloader/Preloader";
 import { BiWallet } from "react-icons/bi";
 import { useUser } from "@/app/contexts/AppContext";
 import { updateUserFields } from "@/services/updateUserFields";
+import Toast from "@/components/Toast/Toast";
 
 const Wallet = () => {
   const t = useTranslations("Wallet");
   const [tonConnectUI] = useTonConnectUI();
-  const { user, updateUser } = useUser();
+  const { user, updateUser, appErrors, setAppError } = useUser();
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [err, setErr] = useState("");
 
   const currentWallet = tonConnectUI.wallet;
 
@@ -38,14 +38,23 @@ const Wallet = () => {
             updateUser(result.userDB);
           }
         } catch (error) {
-          setErr(
-            `Failed to update user wallet in handleWalletConnection:${error}`
-          );
+          setAppError({
+            message: "TryLater",
+            isShow: true,
+          });
+        } finally {
+          setTimeout(() => setAppError(null), 3500);
         }
       }
       setIsLoading(false);
     },
-    [currentWallet?.device.appName, tonWalletAddress, updateUser, user]
+    [
+      currentWallet?.device.appName,
+      setAppError,
+      tonWalletAddress,
+      updateUser,
+      user,
+    ]
   );
 
   const handleWalletDisconnection = useCallback(async () => {
@@ -63,13 +72,16 @@ const Wallet = () => {
           updateUser(result.userDB);
         }
       } catch (error) {
-        setErr(
-          `Failed to update user wallet in handleWalletDisconnection ${error}`
-        );
+        setAppError({
+          message: "Failed",
+          isShow: true,
+        });
+      } finally {
+        setTimeout(() => setAppError(null), 3500);
       }
     }
     setIsLoading(false);
-  }, [updateUser, user]);
+  }, [setAppError, updateUser, user]);
 
   useEffect(() => {
     const checkWalletConnection = async () => {
@@ -126,9 +138,7 @@ const Wallet = () => {
         </div>
         <TonConnectButton />
       </div>
-      <p>{`full address: ${tonWalletAddress}`}</p>
-      <p>{`check user context address: ${user?.wallet_name}, ${user?.wallet}`}</p>
-      <p>{`check err address ${err}`}</p>
+      {appErrors && <Toast message={appErrors.message} />}
     </main>
   );
 };
