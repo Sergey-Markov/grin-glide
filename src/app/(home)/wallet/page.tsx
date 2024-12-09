@@ -38,7 +38,9 @@ const Wallet = () => {
             updateUser(result.userDB);
           }
         } catch (error) {
-          setErr("Failed to update user wallet in handleWalletConnection");
+          setErr(
+            `Failed to update user wallet in handleWalletConnection:${error}`
+          );
         }
       }
       setIsLoading(false);
@@ -61,7 +63,9 @@ const Wallet = () => {
           updateUser(result.userDB);
         }
       } catch (error) {
-        setErr("Failed to update user wallet in handleWalletDisconnection");
+        setErr(
+          `Failed to update user wallet in handleWalletDisconnection ${error}`
+        );
       }
     }
     setIsLoading(false);
