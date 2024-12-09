@@ -1,8 +1,5 @@
 "use client";
 
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable no-console */
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { TonConnectButton, useTonConnectUI } from "@tonconnect/ui-react";
@@ -21,13 +18,11 @@ const Wallet = () => {
 
   const handleWalletConnection = useCallback((address: string) => {
     setTonWalletAddress(address);
-    console.log("Wallet connected successfully");
     setIsLoading(false);
   }, []);
 
   const handleWalletDisconnection = useCallback(() => {
     setTonWalletAddress(null);
-    console.log("Wallet disconnected successfully");
     setIsLoading(false);
   }, []);
 

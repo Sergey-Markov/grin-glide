@@ -15,6 +15,7 @@ import { IconType } from "react-icons";
 import { FaHandPeace, FaHandshakeAngle } from "react-icons/fa6";
 import { TbBrandCashapp } from "react-icons/tb";
 import pointImg from "@images/coin_png_sqooshed.webp";
+import { BiWallet } from "react-icons/bi";
 
 export const formFirstVoteOptions = [
   {
@@ -260,12 +261,20 @@ export const tasks: TTask[] = [
   },
   {
     id: "2",
+    taskTitle: "connectWallet",
+    points: 100,
+    src: pointImg as any,
+    href: "/wallet",
+    icon: BiWallet,
+  },
+  {
+    id: "3",
     taskTitle: "inviteTwoFriends",
     points: 100,
     icon: FaHandPeace,
   },
   {
-    id: "3",
+    id: "4",
     taskTitle: "inviteTenFriends",
     points: 100,
     icon: FaHandshakeAngle,
