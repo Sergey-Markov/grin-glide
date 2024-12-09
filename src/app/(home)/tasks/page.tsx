@@ -12,12 +12,14 @@ import { checkCompletedTask, getTaskHandler } from "@/utils";
 import { updateUserFields } from "@/services/updateUserFields";
 import TaskBtn from "@/components/TaskBtn/TaskBtn";
 import Toast from "@/components/Toast/Toast";
+import { useRouter } from "next/navigation";
 
 const Tasks = () => {
   const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
     {}
   );
   const { user, updateUser, appErrors, setAppError } = useUser();
+  const router = useRouter();
   const t = useTranslations("Tasks");
 
   const completedTasks = user?.completedTasks || [];
@@ -37,124 +39,137 @@ const Tasks = () => {
         </div>
 
         <ul className="space-y-4">
-          {tasks.map(({ id, icon: TaskIcon, src, taskTitle, points, href }) => {
-            const isTaskCompleted = checkCompletedTask(
-              completedTasks,
-              taskTitle
-            );
+          {tasks.map(
+            ({
+              id,
+              icon: TaskIcon,
+              src,
+              taskTitle,
+              points,
+              href,
+              approute,
+            }) => {
+              const isTaskCompleted = checkCompletedTask(
+                completedTasks,
+                taskTitle
+              );
 
-            const isTaskPointsClaimed = completedTasks.some(
-              (task) => task.id === taskTitle && task.isClaimed
-            );
+              const isTaskPointsClaimed = completedTasks.some(
+                (task) => task.id === taskTitle && task.isClaimed
+              );
 
-            const taskHandler = async () => {
-              try {
-                setLoading(id, true);
-                const taskFn = getTaskHandler(taskTitle, user, updateUser);
-                await taskFn();
-              } catch (error: any) {
-                setAppError({
-                  message: !error.message ? `NotCompleted` : "TryLater",
-                  isShow: true,
-                });
-                console.error(`Failed to complete task ${taskTitle}:`, error);
-              } finally {
-                setLoading(id, false);
-                setTimeout(() => setAppError(null), 3500);
-              }
-            };
-
-            const claimPointHandler = async () => {
-              if (user && isTaskCompleted) {
-                const updatedTasks = completedTasks.map((task) => {
-                  if (task.id === taskTitle) {
-                    return { ...task, isClaimed: true };
-                  }
-
-                  return task;
-                });
-
-                const newPointCount = user.points + points;
-
+              const taskHandler = async () => {
                 try {
                   setLoading(id, true);
-                  const result = await updateUserFields(user.telegram_id, {
-                    points: newPointCount,
-                    completedTasks: updatedTasks,
+                  const taskFn = getTaskHandler(taskTitle, user, updateUser);
+                  await taskFn();
+                } catch (error: any) {
+                  setAppError({
+                    message: !error.message ? `NotCompleted` : "TryLater",
+                    isShow: true,
                   });
-                  if (result) {
-                    updateUser(result.userDB);
-                  }
-                } catch (error) {
-                  console.error(
-                    "Failed to update user completed tasks:",
-                    error
-                  );
+                  console.error(`Failed to complete task ${taskTitle}:`, error);
                 } finally {
                   setLoading(id, false);
+                  setTimeout(() => setAppError(null), 3500);
                 }
-              }
-            };
+              };
 
-            if (isTaskPointsClaimed) {
-              return null;
-            }
-
-            return (
-              <li
-                key={id}
-                className="flex items-center justify-between bg-emerald-700 rounded-xl p-2"
-              >
-                <button
-                  type="button"
-                  className="flex items-center"
-                  onClick={() => {
-                    if (href) {
-                      window.location.href = href;
+              const claimPointHandler = async () => {
+                if (user && isTaskCompleted) {
+                  const updatedTasks = completedTasks.map((task) => {
+                    if (task.id === taskTitle) {
+                      return { ...task, isClaimed: true };
                     }
-                  }}
+
+                    return task;
+                  });
+
+                  const newPointCount = user.points + points;
+
+                  try {
+                    setLoading(id, true);
+                    const result = await updateUserFields(user.telegram_id, {
+                      points: newPointCount,
+                      completedTasks: updatedTasks,
+                    });
+                    if (result) {
+                      updateUser(result.userDB);
+                    }
+                  } catch (error) {
+                    console.error(
+                      "Failed to update user completed tasks:",
+                      error
+                    );
+                  } finally {
+                    setLoading(id, false);
+                  }
+                }
+              };
+
+              if (isTaskPointsClaimed) {
+                return null;
+              }
+
+              return (
+                <li
+                  key={id}
+                  className="flex items-center justify-between bg-emerald-700 rounded-xl p-2"
                 >
-                  <div className="avatar">
-                    <div className="w-10 rounded-xl">
-                      {!src && TaskIcon && <TaskIcon className="w-10 h-10" />}
-                      {src && (
-                        <Image
-                          src={src}
-                          alt="product"
-                          width={500}
-                          height={500}
-                          style={{ objectFit: "cover" }}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  <p
-                    className={classNames("ml-3", {
-                      "text-emerald-300 line-through": isTaskCompleted,
-                      "text-white": !isTaskCompleted,
-                    })}
+                  <button
+                    type="button"
+                    className="flex items-center"
+                    onClick={() => {
+                      if (href) {
+                        window.location.href = href;
+                      }
+                      if (approute) {
+                        router.push(approute);
+                      }
+                    }}
                   >
-                    {t(taskTitle)}
-                  </p>
-                </button>
-                <div className="text-emerald-400">
-                  {isTaskCompleted ? (
-                    <TaskBtn
-                      isLoading={loadingStates[id] || false}
-                      variant="claim"
-                      onClick={claimPointHandler}
-                    />
-                  ) : (
-                    <TaskBtn
-                      isLoading={loadingStates[id] || false}
-                      variant="check"
-                      onClick={taskHandler}
-                    />
-                  )}
-                </div>
-              </li>
-            );
-          })}
+                    <div className="avatar">
+                      <div className="w-10 rounded-xl">
+                        {!src && TaskIcon && <TaskIcon className="w-10 h-10" />}
+                        {src && (
+                          <Image
+                            src={src}
+                            alt="product"
+                            width={500}
+                            height={500}
+                            style={{ objectFit: "cover" }}
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <p
+                      className={classNames("ml-3", {
+                        "text-emerald-300 line-through": isTaskCompleted,
+                        "text-white": !isTaskCompleted,
+                      })}
+                    >
+                      {t(taskTitle)}
+                    </p>
+                  </button>
+                  <div className="text-emerald-400">
+                    {isTaskCompleted ? (
+                      <TaskBtn
+                        isLoading={loadingStates[id] || false}
+                        variant="claim"
+                        onClick={claimPointHandler}
+                      />
+                    ) : (
+                      <TaskBtn
+                        isLoading={loadingStates[id] || false}
+                        variant="check"
+                        onClick={taskHandler}
+                      />
+                    )}
+                  </div>
+                </li>
+              );
+            }
+          )}
         </ul>
         <h2 className="text-2xl font-bold font-mono text-white">
           {t("completedTitle")}

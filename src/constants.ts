@@ -250,6 +250,7 @@ export type TTask = {
   icon?: IconType;
   src?: string;
   href?: string;
+  approute?: string;
 };
 export const tasks: TTask[] = [
   {
@@ -264,7 +265,7 @@ export const tasks: TTask[] = [
     taskTitle: "connectWallet",
     points: 100,
     src: pointImg as any,
-    href: "/wallet",
+    approute: "/wallet",
     icon: BiWallet,
   },
   {
