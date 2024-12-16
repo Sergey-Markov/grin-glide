@@ -131,7 +131,7 @@ const Wallet = () => {
         <div className=" flex items-center">
           <BiWallet className="w-10  h-10 rounded-full mr-1 bg-teal-950 p-2" />
           {tonConnectUI && (
-            <p className="font-semibold text-accent underline decoration-emerald-900">
+            <p className="font-semibold text-slate-900 underline decoration-emerald-900">
               {currentWallet?.device.appName}
             </p>
           )}
