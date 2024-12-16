@@ -10,10 +10,11 @@ import MainHeader from "@/components/MainHeader/MainHeader";
 import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import { useUser } from "@/app/contexts/AppContext";
 import { updateVoteFields } from "@/services/updateVoteFields";
+import { updateUserFields } from "@/services/updateUserFields";
 import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
 
 const HomePage = () => {
-  const { user, setIsNewUser, isNewUser } = useUser();
+  const { user, setIsNewUser, isNewUser, updateUser } = useUser();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModalHandler = () => {
@@ -30,13 +31,33 @@ const HomePage = () => {
     };
     try {
       if (user) {
-        await updateVoteFields("becomeGring", user.telegram_id, newUpdatesObj);
+        const result = await updateVoteFields(
+          "becomeGring",
+          user.telegram_id,
+          newUpdatesObj
+        );
+        if (result) {
+          const newCompletedTask = { id: "becomeGring", isClaimed: false };
+          const completedTasks = user?.completedTasks || [];
+          const resultOfAddCompletedTask = await updateUserFields(
+            user.telegram_id,
+            {
+              completedTasks: [...completedTasks, newCompletedTask],
+            }
+          );
+          if (resultOfAddCompletedTask) {
+            updateUser(result.userDB);
+          }
+        }
       }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
     }
   };
+  const completeVote = user?.completedTasks.some(
+    (task) => task.id === "becomeGring"
+  );
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
@@ -50,16 +71,20 @@ const HomePage = () => {
         )}
         <Menu open={isOpen} />
         <main className="p-4">
-          <section
-            id="hero-home"
-            className="flex justify-center items-center mb-8"
-          >
-            <HeroStartTask />
-          </section>
-          <VoteForm
-            onSend={sendFirstVouteFormHandler}
-            options={formFirstVoteOptions}
-          />
+          {!completeVote && (
+            <div>
+              <section
+                id="hero-home"
+                className="flex justify-center items-center mb-8"
+              >
+                <HeroStartTask />
+              </section>
+              <VoteForm
+                onSend={sendFirstVouteFormHandler}
+                options={formFirstVoteOptions}
+              />
+            </div>
+          )}
         </main>
       </div>
       {isNewUser && <ModalWellcomeGift closeModal={closeModalHandler} />}
