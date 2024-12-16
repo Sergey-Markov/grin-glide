@@ -72,7 +72,7 @@ const HomePage = () => {
         )}
         <Menu open={isOpen} />
         <main className="p-4">
-          {!isCompletedVote ? (
+          {isCompletedVote ? (
             <LogoIcon />
           ) : (
             <div>
