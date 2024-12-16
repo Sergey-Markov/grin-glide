@@ -40,8 +40,8 @@ export const PATCH = async (request: Request) => {
       );
     }
 
-    const { voteOption } = updateFields; // Наприклад, "pirate"
-    if (!voteOption) {
+    const { voteResult } = updateFields; // Наприклад, "pirate"
+    if (!voteResult) {
       return NextResponse.json(
         { message: "Missing vote option" },
         { status: 400 }
@@ -52,7 +52,7 @@ export const PATCH = async (request: Request) => {
     await voteCollection.updateOne(
       { voteName },
       {
-        $inc: { [`voteResult.${voteOption}`]: 1 }, // Збільшити значення
+        $inc: { [`voteResult.${voteResult}`]: 1 }, // Збільшити значення
         $addToSet: { users: telegram_id }, // Додати користувача до списку
       }
     );
