@@ -12,6 +12,7 @@ import { useUser } from "@/app/contexts/AppContext";
 import { updateVoteFields } from "@/services/updateVoteFields";
 import { updateUserFields } from "@/services/updateUserFields";
 import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
+import LogoIcon from "../LogoIcon/LogoIcon";
 
 const HomePage = () => {
   const { user, setIsNewUser, isNewUser, updateUser } = useUser();
@@ -55,7 +56,7 @@ const HomePage = () => {
       console.log(error);
     }
   };
-  const completeVote = user?.completedTasks.some(
+  const isCompletedVote = user?.completedTasks.some(
     (task) => task.id === "becomeGring"
   );
 
@@ -71,7 +72,9 @@ const HomePage = () => {
         )}
         <Menu open={isOpen} />
         <main className="p-4">
-          {!completeVote && (
+          {!isCompletedVote ? (
+            <LogoIcon />
+          ) : (
             <div>
               <section
                 id="hero-home"
