@@ -8,7 +8,7 @@ import {
 } from "react-icons/io5";
 import { BsFillBarChartLineFill, BsFillInfoCircleFill } from "react-icons/bs";
 import { LuCalendarHeart } from "react-icons/lu";
-import { FaHandsHelping } from "react-icons/fa";
+import { FaHandsHelping, FaVoteYea } from "react-icons/fa";
 import { GoTasklist } from "react-icons/go";
 import { GiStarsStack, GiThreeFriends } from "react-icons/gi";
 import { IconType } from "react-icons";
@@ -280,6 +280,13 @@ export const tasks: TTask[] = [
     points: 100,
     approute: "/friends",
     icon: FaHandshakeAngle,
+  },
+  {
+    id: "5",
+    taskTitle: "becomeGring",
+    points: 200,
+    approute: "/",
+    icon: FaVoteYea,
   },
   // {
   //   id: "4",
