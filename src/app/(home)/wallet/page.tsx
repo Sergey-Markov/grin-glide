@@ -118,7 +118,7 @@ const Wallet = () => {
   }
 
   return (
-    <main className="min-h-screen p-4 md:p-8 text-white pb-24 space-y-6">
+    <main className="min-h-screen  p-4 md:p-8 text-white pb-24 space-y-6">
       <div className="mb-7 flex flex-row justify-between items-center">
         <Link href="/">
           <BackBtn />
