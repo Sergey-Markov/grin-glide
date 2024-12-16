@@ -13,6 +13,7 @@ import { updateVoteFields } from "@/services/updateVoteFields";
 import { updateUserFields } from "@/services/updateUserFields";
 import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
 import LogoIcon from "../LogoIcon/LogoIcon";
+import Preloader from "../Preloader/Preloader";
 
 const HomePage = () => {
   const { user, setIsNewUser, isNewUser, updateUser } = useUser();
@@ -56,6 +57,10 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
+  if (!user) {
+    return <Preloader />;
+  }
   const isCompletedVote = user?.completedTasks.some(
     (task) => task.id === "becomeGring"
   );
