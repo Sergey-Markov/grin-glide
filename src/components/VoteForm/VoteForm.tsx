@@ -1,25 +1,30 @@
 "use client";
 
+/* eslint-disable no-unused-vars */
+
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 interface VoteFormProps {
+  onSend: (voteResult: string) => Promise<any>;
   options: any[];
 }
 
-type TVote = {
-  futureGrinG: string;
-};
-
-const VoteForm = ({ options }: VoteFormProps) => {
-  // eslint-disable-next-line no-unused-vars
-  const [voteResult, setVoteResult] = useState<TVote | null>(null);
+const VoteForm = ({ onSend, options }: VoteFormProps) => {
+  const [voteResult, setVoteResult] = useState<string>("pirate");
   const t = useTranslations("VoteForm");
 
   const onChangeHandler = (e: { target: { value: string } }) => {
-    setVoteResult({
-      futureGrinG: e.target.value,
-    });
+    setVoteResult(e.target.value);
+  };
+
+  const onClickHandler = async () => {
+    try {
+      await onSend(voteResult);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
   };
 
   return (
@@ -30,7 +35,7 @@ const VoteForm = ({ options }: VoteFormProps) => {
       <p className="mb-4">{t("1quest")}</p>
       <form className="flex gap-4 flex-col items-center">
         <div className="flex gap-1 justify-center">
-          {options.map(({ id, name, valueField, checked }) => (
+          {options.map(({ id, name, valueField }) => (
             <input
               key={id}
               type="radio"
@@ -39,13 +44,14 @@ const VoteForm = ({ options }: VoteFormProps) => {
               aria-label={t(valueField)}
               className="btn"
               onChange={onChangeHandler}
-              defaultChecked={checked}
+              checked={voteResult === valueField}
             />
           ))}
         </div>
         <button
-          type="submit"
+          type="button"
           className="btn  btn-success"
+          onClick={onClickHandler}
         >
           {t("confirmBtn")}
         </button>
