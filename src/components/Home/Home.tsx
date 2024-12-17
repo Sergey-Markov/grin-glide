@@ -90,7 +90,7 @@ const HomePage = () => {
           {isCompletedVote ? (
             <section
               id="hero-home"
-              className="flex justify-center items-center mb-8 w-full  h-full"
+              className="flex justify-center items-center mb-8 bg-transparent min-h-screen p-4 md:p-8"
             >
               <LogoIcon />
             </section>
