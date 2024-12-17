@@ -92,7 +92,7 @@ const HomePage = () => {
               id="hero-home"
               className="flex justify-center items-center mb-8 bg-transparent  p-4 md:p-8"
             >
-              <div className="ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-80 h-80">
+              <div className="ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-72 h-72 ">
                 <LogoIcon />
               </div>
             </section>
