@@ -50,7 +50,7 @@ const HomePage = () => {
           );
           console.log("resultOfAddCompletedTask:", resultOfAddCompletedTask);
           if (resultOfAddCompletedTask) {
-            updateUser(result.userDB);
+            updateUser(resultOfAddCompletedTask.userDB);
             console.log("we here user is updated:", user);
           }
         }
