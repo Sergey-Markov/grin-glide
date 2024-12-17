@@ -164,6 +164,16 @@ export const getTaskHandler = (
           }
         }
       };
+    case "becomeGring":
+      return async () => {
+        if (user) {
+          const isCompletedVote = user?.completedTasks.some(
+            (task) => task.id === taskId
+          );
+          if (isCompletedVote) return;
+        }
+        throw new Error();
+      };
 
     default:
       return async () => {
