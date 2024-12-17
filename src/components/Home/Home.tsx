@@ -72,6 +72,8 @@ const HomePage = () => {
     isClaimed: false || true,
   });
 
+  console.log("user:", user);
+
   return (
     <div className="font-sans text-white min-h-screen pb-12">
       <div className="relative mx-auto px-3 py-6 overflow-hidden">
