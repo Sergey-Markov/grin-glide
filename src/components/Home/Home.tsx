@@ -72,6 +72,8 @@ const HomePage = () => {
     isClaimed: false || true,
   });
 
+  console.log("isCompletedVote:", isCompletedVote);
+
   console.log("user:", user);
 
   return (
