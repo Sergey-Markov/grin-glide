@@ -27,40 +27,41 @@ const HomePage = () => {
     setIsOpen(!isOpen);
   };
 
-  if (!user) {
-    return <Preloader />;
-  }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const sendFirstVouteFormHandler = useCallback(
     async (value: string) => {
       const newUpdatesObj = { voteResult: value };
-      try {
-        const result = await updateVoteFields(
-          "becomeGring",
-          user.telegram_id,
-          newUpdatesObj
-        );
-        if (result) {
-          const newCompletedTask = { id: "becomeGring", isClaimed: false };
-          const completedTasks = user.completedTasks || [];
-          const resultOfAddCompletedTask = await updateUserFields(
+      if (user) {
+        try {
+          const result = await updateVoteFields(
+            "becomeGring",
             user.telegram_id,
-            {
-              completedTasks: [...completedTasks, newCompletedTask],
-            }
+            newUpdatesObj
           );
-          if (resultOfAddCompletedTask) {
-            updateUser(result.userDB);
+          if (result) {
+            const newCompletedTask = { id: "becomeGring", isClaimed: false };
+            const completedTasks = user.completedTasks || [];
+            const resultOfAddCompletedTask = await updateUserFields(
+              user.telegram_id,
+              {
+                completedTasks: [...completedTasks, newCompletedTask],
+              }
+            );
+            if (resultOfAddCompletedTask) {
+              updateUser(result.userDB);
+            }
           }
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.log(error);
         }
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
       }
     },
     [user, updateUser]
   );
+
+  if (!user) {
+    return <Preloader />;
+  }
 
   const isCompletedVote = user.completedTasks.some(
     (task) => task.id === "becomeGring"
