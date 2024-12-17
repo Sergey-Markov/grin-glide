@@ -1,8 +1,9 @@
-/* eslint-disable camelcase */
-
 "use client";
 
-import { useMemo, useState } from "react";
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+
+import { useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
@@ -47,7 +48,8 @@ const HomePage = () => {
               completedTasks: [...completedTasks, newCompletedTask],
             }
           );
-          if (resultOfAddCompletedTask) {
+          console.log("resultOfAddCompletedTask:", resultOfAddCompletedTask);
+          if (resultOfAddCompletedTask.status === 200) {
             updateUser(result.userDB);
           }
         }
@@ -58,30 +60,30 @@ const HomePage = () => {
     }
   };
 
-  const isCompletedVote = useMemo(
-    () => user?.completedTasks.some((task) => task.id === "becomeGring"),
-    [user]
-  );
-
   if (!user) {
     return <Preloader />;
   }
 
+  const isCompletedVote = user?.completedTasks.some(
+    (task) => task.id === "becomeGring"
+  );
+
   return (
     <div className="font-sans text-white min-h-screen pb-12">
       <div className="relative mx-auto px-3 py-6 overflow-hidden">
-        <MainHeader
-          open={isOpen}
-          openToggler={openMenuHandler}
-          userDB={user}
-        />
-
+        {user && (
+          <MainHeader
+            open={isOpen}
+            openToggler={openMenuHandler}
+            userDB={user}
+          />
+        )}
         <Menu open={isOpen} />
         <main className="p-4">
           {isCompletedVote ? (
             <LogoIcon />
           ) : (
-            <>
+            <div>
               <section
                 id="hero-home"
                 className="flex justify-center items-center mb-8"
@@ -92,7 +94,7 @@ const HomePage = () => {
                 onSend={sendFirstVouteFormHandler}
                 options={formFirstVoteOptions}
               />
-            </>
+            </div>
           )}
         </main>
       </div>
