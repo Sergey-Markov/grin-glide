@@ -88,7 +88,12 @@ const HomePage = () => {
         <Menu open={isOpen} />
         <main className="p-4">
           {isCompletedVote ? (
-            <LogoIcon />
+            <section
+              id="hero-home"
+              className="flex justify-center items-center mb-8"
+            >
+              <LogoIcon />
+            </section>
           ) : (
             <div>
               <section
