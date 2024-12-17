@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
@@ -27,12 +27,15 @@ const HomePage = () => {
     setIsOpen(!isOpen);
   };
 
-  const sendFirstVouteFormHandler = async (value: string) => {
-    const newUpdatesObj = {
-      voteResult: value,
-    };
-    try {
-      if (user) {
+  if (!user) {
+    return <Preloader />;
+  }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const sendFirstVouteFormHandler = useCallback(
+    async (value: string) => {
+      const newUpdatesObj = { voteResult: value };
+      try {
         const result = await updateVoteFields(
           "becomeGring",
           user.telegram_id,
@@ -40,7 +43,7 @@ const HomePage = () => {
         );
         if (result) {
           const newCompletedTask = { id: "becomeGring", isClaimed: false };
-          const completedTasks = user?.completedTasks || [];
+          const completedTasks = user.completedTasks || [];
           const resultOfAddCompletedTask = await updateUserFields(
             user.telegram_id,
             {
@@ -51,36 +54,32 @@ const HomePage = () => {
             updateUser(result.userDB);
           }
         }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
       }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    }
-  };
+    },
+    [user, updateUser]
+  );
 
-  if (!user) {
-    return <Preloader />;
-  }
-  const isCompletedVote = user?.completedTasks.some(
+  const isCompletedVote = user.completedTasks.some(
     (task) => task.id === "becomeGring"
   );
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
       <div className="relative mx-auto px-3 py-6 overflow-hidden">
-        {user && (
-          <MainHeader
-            open={isOpen}
-            openToggler={openMenuHandler}
-            userDB={user}
-          />
-        )}
+        <MainHeader
+          open={isOpen}
+          openToggler={openMenuHandler}
+          userDB={user}
+        />
         <Menu open={isOpen} />
         <main className="p-4">
           {isCompletedVote ? (
             <LogoIcon />
           ) : (
-            <div>
+            <>
               <section
                 id="hero-home"
                 className="flex justify-center items-center mb-8"
@@ -91,7 +90,7 @@ const HomePage = () => {
                 onSend={sendFirstVouteFormHandler}
                 options={formFirstVoteOptions}
               />
-            </div>
+            </>
           )}
         </main>
       </div>
