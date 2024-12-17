@@ -49,8 +49,9 @@ const HomePage = () => {
             }
           );
           console.log("resultOfAddCompletedTask:", resultOfAddCompletedTask);
-          if (resultOfAddCompletedTask.status === 200) {
+          if (resultOfAddCompletedTask) {
             updateUser(result.userDB);
+            console.log("we here user is updated:", user);
           }
         }
       }
