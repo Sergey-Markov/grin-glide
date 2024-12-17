@@ -1,6 +1,6 @@
 const LogoIcon = () => (
   <svg
-    className="absolute top-0 left-0 w-full h-full"
+    className="w-full h-full"
     viewBox="0 0 514 514"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
