@@ -5,7 +5,7 @@ import Image from "next/image";
 import babyImg from "@images/gring-baby.png";
 
 const HeroStartTask = memo(() => (
-  <div className="relative ring-primary ring-offset-base-100 w-80 h-80 rounded-full ring ring-offset-2">
+  <div className="relative ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-80 h-80 ">
     <Image
       className="absolute z-10"
       src={babyImg}
