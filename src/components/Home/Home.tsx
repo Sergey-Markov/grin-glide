@@ -65,13 +65,13 @@ const HomePage = () => {
     return <Preloader />;
   }
 
-  // const isCompletedVote = user?.completedTasks.some(
-  //   (task) => task.id === "becomeGring"
-  // );
-  const isCompletedVote = user?.completedTasks.includes({
-    id: "becomeGring",
-    isClaimed: false || true,
-  });
+  const isCompletedVote = user?.completedTasks.some(
+    (task) => task.id === "becomeGring"
+  );
+  // const isCompletedVote = user?.completedTasks.includes({
+  //   id: "becomeGring",
+  //   isClaimed: false || true,
+  // });
 
   console.log("isCompletedVote:", isCompletedVote);
 
