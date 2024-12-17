@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useCallback, useState } from "react";
+import { useMemo, useState } from "react";
 import VoteForm from "@/components/VoteForm/VoteForm";
 import { formFirstVoteOptions } from "@/constants";
 import Menu from "@/components/Menu/Menu";
@@ -27,45 +27,45 @@ const HomePage = () => {
     setIsOpen(!isOpen);
   };
 
-  const sendFirstVouteFormHandler = useCallback(
-    async (value: string) => {
-      const newUpdatesObj = { voteResult: value };
+  const sendFirstVouteFormHandler = async (value: string) => {
+    const newUpdatesObj = {
+      voteResult: value,
+    };
+    try {
       if (user) {
-        try {
-          const result = await updateVoteFields(
-            "becomeGring",
+        const result = await updateVoteFields(
+          "becomeGring",
+          user.telegram_id,
+          newUpdatesObj
+        );
+        if (result) {
+          const newCompletedTask = { id: "becomeGring", isClaimed: false };
+          const completedTasks = user?.completedTasks || [];
+          const resultOfAddCompletedTask = await updateUserFields(
             user.telegram_id,
-            newUpdatesObj
-          );
-          if (result) {
-            const newCompletedTask = { id: "becomeGring", isClaimed: false };
-            const completedTasks = user.completedTasks || [];
-            const resultOfAddCompletedTask = await updateUserFields(
-              user.telegram_id,
-              {
-                completedTasks: [...completedTasks, newCompletedTask],
-              }
-            );
-            if (resultOfAddCompletedTask) {
-              updateUser(result.userDB);
+            {
+              completedTasks: [...completedTasks, newCompletedTask],
             }
+          );
+          if (resultOfAddCompletedTask) {
+            updateUser(result.userDB);
           }
-        } catch (error) {
-          // eslint-disable-next-line no-console
-          console.log(error);
         }
       }
-    },
-    [user, updateUser]
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+  };
+
+  const isCompletedVote = useMemo(
+    () => user?.completedTasks.some((task) => task.id === "becomeGring"),
+    [user]
   );
 
   if (!user) {
     return <Preloader />;
   }
-
-  const isCompletedVote = user.completedTasks.some(
-    (task) => task.id === "becomeGring"
-  );
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
@@ -75,6 +75,7 @@ const HomePage = () => {
           openToggler={openMenuHandler}
           userDB={user}
         />
+
         <Menu open={isOpen} />
         <main className="p-4">
           {isCompletedVote ? (
