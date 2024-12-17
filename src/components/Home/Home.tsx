@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable no-console */
 /* eslint-disable camelcase */
 
 import { useState } from "react";
@@ -15,9 +14,12 @@ import { updateUserFields } from "@/services/updateUserFields";
 import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
 import LogoIcon from "../LogoIcon/LogoIcon";
 import Preloader from "../Preloader/Preloader";
+import Toast from "../Toast/Toast";
 
 const HomePage = () => {
-  const { user, setIsNewUser, isNewUser, updateUser } = useUser();
+  const { user, setIsNewUser, isNewUser, updateUser, appErrors, setAppError } =
+    useUser();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModalHandler = () => {
@@ -34,6 +36,7 @@ const HomePage = () => {
     };
     try {
       if (user) {
+        setIsLoading(true);
         const result = await updateVoteFields(
           "becomeGring",
           user.telegram_id,
@@ -48,34 +51,29 @@ const HomePage = () => {
               completedTasks: [...completedTasks, newCompletedTask],
             }
           );
-          console.log("resultOfAddCompletedTask:", resultOfAddCompletedTask);
           if (resultOfAddCompletedTask) {
             updateUser(resultOfAddCompletedTask.userDB);
-            console.log("we here user is updated:", user);
           }
         }
       }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+    } catch (error: any) {
+      setAppError({
+        message: !error.message ? `NotCompleted` : "TryLater",
+        isShow: true,
+      });
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setAppError(null), 3500);
     }
   };
 
-  if (!user) {
+  if (!user || isLoading) {
     return <Preloader />;
   }
 
   const isCompletedVote = user?.completedTasks.some(
     (task) => task.id === "becomeGring"
   );
-  // const isCompletedVote = user?.completedTasks.includes({
-  //   id: "becomeGring",
-  //   isClaimed: false || true,
-  // });
-
-  console.log("isCompletedVote:", isCompletedVote);
-
-  console.log("user:", user);
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
@@ -107,6 +105,7 @@ const HomePage = () => {
           )}
         </main>
       </div>
+      {appErrors && <Toast message={appErrors.message} />}
       {isNewUser && <ModalWellcomeGift closeModal={closeModalHandler} />}
     </div>
   );
