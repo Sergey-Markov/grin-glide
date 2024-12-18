@@ -12,9 +12,9 @@ import { useUser } from "@/app/contexts/AppContext";
 import { updateVoteFields } from "@/services/updateVoteFields";
 import { updateUserFields } from "@/services/updateUserFields";
 import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
-import LogoIcon from "../LogoIcon/LogoIcon";
 import Preloader from "../Preloader/Preloader";
 import Toast from "../Toast/Toast";
+import MiningBtnSection from "../MiningBtnSection/MiningBtnSection";
 
 const HomePage = () => {
   const { user, setIsNewUser, isNewUser, updateUser, appErrors, setAppError } =
@@ -88,14 +88,7 @@ const HomePage = () => {
         <Menu open={isOpen} />
         <main className="p-4">
           {isCompletedVote ? (
-            <section
-              id="hero-home"
-              className="flex justify-center items-center mb-8 bg-transparent  p-4 md:p-8"
-            >
-              <div className="ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-72 h-72 ">
-                <LogoIcon />
-              </div>
-            </section>
+            <MiningBtnSection />
           ) : (
             <div>
               <section
