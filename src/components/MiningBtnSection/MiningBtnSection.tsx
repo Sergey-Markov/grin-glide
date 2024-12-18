@@ -42,6 +42,12 @@ const MiningBtnSection = () => {
       onMouseLeave={stopSearch}
       onTouchStart={startSearch}
       onTouchEnd={stopSearch}
+      onContextMenu={(e) => e.preventDefault()} // Отключение контекстного меню
+      style={{
+        userSelect: "none", // Отключение выделения текста
+        WebkitUserSelect: "none",
+        msUserSelect: "none",
+      }}
     >
       <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,255,150,0.03)1px,transparent_1px),linear-gradient(90deg,rgba(0,255,150,0.03)1px,transparent_1px)] bg-[size:20px_20px] " />
 
