@@ -34,7 +34,7 @@ const MiningBtnSection = () => {
   return (
     <button
       type="button"
-      className={`relative  flex justify-center items-center mb-8 bg-transparent  p-4 md:p-8 cursor-pointer ${
+      className={`relative mx-auto my-0 flex justify-center items-center mb-8 bg-transparent  p-4 md:p-8 cursor-pointer ${
         isSearching ? "animate-pulse" : ""
       }`}
       onMouseDown={startSearch}
@@ -45,7 +45,7 @@ const MiningBtnSection = () => {
     >
       <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,255,150,0.03)1px,transparent_1px),linear-gradient(90deg,rgba(0,255,150,0.03)1px,transparent_1px)] bg-[size:20px_20px] " />
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-72 h-72 ">
+      <div className="ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-72 h-72 ">
         <LogoIcon />
       </div>
     </button>
