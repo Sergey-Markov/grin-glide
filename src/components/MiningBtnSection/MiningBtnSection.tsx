@@ -5,30 +5,37 @@ import LogoIcon from "../LogoIcon/LogoIcon";
 
 const MiningBtnSection = () => {
   const [isSearching, setIsSearching] = useState(false);
-  // const [coordinates, setCoordinates] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState(10); // Таймер на 10 секунд
   const searchTimeout = useRef<any | null>(null);
+  const intervalRef = useRef<any | null>(null);
 
   const startSearch = () => {
     setIsSearching(true);
-    // setCoordinates(null);
+    setTimeLeft(10); // Устанавливаем начальное значение таймера
 
-    if (searchTimeout.current) {
-      clearTimeout(searchTimeout.current);
-    }
+    // Обновляем таймер каждую секунду
+    intervalRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(intervalRef.current); // Останавливаем таймер
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
+    // Устанавливаем таймаут завершения
     searchTimeout.current = setTimeout(() => {
-      // const randomLat = (Math.random() * 180 - 90).toFixed(6);
-      // const randomLng = (Math.random() * 360 - 180).toFixed(6);
-      // setCoordinates(`${randomLat}, ${randomLng}`);
       setIsSearching(false);
+      clearInterval(intervalRef.current); // Останавливаем таймер
     }, 10000);
   };
 
   const stopSearch = () => {
     setIsSearching(false);
-    if (searchTimeout.current) {
-      clearTimeout(searchTimeout.current);
-    }
+    clearTimeout(searchTimeout.current); // Очищаем таймаут
+    clearInterval(intervalRef.current); // Останавливаем таймер
+    setTimeLeft(10); // Сбрасываем таймер
   };
 
   return (
@@ -54,6 +61,11 @@ const MiningBtnSection = () => {
       <div className="ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-72 h-72 ">
         <LogoIcon />
       </div>
+      {isSearching && (
+        <span className="absolute top-full mt-4 text-white text-lg">
+          {`${timeLeft}s`}
+        </span>
+      )}
     </button>
   );
 };
