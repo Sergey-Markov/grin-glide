@@ -62,7 +62,7 @@ const MiningBtnSection = () => {
         <LogoIcon />
       </div>
       {isSearching && (
-        <span className="absolute top-full mt-4 text-white text-lg bg-sky-950">
+        <span className="btn btn-lg absolute top-full mt-4 text-lg text-emerald-400">
           {`00:${timeLeft}s`}
         </span>
       )}
