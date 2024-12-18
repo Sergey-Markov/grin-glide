@@ -38,6 +38,8 @@ const MiningBtnSection = () => {
     setTimeLeft(10); // Сбрасываем таймер
   };
 
+  const timeLeftNormalize = `00:${String(timeLeft).padStart(2, "0")}s`;
+
   return (
     <button
       type="button"
@@ -63,7 +65,7 @@ const MiningBtnSection = () => {
       </div>
       {isSearching && (
         <span className="btn btn-md absolute top-full mt-4 text-md text-emerald-400">
-          {`00:${String(timeLeft).padStart(2, "0")}s`}
+          {timeLeftNormalize}
         </span>
       )}
     </button>
