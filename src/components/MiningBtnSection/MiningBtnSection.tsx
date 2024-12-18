@@ -63,7 +63,7 @@ const MiningBtnSection = () => {
       </div>
       {isSearching && (
         <span className="btn btn-md absolute top-full mt-4 text-md text-emerald-400">
-          {`00:${timeLeft}s`}
+          {`00:${String(timeLeft).padStart(2, "0")}s`}
         </span>
       )}
     </button>
