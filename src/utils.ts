@@ -181,3 +181,16 @@ export const getTaskHandler = (
       };
   }
 };
+
+export const getTimeUntilMidnight = () => {
+  const now = new Date();
+  const midnight = new Date(now);
+  midnight.setHours(24, 0, 0, 0); // Устанавливаем время на 00:00 следующего дня
+  const diff = midnight.getTime() - now.getTime();
+
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  return { hours, minutes, seconds };
+};

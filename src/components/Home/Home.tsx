@@ -16,6 +16,7 @@ import Preloader from "../Preloader/Preloader";
 import Toast from "../Toast/Toast";
 import MiningBtnSection from "../MiningBtnSection/MiningBtnSection";
 import ModalDailyGift from "../ModalDailyGift/ModalDailyGift";
+import NextClaimTimer from "../NextClaimTimer/NextClaimTimer";
 
 const currentDate = new Date().toISOString().split("T")[0];
 
@@ -85,6 +86,7 @@ const HomePage = () => {
   const isCompletedVote = user?.completedTasks.some(
     (task) => task.id === "becomeGring"
   );
+
   const NotCheckedDailyReward = user.lastResetDailyTask !== currentDate;
 
   return (
@@ -98,6 +100,7 @@ const HomePage = () => {
           />
         )}
         <Menu open={isOpen} />
+        {!NotCheckedDailyReward && <NextClaimTimer />}
         <main className="p-4">
           {isCompletedVote ? (
             <MiningBtnSection
