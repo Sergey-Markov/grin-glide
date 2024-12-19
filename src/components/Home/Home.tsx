@@ -105,6 +105,7 @@ const HomePage = () => {
           {isCompletedVote ? (
             <MiningBtnSection
               onOpenModalDailyGift={openModalDailyGiftHandler}
+              canClaim={NotCheckedDailyReward}
             />
           ) : (
             <div>

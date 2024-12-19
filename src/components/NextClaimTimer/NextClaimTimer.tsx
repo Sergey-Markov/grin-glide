@@ -14,12 +14,15 @@ const NextClaimTimer = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const currentCountdownTimer = `${String(timeLeft.hours).padStart(2, "0")}:
-        ${String(timeLeft.minutes).padStart(2, "0")}:
-        ${String(timeLeft.seconds).padStart(2, "0")}`;
+  const currentCountdownTimer = `claim: ${String(timeLeft.hours).padStart(
+    2,
+    "0"
+  )}:${String(timeLeft.minutes).padStart(2, "0")}:${String(
+    timeLeft.seconds
+  ).padStart(2, "0")}`;
 
   return (
-    <p className="btn btn-md absolute top-full mt-4 text-md text-emerald-400">
+    <p className="btn btn-xs text-md text-emerald-400">
       {currentCountdownTimer}
     </p>
   );

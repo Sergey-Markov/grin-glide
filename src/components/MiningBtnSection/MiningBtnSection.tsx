@@ -4,35 +4,41 @@ import { useRef, useState } from "react";
 import LogoIcon from "../LogoIcon/LogoIcon";
 
 interface IMiningBtnSection {
+  canClaim: boolean;
   onOpenModalDailyGift: () => void;
 }
 
-const MiningBtnSection = ({ onOpenModalDailyGift }: IMiningBtnSection) => {
+const MiningBtnSection = ({
+  canClaim = true,
+  onOpenModalDailyGift,
+}: IMiningBtnSection) => {
   const [isSearching, setIsSearching] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10); // Таймер на 10 секунд
   const searchTimeout = useRef<any | null>(null);
   const intervalRef = useRef<any | null>(null);
 
   const startSearch = () => {
-    setIsSearching(true);
-    setTimeLeft(10); // Устанавливаем начальное значение таймера
+    if (canClaim) {
+      setIsSearching(true);
+      setTimeLeft(10); // Устанавливаем начальное значение таймера
 
-    // Обновляем таймер каждую секунду
-    intervalRef.current = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(intervalRef.current); // Останавливаем таймер
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+      // Обновляем таймер каждую секунду
+      intervalRef.current = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(intervalRef.current); // Останавливаем таймер
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
 
-    // Устанавливаем таймаут завершения
-    searchTimeout.current = setTimeout(() => {
-      setIsSearching(false);
-      clearInterval(intervalRef.current); // Останавливаем таймер
-    }, 10000);
+      // Устанавливаем таймаут завершения
+      searchTimeout.current = setTimeout(() => {
+        setIsSearching(false);
+        clearInterval(intervalRef.current); // Останавливаем таймер
+      }, 10000);
+    }
   };
 
   const stopSearch = async () => {
@@ -68,7 +74,7 @@ const MiningBtnSection = ({ onOpenModalDailyGift }: IMiningBtnSection) => {
       <div className="ring-primary ring-offset-base-100 rounded-full ring ring-offset-2 w-72 h-72 ">
         <LogoIcon />
       </div>
-      {isSearching && (
+      {isSearching && canClaim && (
         <span className="btn btn-md absolute top-full mt-4 text-md text-emerald-400">
           {timeLeftNormalize}
         </span>
