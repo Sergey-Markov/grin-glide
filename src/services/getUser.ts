@@ -41,6 +41,7 @@ export async function getUser(user: TelegramUser) {
               wallet: "",
               wallet_name: "",
               investment_sum: [],
+              lastResetDailyTask: "",
             };
 
             const resultOfAddNewUser = await addNewUser(dbUser);

@@ -3,7 +3,11 @@
 import { useRef, useState } from "react";
 import LogoIcon from "../LogoIcon/LogoIcon";
 
-const MiningBtnSection = () => {
+interface IMiningBtnSection {
+  onOpenModalDailyGift: () => void;
+}
+
+const MiningBtnSection = ({ onOpenModalDailyGift }: IMiningBtnSection) => {
   const [isSearching, setIsSearching] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10); // Таймер на 10 секунд
   const searchTimeout = useRef<any | null>(null);
@@ -31,11 +35,12 @@ const MiningBtnSection = () => {
     }, 10000);
   };
 
-  const stopSearch = () => {
+  const stopSearch = async () => {
     setIsSearching(false);
     clearTimeout(searchTimeout.current); // Очищаем таймаут
     clearInterval(intervalRef.current); // Останавливаем таймер
     setTimeLeft(10); // Сбрасываем таймер
+    onOpenModalDailyGift();
   };
 
   const timeLeftNormalize = `00:${String(timeLeft).padStart(2, "0")}s`;

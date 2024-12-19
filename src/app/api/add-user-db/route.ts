@@ -72,6 +72,7 @@ export const POST = async (request: Request) => {
       wallet: "",
       wallet_name: "",
       investment_sum: [],
+      lastResetDailyTask: "",
     };
 
     await usersCollection.insertOne(newUser);

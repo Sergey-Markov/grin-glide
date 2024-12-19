@@ -15,15 +15,26 @@ import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
 import Preloader from "../Preloader/Preloader";
 import Toast from "../Toast/Toast";
 import MiningBtnSection from "../MiningBtnSection/MiningBtnSection";
+import ModalDailyGift from "../ModalDailyGift/ModalDailyGift";
+
+const currentDate = new Date().toISOString().split("T")[0];
 
 const HomePage = () => {
   const { user, setIsNewUser, isNewUser, updateUser, appErrors, setAppError } =
     useUser();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDailyRevard, setIsOpenDailyRevard] = useState(false);
 
   const closeModalHandler = () => {
     setIsNewUser(false);
+  };
+
+  const closeModalDailyGiftHandler = () => {
+    setIsOpenDailyRevard(false);
+  };
+  const openModalDailyGiftHandler = () => {
+    setIsOpenDailyRevard(true);
   };
 
   const openMenuHandler = () => {
@@ -74,6 +85,7 @@ const HomePage = () => {
   const isCompletedVote = user?.completedTasks.some(
     (task) => task.id === "becomeGring"
   );
+  const NotCheckedDailyReward = user.lastResetDailyTask !== currentDate;
 
   return (
     <div className="font-sans text-white min-h-screen pb-12">
@@ -88,7 +100,9 @@ const HomePage = () => {
         <Menu open={isOpen} />
         <main className="p-4">
           {isCompletedVote ? (
-            <MiningBtnSection />
+            <MiningBtnSection
+              onOpenModalDailyGift={openModalDailyGiftHandler}
+            />
           ) : (
             <div>
               <section
@@ -107,6 +121,12 @@ const HomePage = () => {
       </div>
       {appErrors && <Toast message={appErrors.message} />}
       {isNewUser && <ModalWellcomeGift closeModal={closeModalHandler} />}
+      {NotCheckedDailyReward && isOpenDailyRevard && (
+        <ModalDailyGift
+          closeModal={closeModalDailyGiftHandler}
+          newDate={currentDate}
+        />
+      )}
     </div>
   );
 };

@@ -43,6 +43,7 @@ export type TUserContext = {
     amount: number;
     currency: "TON" | "USDT";
   }[];
+  lastResetDailyTask: string | "";
 };
 
 export type TAppError = {
