@@ -46,7 +46,9 @@ const MiningBtnSection = ({
     clearTimeout(searchTimeout.current); // Очищаем таймаут
     clearInterval(intervalRef.current); // Останавливаем таймер
     setTimeLeft(10); // Сбрасываем таймер
-    onOpenModalDailyGift();
+    if (timeLeft <= 1) {
+      onOpenModalDailyGift();
+    }
   };
 
   const timeLeftNormalize = `00:${String(timeLeft).padStart(2, "0")}s`;
