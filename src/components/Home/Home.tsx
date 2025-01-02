@@ -17,6 +17,7 @@ import Toast from "../Toast/Toast";
 import MiningBtnSection from "../MiningBtnSection/MiningBtnSection";
 import ModalDailyGift from "../ModalDailyGift/ModalDailyGift";
 import NextClaimTimer from "../NextClaimTimer/NextClaimTimer";
+import SocLinkList from "../SocLinkList/SocLinkList";
 
 const currentDate = new Date().toISOString().split("T")[0];
 
@@ -100,7 +101,10 @@ const HomePage = () => {
           />
         )}
         <Menu open={isOpen} />
-        {!NotCheckedDailyReward && <NextClaimTimer />}
+        <div className="flex justify-between items-center">
+          {!NotCheckedDailyReward && <NextClaimTimer />}
+          <SocLinkList />
+        </div>
         <main className="p-4">
           {isCompletedVote ? (
             <MiningBtnSection
