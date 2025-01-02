@@ -77,7 +77,7 @@ const MiningBtnSection = ({
         <LogoIcon />
       </div>
       {isSearching && canClaim && (
-        <span className="btn btn-md absolute top-full mt-4 text-md text-emerald-400">
+        <span className="btn btn-md absolute top-1/2 mt-4 text-md text-emerald-400">
           {timeLeftNormalize}
         </span>
       )}
