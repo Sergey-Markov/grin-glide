@@ -1,11 +1,10 @@
 import { v4 as uuid } from "uuid";
+import { FaTiktok, FaInstagram } from "react-icons/fa";
 import {
   // BiGlobe,
-  BiLogoDiscordAlt,
   BiLogoYoutube,
   BiLogoTelegram,
 } from "react-icons/bi";
-import { BsTwitterX } from "react-icons/bs";
 
 const CONTACTS_SOCIAL_INFO = [
   {
@@ -16,15 +15,15 @@ const CONTACTS_SOCIAL_INFO = [
   },
   {
     id: uuid(),
-    name: "Discord",
-    href: "investors@company.com",
-    icon: BiLogoDiscordAlt,
+    name: "TikTok",
+    href: "+1 (555) 123-4567",
+    icon: FaTiktok,
   },
   {
     id: uuid(),
-    name: "Twitter",
-    href: "www.company.com",
-    icon: BsTwitterX,
+    name: "Instagram",
+    href: "investors@company.com",
+    icon: FaInstagram,
   },
   {
     id: uuid(),

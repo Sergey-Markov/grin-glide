@@ -8,6 +8,7 @@ import PointGringImg from "../PointGringImg/PointGringImg";
 import BurgerBtn from "../BurgerBtn/BurgerBtn";
 
 import s from "./MainHeader.module.css";
+import SocLinkList from "../SocLinkList/SocLinkList";
 
 export interface IMainHeaderProps {
   open: boolean;
@@ -42,6 +43,7 @@ const MainHeader = ({ open, openToggler, userDB }: IMainHeaderProps) => {
           </div>
         </div>
       </div>
+      <SocLinkList />
       <div className={s.burgerBtnView}>
         <BurgerBtn
           open={open}
