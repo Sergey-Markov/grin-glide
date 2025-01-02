@@ -11,6 +11,7 @@ import HeroStartTask from "@/components/HeroStartTask/HeroStartTask";
 import { useUser } from "@/app/contexts/AppContext";
 import { updateVoteFields } from "@/services/updateVoteFields";
 import { updateUserFields } from "@/services/updateUserFields";
+import { useTranslations } from "next-intl";
 import ModalWellcomeGift from "../ModalWellcomeGift/ModalWellcomeGift";
 import Preloader from "../Preloader/Preloader";
 import Toast from "../Toast/Toast";
@@ -24,6 +25,7 @@ const currentDate = new Date().toISOString().split("T")[0];
 const HomePage = () => {
   const { user, setIsNewUser, isNewUser, updateUser, appErrors, setAppError } =
     useUser();
+  const t = useTranslations("Home");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDailyRevard, setIsOpenDailyRevard] = useState(false);
@@ -105,7 +107,9 @@ const HomePage = () => {
           {!NotCheckedDailyReward ? (
             <NextClaimTimer />
           ) : (
-            <p className="btn btn-xs text-md text-emerald-400">push & hold</p>
+            <p className="btn btn-xs text-md text-emerald-400">
+              {t("holdText")}
+            </p>
           )}
           <SocLinkList />
         </div>

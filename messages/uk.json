@@ -1,6 +1,6 @@
 {
-  "HomePage": {
-    "title": "Привіт світе!"
+  "Home": {
+    "holdText": "затисни Точку-G"
   },
   "BtmNav": {
     "Home": "Головна",
