@@ -1,41 +1,9 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import {
-  // BiGlobe,
-  BiLogoDiscordAlt,
-  BiMailSend,
-  BiLogoYoutube,
-  BiLogoTelegram,
-} from "react-icons/bi";
-import { BsTwitterX } from "react-icons/bs";
+import { BiMailSend, BiLogoTelegram } from "react-icons/bi";
 import { useTranslations } from "next-intl";
+import SocLinkList from "../SocLinkList/SocLinkList";
 
-const CONTACTS_SOCIAL_INFO = [
-  {
-    id: uuid(),
-    name: "YouTube",
-    href: "+1 (555) 123-4567",
-    icon: BiLogoYoutube,
-  },
-  {
-    id: uuid(),
-    name: "Discord",
-    href: "investors@company.com",
-    icon: BiLogoDiscordAlt,
-  },
-  {
-    id: uuid(),
-    name: "Twitter",
-    href: "www.company.com",
-    icon: BsTwitterX,
-  },
-  {
-    id: uuid(),
-    name: "Telegram",
-    href: "www.company.com",
-    icon: BiLogoTelegram,
-  },
-];
 const CONTACTS_GENERAL_INFO = [
   {
     id: uuid(),
@@ -49,12 +17,6 @@ const CONTACTS_GENERAL_INFO = [
     text: "investors@company.com",
     icon: BiLogoTelegram,
   },
-  // {
-  //   id: uuid(),
-  //   name: "Website",
-  //   text: "www.company.com",
-  //   icon: BiGlobe,
-  // },
 ];
 
 const Contacts = () => {
@@ -78,19 +40,8 @@ const Contacts = () => {
             </div>
           </a>
         ))}
-        <div className="flex items-center justify-end gap-2">
-          {CONTACTS_SOCIAL_INFO.map(({ id, href, icon: Icon }) => (
-            <a
-              key={id}
-              className="flex items-center justify-center bg-primary p-2 rounded-full"
-              href={href}
-              target="_blank"
-              aria-label={href}
-              rel="noreferrer"
-            >
-              <Icon className="w-6 h-6" />
-            </a>
-          ))}
+        <div className="flex items-center justify-end">
+          <SocLinkList />
         </div>
       </div>
     </div>
