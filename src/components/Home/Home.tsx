@@ -102,7 +102,11 @@ const HomePage = () => {
         )}
         <Menu open={isOpen} />
         <div className="flex justify-between items-center">
-          {!NotCheckedDailyReward && <NextClaimTimer />}
+          {!NotCheckedDailyReward ? (
+            <NextClaimTimer />
+          ) : (
+            <p className="btn btn-xs text-md text-emerald-400">push & hold</p>
+          )}
           <SocLinkList />
         </div>
         <main className="p-4">
