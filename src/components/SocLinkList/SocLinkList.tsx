@@ -1,34 +1,30 @@
 import { v4 as uuid } from "uuid";
-import { FaTiktok, FaInstagram } from "react-icons/fa";
-import {
-  // BiGlobe,
-  BiLogoYoutube,
-  BiLogoTelegram,
-} from "react-icons/bi";
+import { FaTiktok, FaFacebook } from "react-icons/fa";
+import { BiLogoYoutube, BiLogoTelegram } from "react-icons/bi";
 
 const CONTACTS_SOCIAL_INFO = [
   {
     id: uuid(),
     name: "YouTube",
-    href: "+1 (555) 123-4567",
+    href: "https://www.youtube.com/@GrinG_Official",
     icon: BiLogoYoutube,
   },
   {
     id: uuid(),
     name: "TikTok",
-    href: "+1 (555) 123-4567",
+    href: "https://www.tiktok.com/@gring0fficial?is_from_webapp=1&sender_device=pc",
     icon: FaTiktok,
   },
   {
     id: uuid(),
-    name: "Instagram",
-    href: "investors@company.com",
-    icon: FaInstagram,
+    name: "Facebook",
+    href: "https://www.facebook.com/share/g/1DyRYbKZaJ/",
+    icon: FaFacebook,
   },
   {
     id: uuid(),
     name: "Telegram",
-    href: "www.company.com",
+    href: "https://t.me/GrinGlide",
     icon: BiLogoTelegram,
   },
 ];
