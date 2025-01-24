@@ -8,13 +8,13 @@ const CONTACTS_GENERAL_INFO = [
   {
     id: uuid(),
     name: "email",
-    text: "investors@company.com",
+    text: "mailto:grinGlide.official@gmail.com",
     icon: BiMailSend,
   },
   {
     id: uuid(),
     name: "support",
-    text: "investors@company.com",
+    text: "mailto:grinGlide.official@gmail.com",
     icon: BiLogoTelegram,
   },
 ];
