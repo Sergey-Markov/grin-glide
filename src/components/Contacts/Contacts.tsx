@@ -29,11 +29,11 @@ const Contacts = () => {
         {t("title")}
       </h2>
       <div className="space-y-4">
-        {CONTACTS_GENERAL_INFO.map(({ id, name, text, icon: Icon }) => (
+        {CONTACTS_GENERAL_INFO.map(({ id, name, text, icon: Icon, href }) => (
           <a
             key={id}
             className="flex items-center"
-            href={text}
+            href={href}
           >
             <Icon className="w-6 h-6 mr-3 text-success" />
             <div>
