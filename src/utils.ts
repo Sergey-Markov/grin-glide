@@ -174,6 +174,32 @@ export const getTaskHandler = (
         }
         throw new Error();
       };
+    case "connectToGrinGYouTube":
+    case "connectToGrinGFacebook":
+    case "connectToGrinGTikTok":
+      return async () => {
+        if (user) {
+          const isAlreadyCompleted = completedTasks.some(
+            (task) => task.id === taskId
+          );
+          if (isAlreadyCompleted) return;
+
+          const newCompletedTask = { id: taskId, isClaimed: false };
+          try {
+            const result = await updateUserFields(user.telegram_id, {
+              completedTasks: [...completedTasks, newCompletedTask],
+            });
+            if (result) {
+              updateUser(result.userDB);
+            }
+          } catch (error) {
+            console.error("Failed to update user completed tasks:", error);
+            throw new Error("Failed to update user completed tasks");
+          }
+          return;
+        }
+        throw new Error();
+      };
 
     default:
       return async () => {

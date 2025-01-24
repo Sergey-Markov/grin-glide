@@ -58,11 +58,17 @@ const Tasks = () => {
                 (task) => task.id === taskTitle && task.isClaimed
               );
 
+              const goToSocialLinkHandler = () => {
+                if (href) {
+                  window.location.href = href;
+                }
+              };
               const taskHandler = async () => {
                 try {
                   setLoading(id, true);
                   const taskFn = getTaskHandler(taskTitle, user, updateUser);
                   await taskFn();
+                  goToSocialLinkHandler();
                 } catch (error: any) {
                   setAppError({
                     message: !error.message ? `NotCompleted` : "TryLater",
@@ -120,9 +126,7 @@ const Tasks = () => {
                     type="button"
                     className="flex items-center"
                     onClick={() => {
-                      if (href) {
-                        window.location.href = href;
-                      }
+                      goToSocialLinkHandler();
                       if (approute) {
                         router.push(approute);
                       }
