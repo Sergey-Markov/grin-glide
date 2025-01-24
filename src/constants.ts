@@ -8,7 +8,13 @@ import {
 } from "react-icons/io5";
 import { BsFillBarChartLineFill, BsFillInfoCircleFill } from "react-icons/bs";
 import { LuCalendarHeart } from "react-icons/lu";
-import { FaHandsHelping, FaVoteYea } from "react-icons/fa";
+import {
+  FaHandsHelping,
+  FaVoteYea,
+  FaYoutube,
+  FaTiktok,
+  FaFacebook,
+} from "react-icons/fa";
 import { GoTasklist } from "react-icons/go";
 import { GiStarsStack, GiThreeFriends } from "react-icons/gi";
 import { IconType } from "react-icons";
@@ -287,6 +293,27 @@ export const tasks: TTask[] = [
     points: 200,
     approute: "/",
     icon: FaVoteYea,
+  },
+  {
+    id: "6",
+    taskTitle: "connectToGrinGYouTube",
+    points: 200,
+    href: "https://www.youtube.com/@GrinG_Official",
+    icon: FaYoutube,
+  },
+  {
+    id: "7",
+    taskTitle: "connectToGrinGFacebook",
+    points: 200,
+    href: "https://www.facebook.com/share/g/1DyRYbKZaJ/",
+    icon: FaFacebook,
+  },
+  {
+    id: "8",
+    taskTitle: "connectToGrinGTikTok",
+    points: 200,
+    href: "https://www.tiktok.com/@gring0fficial?is_from_webapp=1&sender_device=pc",
+    icon: FaTiktok,
   },
   // {
   //   id: "4",
